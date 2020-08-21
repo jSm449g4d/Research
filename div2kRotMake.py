@@ -17,21 +17,19 @@ os.makedirs("./div2k_srlearn/train_cubic4",exist_ok=True)
 os.makedirs("./div2k_srlearn/train_normal",exist_ok=True)
 os.makedirs("./div2k_srlearn/train_median",exist_ok=True)
 os.makedirs("./div2k_srlearn/train_gaussb",exist_ok=True)
-os.makedirs("./div2k_srlearn/train_bilatr",exist_ok=True)
 os.makedirs("./div2k_srlearn/test_y",exist_ok=True)
 os.makedirs("./div2k_srlearn/test_4",exist_ok=True)
 os.makedirs("./div2k_srlearn/test_cubic4",exist_ok=True)
 os.makedirs("./div2k_srlearn/test_normal",exist_ok=True)
 os.makedirs("./div2k_srlearn/test_median",exist_ok=True)
 os.makedirs("./div2k_srlearn/test_gaussb",exist_ok=True)
-os.makedirs("./div2k_srlearn/test_bilatr",exist_ok=True)
 
-lfw=ffzk("./DIV2K_train_HR")
-sample=50000
-outputfolder="./div2k_srlearn/train_"
-# lfw=ffzk("./DIV2K_valid_HR")
-# sample=1000
-# outputfolder="./div2k_srlearn/test_" 
+# lfw=ffzk("./DIV2K_train_HR")
+# sample=50000
+# outputfolder="./div2k_srlearn/train_"
+lfw=ffzk("./DIV2K_valid_HR")
+sample=1000
+outputfolder="./div2k_srlearn/test_" 
 
 dSize=128
 
@@ -57,4 +55,3 @@ for i in range(sample):
     cv2.imwrite(outputfolder+"normal/"+str(i)+".png",img_normal)
     cv2.imwrite(outputfolder+"median/"+str(i)+".png",cv2.medianBlur(img_normal,7))
     cv2.imwrite(outputfolder+"gaussb/"+str(i)+".png",cv2.GaussianBlur(img_normal,(7,7),0))
-    cv2.imwrite(outputfolder+"bilatr/"+str(i)+".png",cv2.bilateralFilter(img_normal,7,100,100))

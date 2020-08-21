@@ -9,7 +9,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import tensorflow.keras as keras
 from tensorflow.keras.layers import Dense,Dropout,Conv2D,Conv2DTranspose,\
 ReLU,Softmax,Flatten,Reshape,UpSampling2D,Input,Activation,LayerNormalization,\
-Lambda,Multiply,GlobalAveragePooling2D,LeakyReLU,PReLU
+Lambda,Multiply,GlobalAveragePooling2D,LeakyReLU,PReLU,BatchNormalization
 from tensorflow.keras import regularizers
 from tensorflow.keras import optimizers
 
@@ -46,7 +46,7 @@ def tf2img(tfs,_dir="./",name="",epoch=0,ext=".png"):
     if type(tfs)!=np.ndarray:tfs=tfs.numpy()
     tfs=(np.clip(tfs,0.0, 1.0)*256).astype(np.uint8)
     for i in range(tfs.shape[0]):
-        cv2.imwrite(os.path.join(_dir,name+"_epoch-num_"+str(epoch)+"-"+str(i)+ext),tfs[i])
+        cv2.imwrite(os.path.join(_dir,name),tfs[i])
     
 def dense_block(input_tensor, filters, scale=0.2):
     x_1 = input_tensor
@@ -70,13 +70,13 @@ def upsample(input_tensor, filters):
     x = tf.nn.depth_to_space(x, 2)(x)
     x = PReLU(shared_axes=[1, 2])(x)
     return x
-def ESRGANS(filters=64, n_dense_block=16, n_sub_block=2):
+def ESRGANS(filters=64, n_dense_block=16/4, n_sub_block=2):
     inputs = Input(shape=(None, None, 3))
     x = Conv2D(filters,3, padding='same')(inputs)
     x = x_1 = LeakyReLU(alpha=0.2)(x)
     
-    # for _ in range(n_dense_block):
-    #     x = dense_block(x, filters=filters)
+    for _ in range(n_dense_block):
+        x = dense_block(x, filters=filters)
     
     x = Conv2D(filters,3, padding='same')(x)
     x = x_1+x*0.2
@@ -109,11 +109,10 @@ def train():
 def test():
     model = keras.models.load_model('modelEsrgans.h5')
     os.makedirs(os.path.join("./", 'outEsrgans'),exist_ok=True)
-    dataset=img2np(ffzk(os.path.join("./", './div2k_srlearn/test_cubic4')),img_len=128)
-    dataset=dataset.reshape(-1,1,128, 128, 3)#-1,batch,data
-    for i,testX in enumerate(dataset):
-        predY=model.predict(testX)
-        tf2img(predY,os.path.join("./", 'outEsrgans'),name=str(i).zfill(8))
+    dataset=ffzk(os.path.join("./", './div2k_srlearn/test_normal'))
+    for i,dataX in enumerate(dataset):
+        predY=model.predict(img2np([dataX],img_len=128))
+        tf2img(predY,os.path.join("./", 'outEsrgans'),name=os.path.basename(dataX))
 
 if __name__ == "__main__":
     tf_ini()
