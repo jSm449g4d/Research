@@ -38,18 +38,17 @@ def img2np(dir=[],img_len=128):
         except:continue
         if img_len!=0:img[-1]=cv2.resize(img[-1],(img_len,img_len))
         elif img[-1].shape!=img[0].shape:img.pop(-1);continue#Leave only the same shape
-        img[-1] = img[-1].astype(np.float32)/ 256
+        img[-1] = img[-1].astype(np.float32)/ 255.
     return np.stack(img, axis=0)
 
 def tf2img(tfs,_dir="./",name="",epoch=0,ext=".png"):
     os.makedirs(_dir, exist_ok=True)
     if type(tfs)!=np.ndarray:tfs=tfs.numpy()
-    tfs=(np.clip(tfs,0.0, 1.0)*256).astype(np.uint8)
+    tfs=np.clip(np.round(tfs*255.),0, 255).astype(np.uint8)
     for i in range(tfs.shape[0]):
         cv2.imwrite(os.path.join(_dir,name),tfs[i])
 
-    
-def UNET(input_shape=(128,128,3,)):
+def UNET_EZ(input_shape=(128,128,3,)):
     mod=mod_inp = Input(shape=input_shape)
     mod=Conv2D(64,3,padding="same",activation="relu")(mod)
 #    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
@@ -62,31 +61,31 @@ def UNET(input_shape=(128,128,3,)):
     mod_2=Conv2D(256,3,padding="same",activation="relu")(mod_2)
     mod_2=Conv2D(128,3,padding="same",activation="relu")(mod_2)
     mod_2=UpSampling2D(2)(mod_2)
-    mod_1=tf.concat([mod_1,mod_2],axis=-1)
+    mod_1=mod_1+mod_2#mod_1=tf.concat([mod_1,mod_2],axis=-1)
     mod_1=Conv2D(128,3,padding="same",activation="relu")(mod_1)
     mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
     mod_1=UpSampling2D(2)(mod_1)
-    mod=tf.concat([mod,mod_1],axis=-1)
+    mod=mod+mod_1#mod=tf.concat([mod,mod_1],axis=-1)
     mod=Conv2D(64,3,padding="same",activation="relu")(mod)
 #    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
     mod=Conv2D(3,3,padding="same")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def train():
-    x_train=img2np(ffzk(os.path.join("./", './div2k_srlearn/train_cubic4')),img_len=128)
-    y_train=img2np(ffzk(os.path.join("./", './div2k_srlearn/train_y')),img_len=128)
+    x_train=img2np(ffzk(os.path.join("./", './div2k_srlearn/train_cubic4'))[:10000],img_len=128)
+    y_train=img2np(ffzk(os.path.join("./", './div2k_srlearn/train_y'))[:10000],img_len=128)
     x_test=img2np(ffzk(os.path.join("./", './div2k_srlearn/test_cubic4')),img_len=128)
     y_test=img2np(ffzk(os.path.join("./", './div2k_srlearn/test_y')),img_len=128)
     #[:10]*1000
     
-    model=UNET()
+    model=UNET_EZ()
     model.compile(optimizer=optimizers.Adam(lr=0.0001, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
     cbks=[keras.callbacks.TensorBoard(log_dir='logsVdsr', histogram_freq=1)]
     cbks=[]
     
-    model.fit(x_train, y_train,epochs=5,batch_size=16,validation_data=(x_test, y_test),callbacks=cbks)
+    model.fit(x_train, y_train,epochs=20,batch_size=8,validation_data=(x_test, y_test),callbacks=cbks)
     model.save('model2.h5')
     
 def test():
