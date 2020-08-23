@@ -28,24 +28,19 @@ def img2np(dir=[],img_len=128):
     return np.stack(img, axis=0)
 
 preds=[]
-
 test=ffzk(os.path.join("./", 'div2k_srlearn/test_y'))
+
 preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_cubic4')))
 preds.append(ffzk(os.path.join("./", 'out1')))
 preds.append(ffzk(os.path.join("./", 'out2')))
-preds.append(ffzk(os.path.join("./", 'out3')))
-# preds.append(ffzk(os.path.join("./", 'outSrcnndrei')))
-preds.append(ffzk(os.path.join("./", 'outSrcnnvier')))
-preds.append(ffzk(os.path.join("./", 'outSrcnnfunf')))
-
+# preds.append(ffzk(os.path.join("./", 'out3')))
+# preds.append(ffzk(os.path.join("./", 'outSrcnnvier')))
+# preds.append(ffzk(os.path.join("./", 'outSrcnnfunf')))
+# preds.append(ffzk(os.path.join("./", 'outSrcnnsechs')))
 
 
 # test=ffzk(os.path.join("./", 'div2k_srlearn/test_y'))
 # preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_normal')))
-# preds.append(ffzk(os.path.join("./", 'outSrcnnNormal')))
-# preds.append(ffzk(os.path.join("./", 'outSrcnnzweiNormal')))
-# preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_normal')))
-# preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_median')))
 # preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_gaussb')))
 
 max_sample_size=min([1000,len(test)])
