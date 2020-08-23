@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import cv2
-import shutil
 import random
 #https://data.vision.ee.ethz.ch/cvl/DIV2K/
 def ffzk(input_dir):#Relative directory for all existing files
