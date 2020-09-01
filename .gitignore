@@ -1,0 +1,33 @@
+# Keys
+keys/
+FirebaseAdminKey.json
+www.zip
+www.zip.tmp
+himitu/
+
+# Javascript/Typescript
+node_modules/
+package-lock.json
+src/
+
+# Python
+__pycache__/
+
+# golang
+*.elf
+*.exe
+
+# server
+tmp/
+db/
+db.sqlite3
+
+# VScode
+.vscode/
+
+# DeepLearning
+datasets/
+outputs/
+logs/
+models/
+sandbox/

@@ -1,0 +1,7 @@
+ちょーかいぞー
+1:SRCNNベースライン
+2:UNETbisベースライン
+3:SRCNNDrop
+
+mls
+11725→test/1.png

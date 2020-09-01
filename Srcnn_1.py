@@ -9,80 +9,67 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import tensorflow.keras as keras
 from tensorflow.keras.layers import Dense,Dropout,Conv2D,Conv2DTranspose,\
 ReLU,Softmax,Flatten,Reshape,UpSampling2D,Input,Activation,LayerNormalization,\
-Lambda,Multiply,GlobalAveragePooling2D,LeakyReLU,PReLU,BatchNormalization
+Lambda,Multiply,GlobalAveragePooling2D,LeakyReLU,PReLU,BatchNormalization,\
+Conv2DTranspose,MaxPooling2D
 from tensorflow.keras import regularizers
 from tensorflow.keras import optimizers
 
 from tqdm import tqdm
+import argparse
+from util import ffzk,img2np,tf2img
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
-def tf_ini():#About GPU resources
-    physical_devices = tf.config.experimental.list_physical_devices('GPU')
-    for k in range(len(physical_devices)):
-        tf.config.experimental.set_memory_growth(physical_devices[k], True)
-        print('memory growth:', tf.config.experimental.get_memory_growth(physical_devices[k]))
-        
-def ffzk(input_dir):#Relative directory for all existing files
-    imgname_array=[];input_dir=input_dir.strip("\"\'")
-    for fd_path, _, sb_file in os.walk(input_dir):
-        for fil in sb_file:imgname_array.append(fd_path.replace('\\','/') + '/' + fil)
-    if os.path.isfile(input_dir):imgname_array.append(input_dir.replace('\\','/'))
-    return imgname_array
-
-def img2np(dir=[],img_len=128):
-    img=[]
-    for x in dir:
-        try:img.append(cv2.imread(x))
-        except:continue
-        if img_len!=0:img[-1]=cv2.resize(img[-1],(img_len,img_len))
-        elif img[-1].shape!=img[0].shape:img.pop(-1);continue#Leave only the same shape
-        img[-1] = img[-1].astype(np.float32)/ 255.
-    return np.stack(img, axis=0)
-
-def tf2img(tfs,_dir="./",name="",epoch=0,ext=".png"):
-    os.makedirs(_dir, exist_ok=True)
-    if type(tfs)!=np.ndarray:tfs=tfs.numpy()
-    tfs=np.clip(np.round(tfs*255.),0, 255).astype(np.uint8)
-    for i in range(tfs.shape[0]):
-        cv2.imwrite(os.path.join(_dir,name),tfs[i])
-    
-def SRCNN(input_shape=(128,128,3,)):
+def SRCNN(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    
-    mod=Conv2D(64,9,padding="same",activation="relu")(mod)
-    mod=Conv2D(32,1,padding="same",activation="relu")(mod)    
+    mod=Conv2D(96,9,padding="same",activation="relu")(mod)
+    mod=Conv2D(48,1,padding="same",activation="relu")(mod)    
     mod=Conv2D(3,5,padding="same")(mod)
-    
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def train():
-    x_train=img2np(ffzk(os.path.join("./", './div2k_srlearn/train_cubic4'))[:10000],img_len=128)
-    y_train=img2np(ffzk(os.path.join("./", './div2k_srlearn/train_y'))[:10000],img_len=128)
-    x_test=img2np(ffzk(os.path.join("./", './div2k_srlearn/test_cubic4')),img_len=128)
-    y_test=img2np(ffzk(os.path.join("./", './div2k_srlearn/test_y')),img_len=128)
+    limitDataSize=min([args.limit_data_size,len(ffzk(args.train_input))])
+    x_train=img2np(ffzk(args.train_input)[:limitDataSize],img_len=128)
+    y_train=img2np(ffzk(args.train_output)[:limitDataSize],img_len=128)
+    x_test=img2np(ffzk(args.pred_input),img_len=128)
+    y_test=img2np(ffzk(args.pred_output),img_len=128)
     #[:10]*1000
     
     model=SRCNN()
     model.compile(optimizer=optimizers.Adam(lr=0.0001, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
-    cbks=[keras.callbacks.TensorBoard(log_dir='logsVdsr', histogram_freq=1)]
     cbks=[]
+    if(args.TB_logdir!=""):
+        cbks=[keras.callbacks.TensorBoard(log_dir=args.TB_logdir, histogram_freq=1)]
     
-    model.fit(x_train, y_train,epochs=20,batch_size=8,validation_data=(x_test, y_test),callbacks=cbks)
-    model.save('model1.h5')
+    model.fit(x_train, y_train,epochs=args.epoch,batch_size=args.batch,validation_data=(x_test, y_test),callbacks=cbks)
+    model.save(args.model)
     
 def test():
-    model = keras.models.load_model('model1.h5')
-    os.makedirs(os.path.join("./", 'out1'),exist_ok=True)
-    dataset=ffzk(os.path.join("./", './div2k_srlearn/test_cubic4'))
+    model = keras.models.load_model(args.model)
+    os.makedirs(args.outdir,exist_ok=True)
+    dataset=ffzk(args.pred_input)
     for i,dataX in enumerate(dataset):
         predY=model.predict(img2np([dataX],img_len=128))
-        tf2img(predY,os.path.join("./", 'out1'),name=os.path.basename(dataX))
+        tf2img(predY,args.outdir,name=os.path.basename(dataX))
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-r', '--role' ,default="train")
+parser.add_argument('-ti', '--train_input' ,default="./mls_srlearn/train_cubic4")
+parser.add_argument('-to', '--train_output' ,default="./mls_srlearn/train_y")
+parser.add_argument('-pi', '--pred_input' ,default='./mls_srlearn/test_cubic4')
+parser.add_argument('-po', '--pred_output' ,default='./mls_srlearn/test_y')
+parser.add_argument('-b', '--batch' ,default=2,type=int)
+parser.add_argument('-e', '--epoch' ,default=20,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
+parser.add_argument('-m', '--model' ,default="./model1.h5")
+parser.add_argument('-o', '--outdir' ,default="./out1Mls")
+parser.add_argument('-logdir', '--TB_logdir' ,default="log1Mls")
+args = parser.parse_args()
 
 if __name__ == "__main__":
-    tf_ini()
-    train()
+    if (args.role=="train"):
+        train()
     test()

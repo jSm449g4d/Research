@@ -29,19 +29,24 @@ def img2np(dir=[],img_len=128):
 
 preds=[]
 test=ffzk(os.path.join("./", 'div2k_srlearn/test_y'))
+# test=ffzk(os.path.join("./", 'mls_srlearn/test_y'))
 
 preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_cubic4')))
 preds.append(ffzk(os.path.join("./", 'out1')))
 preds.append(ffzk(os.path.join("./", 'out2')))
-# preds.append(ffzk(os.path.join("./", 'out3')))
-# preds.append(ffzk(os.path.join("./", 'outSrcnnvier')))
-# preds.append(ffzk(os.path.join("./", 'outSrcnnfunf')))
-# preds.append(ffzk(os.path.join("./", 'outSrcnnsechs')))
+preds.append(ffzk(os.path.join("./", 'out3')))
+preds.append(ffzk(os.path.join("./", 'out5')))
+preds.append(ffzk(os.path.join("./", 'out2_1000')))
 
+# preds.append(ffzk(os.path.join("./", 'mls_srlearn/test_cubic4')))
+# preds.append(ffzk(os.path.join("./", 'out1Mls')))
+# preds.append(ffzk(os.path.join("./", 'out2Mls')))
+# preds.append(ffzk(os.path.join("./", 'out3Mls')))
 
-# test=ffzk(os.path.join("./", 'div2k_srlearn/test_y'))
-# preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_normal')))
 # preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_gaussb')))
+# preds.append(ffzk(os.path.join("./", 'out1Normal')))
+# preds.append(ffzk(os.path.join("./", 'out2Normal')))
+# preds.append(ffzk(os.path.join("./", 'out3Normal')))
 
 max_sample_size=min([1000,len(test)])
 
