@@ -71,10 +71,10 @@ def train():
         cbks=[keras.callbacks.TensorBoard(log_dir=args.TB_logdir, histogram_freq=1)]
     
     model.fit(x_train, y_train,epochs=args.epoch,batch_size=args.batch,validation_data=(x_test, y_test),callbacks=cbks)
-    model.save(args.model)
+    model.save(args.save)
     
 def test():
-    model = keras.models.load_model(args.model)
+    model = keras.models.load_model(args.save)
     os.makedirs(args.outdir,exist_ok=True)
     dataset=ffzk(args.pred_input)
     for i,dataX in enumerate(dataset):
@@ -90,7 +90,7 @@ parser.add_argument('-po', '--pred_output' ,default='./mls_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-e', '--epoch' ,default=20,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-m', '--model' ,default="./model3.h5")
+parser.add_argument('-s', '--save' ,default="./model3.h5")
 parser.add_argument('-o', '--outdir' ,default="./out3Mls")
 parser.add_argument('-logdir', '--TB_logdir' ,default="log3Mls")
 args = parser.parse_args()

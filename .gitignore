@@ -29,5 +29,5 @@ db.sqlite3
 datasets/
 outputs/
 logs/
-models/
+saves/
 sandbox/
