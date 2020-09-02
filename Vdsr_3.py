@@ -21,23 +21,13 @@ from util import ffzk,img2np,tf2img
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
-def UNET_EZ(input_shape=(None,None,3,)):
+def VDSR_EZ(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    mod=Conv2D(96,3,padding="same",activation="relu")(mod)
-    mod=Dropout(0.2)(mod)
     mod_1=mod
-    mod_1=Conv2D(96,2,2,padding="same",activation="relu")(mod_1)
-    mod_1=Dropout(0.2)(mod_1)
-    mod_2=mod_1
-    mod_2=Conv2D(96,2,2,padding="same",activation="relu")(mod_2)
-    mod_2=Dropout(0.2)(mod_2)
-    mod_2=Conv2D(96,3,padding="same",activation="relu")(mod_2)
-    mod_2=UpSampling2D(2)(mod_2)
-    mod_1=mod_1+mod_2
-    mod_1=Conv2D(96,3,padding="same",activation="relu")(mod_1)
-    mod_1=UpSampling2D(2)(mod_1)
+    for _ in range(5):
+        mod_1=Conv2D(96,3,padding="same",activation="relu")(mod_1)
+    mod_1=Conv2D(3,3,padding="same")(mod_1)
     mod=mod+mod_1
-    mod=Conv2D(96,3,padding="same",activation="relu")(mod)
     mod=Conv2D(3,3,padding="same")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
@@ -49,7 +39,7 @@ def train():
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     #[:10]*1000
     
-    model=UNET_EZ()
+    model=VDSR_EZ()
     model.compile(optimizer=optimizers.Adam(lr=0.0001, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
@@ -77,9 +67,9 @@ parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/te
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-e', '--epoch' ,default=20,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-s', '--save' ,default="./saves/srcnn2.h5")
-parser.add_argument('-o', '--outdir' ,default="./outputs/srcnn2")
-parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/srcnn2")
+parser.add_argument('-s', '--save' ,default="./saves/vdsr3.h5")
+parser.add_argument('-o', '--outdir' ,default="./outputs/vdsr")
+parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/vdsr3")
 args = parser.parse_args()
 
 if __name__ == "__main__":
