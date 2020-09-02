@@ -19,7 +19,7 @@ for i,v in enumerate(lfw):
     myimg = cv2.imread(v)
     
     _height, _width, _channels =myimg.shape[:3]
-    if(_height<128 or _width<128):
+    if(_height<129 or _width<129):
         continue
     
     avg_color = np.average( np.average(myimg, axis=0), axis=0)
