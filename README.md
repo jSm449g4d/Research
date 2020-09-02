@@ -3,6 +3,10 @@
 |---|---|---|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t22.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t31.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t182.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/p22.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p31.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p182.png)|
+## 使い方
+### 使用前
+`pip3 install -r requirements.txt`  
+`python3 download.py`  
 ## 背景
 現在ではビッグデータで学習した機械学習モデルを利用して問題解決を図ることが一般的である。  
 例えばVGG16による画像分類、ESRGAN(VGG19)等の超解像が挙げられる。  
