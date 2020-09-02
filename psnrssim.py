@@ -28,15 +28,11 @@ def img2np(dir=[],img_len=128):
     return np.stack(img, axis=0)
 
 preds=[]
-test=ffzk(os.path.join("./", 'div2k_srlearn/test_y'))
+test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 # test=ffzk(os.path.join("./", 'mls_srlearn/test_y'))
 
-preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_cubic4')))
-preds.append(ffzk(os.path.join("./", 'out1')))
-preds.append(ffzk(os.path.join("./", 'out2')))
-preds.append(ffzk(os.path.join("./", 'out3')))
-preds.append(ffzk(os.path.join("./", 'out5')))
-preds.append(ffzk(os.path.join("./", 'out2_1000')))
+preds.append(ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_cubic8')))
+preds.append(ffzk(os.path.join("./", 'outputs/srcnn1')))
 
 # preds.append(ffzk(os.path.join("./", 'mls_srlearn/test_cubic4')))
 # preds.append(ffzk(os.path.join("./", 'out1Mls')))
