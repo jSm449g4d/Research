@@ -57,16 +57,16 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./mls_srlearn/train_cubic4")
-parser.add_argument('-to', '--train_output' ,default="./mls_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./mls_srlearn/test_cubic4')
-parser.add_argument('-po', '--pred_output' ,default='./mls_srlearn/test_y')
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic8")
+parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
+parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-e', '--epoch' ,default=20,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-s', '--save' ,default="./model1.h5")
-parser.add_argument('-o', '--outdir' ,default="./out1Mls")
-parser.add_argument('-logdir', '--TB_logdir' ,default="log1Mls")
+parser.add_argument('-s', '--save' ,default="./saves/srcnn1.h5")
+parser.add_argument('-o', '--outdir' ,default="./outputs/srcnn1")
+parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/srcnn1")
 args = parser.parse_args()
 
 if __name__ == "__main__":

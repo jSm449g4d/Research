@@ -8,6 +8,9 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
 os.makedirs("datasets", exist_ok=True)
+os.makedirs("saves", exist_ok=True)
+os.makedirs("outputs", exist_ok=True)
+os.makedirs("logs", exist_ok=True)
 def dl_zip_x(url:str=""):
     urllib.request.urlretrieve(url,os.path.join("./datasets",os.path.basename(url).split("?")[0]))
     with zipfile.ZipFile(os.path.join("./datasets",os.path.basename(url).split("?")[0])) as z:
