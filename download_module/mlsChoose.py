@@ -11,7 +11,7 @@ def ffzk(input_dir):
     if os.path.isfile(input_dir):imgname_array.append(input_dir.replace('\\','/'))
     return imgname_array
 
-lfw=ffzk(os.path.join("./datasets/msl-images/calibrated"))
+lfw=ffzk(os.path.join("./datasets/calibrated"))
 
 os.makedirs("./datasets/mls",exist_ok=True)
 os.makedirs("./datasets/mls",exist_ok=True)
