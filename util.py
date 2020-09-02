@@ -9,13 +9,15 @@ def ffzk(input_dir):#Relative directory for all existing files
     if os.path.isfile(input_dir):imgname_array.append(input_dir.replace('\\','/'))
     return imgname_array
 
-def img2np(dir=[],img_len=128):
+def img2np(dir=[],img_len=0):
     img=[]
     for x in dir:
         try:img.append(cv2.imread(x))
         except:continue
         if img_len!=0:img[-1]=cv2.resize(img[-1],(img_len,img_len))
         elif img[-1].shape!=img[0].shape:img.pop(-1);continue#Leave only the same shape
+        height, width, _ = img[-1].shape[:3]
+        img[-1]=cv2.resize(img[-1],(8*(width//8),8*(height//8)))
         img[-1] = img[-1].astype(np.float32)/ 255.
     return np.stack(img, axis=0)
 
