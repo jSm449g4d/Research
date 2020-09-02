@@ -1,0 +1,11 @@
+# pip3_package
+wheel
+setuptools
+
+# application
+tensorflow
+tensorflow-gpu
+tqdm
+opencv-python
+matplotlib
+importlib
