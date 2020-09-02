@@ -25,7 +25,7 @@ def VDSR_EZ(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     mod_1=mod
     for _ in range(5):
-        mod_1=Conv2D(96,3,padding="same",activation="relu")(mod_1)
+        mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
     mod_1=Conv2D(3,3,padding="same")(mod_1)
     mod=mod+mod_1
     mod=Conv2D(3,3,padding="same")(mod)
@@ -68,7 +68,7 @@ parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-e', '--epoch' ,default=20,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/vdsr3.h5")
-parser.add_argument('-o', '--outdir' ,default="./outputs/vdsr")
+parser.add_argument('-o', '--outdir' ,default="./outputs/vdsr3")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/vdsr3")
 args = parser.parse_args()
 

@@ -34,6 +34,7 @@ test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 preds.append(ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_cubic8')))
 preds.append(ffzk(os.path.join("./", 'outputs/srcnn1')))
 preds.append(ffzk(os.path.join("./", 'outputs/unet2')))
+preds.append(ffzk(os.path.join("./", 'outputs/vdsr3')))
 
 # preds.append(ffzk(os.path.join("./", 'mls_srlearn/test_cubic4')))
 # preds.append(ffzk(os.path.join("./", 'out1Mls')))

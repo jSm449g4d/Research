@@ -23,8 +23,8 @@ os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
 def SRCNN(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    mod=Conv2D(96,9,padding="same",activation="relu")(mod)
-    mod=Conv2D(48,1,padding="same",activation="relu")(mod)    
+    mod=Conv2D(64,9,padding="same",activation="relu")(mod)
+    mod=Conv2D(32,1,padding="same",activation="relu")(mod)    
     mod=Conv2D(3,5,padding="same")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
