@@ -40,8 +40,8 @@ for iv in [0,1]:
         
         cv2.imwrite(outputfolder+"y/"+str(i)+".png",cv2.resize(img, dsize=(dSize, dSize)))
         
-        Dn=cv2.resize(cv2.resize(img, dsize=(int(dSize//4), int(dSize//4))), dsize=(dSize, dSize))
-        cv2.imwrite(outputfolder+"cubic4/"+str(i)+".png",Dn, interpolation=cv2.INTER_CUBIC)
+        Dn=cv2.resize(cv2.resize(img, dsize=(int(dSize//4), int(dSize//4))), dsize=(dSize, dSize), interpolation=cv2.INTER_CUBIC)
+        cv2.imwrite(outputfolder+"cubic4/"+str(i)+".png",Dn)
                 
         img_normal=cv2.resize(img ,(dSize,dSize))+np.random.normal(0, 64, (dSize, dSize,3))
         img_normal=np.clip(img_normal,0,255).astype(np.uint8)
@@ -54,6 +54,6 @@ for iv in [0,1]:
         
         # extra
         cv2.imwrite(outputfolder+"gray/"+str(i)+".png",cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
-        Dn=cv2.resize(cv2.resize(img, dsize=(int(dSize//8), int(dSize//8))), dsize=(dSize, dSize))
-        cv2.imwrite(outputfolder+"cubic8/"+str(i)+".png",Dn, interpolation=cv2.INTER_CUBIC)
+        Dn=cv2.resize(cv2.resize(img, dsize=(int(dSize//8), int(dSize//8))), dsize=(dSize, dSize), interpolation=cv2.INTER_CUBIC)
+        cv2.imwrite(outputfolder+"cubic8/"+str(i)+".png",Dn)
         
