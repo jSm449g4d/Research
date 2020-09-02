@@ -7,23 +7,25 @@ from util import ffzk
 
 dSize=128
 
-lfw=ffzk("./DIV2K_train_HR")
+lfw=ffzk("./datasets/DIV2K_train_HR")
 sample=10000
-outputfolder="./div2k_srlearn/train_"
+outputfolder="./datasets/div2k_srlearn/train_"
 
 for iv in [0,1]:
     if iv==1:
-        lfw=ffzk("./DIV2K_valid_HR")
+        lfw=ffzk("./datasets/DIV2K_valid_HR")
         sample=1000
-        outputfolder="./div2k_srlearn/test_" 
+        outputfolder="./datasets/div2k_srlearn/test_" 
 
+    # Reuse
     os.makedirs(outputfolder+"y",exist_ok=True)
     os.makedirs(outputfolder+"4",exist_ok=True)
     os.makedirs(outputfolder+"cubic4",exist_ok=True)
+    os.makedirs(outputfolder+"cubic4normal",exist_ok=True)
     os.makedirs(outputfolder+"normal",exist_ok=True)
     os.makedirs(outputfolder+"gaussb",exist_ok=True)
     os.makedirs(outputfolder+"gray",exist_ok=True)
-    os.makedirs(outputfolder+"canny",exist_ok=True)
+    os.makedirs(outputfolder+"cubic8",exist_ok=True)
 
     for i in range(sample):
         dirs=random.choice(lfw)
@@ -38,14 +40,20 @@ for iv in [0,1]:
         
         cv2.imwrite(outputfolder+"y/"+str(i)+".png",cv2.resize(img, dsize=(dSize, dSize)))
         
-        Dn=cv2.resize(img, dsize=(int(dSize//4), int(dSize//4)))
-        cv2.imwrite(outputfolder+"4/"+str(i)+".png",Dn)
-        cv2.imwrite(outputfolder+"cubic4/"+str(i)+".png",cv2.resize(Dn, dsize=(dSize, dSize), interpolation=cv2.INTER_CUBIC))
-        
+        Dn=cv2.resize(cv2.resize(img, dsize=(int(dSize//4), int(dSize//4))), dsize=(dSize, dSize))
+        cv2.imwrite(outputfolder+"cubic4/"+str(i)+".png",Dn, interpolation=cv2.INTER_CUBIC)
+                
         img_normal=cv2.resize(img ,(dSize,dSize))+np.random.normal(0, 64, (dSize, dSize,3))
         img_normal=np.clip(img_normal,0,255).astype(np.uint8)
         cv2.imwrite(outputfolder+"normal/"+str(i)+".png",img_normal)
-        cv2.imwrite(outputfolder+"gaussb/"+str(i)+".png",cv2.GaussianBlur(img_normal,(7,7),0))
+        cv2.imwrite(outputfolder+"gaussb/"+str(i)+".png",cv2.GaussianBlur(img_normal,(5,5),0))
         
+        img_normal=Dn+np.random.normal(0, 64, (dSize, dSize,3))
+        img_normal=np.clip(img_normal,0,255).astype(np.uint8)
+        cv2.imwrite(outputfolder+"cubic4normal/"+str(i)+".png",img_normal)
+        
+        # extra
         cv2.imwrite(outputfolder+"gray/"+str(i)+".png",cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
-        cv2.imwrite(outputfolder+"canny/"+str(i)+".png",cv2.Canny(img, 100, 100))
+        Dn=cv2.resize(cv2.resize(img, dsize=(int(dSize//8), int(dSize//8))), dsize=(dSize, dSize))
+        cv2.imwrite(outputfolder+"cubic8/"+str(i)+".png",Dn, interpolation=cv2.INTER_CUBIC)
+        
