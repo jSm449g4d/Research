@@ -13,7 +13,7 @@ outputfolder="./datasets/mls_srlearn/train_"
 
 for iv in [0,1]:
     if iv==1:
-        lfw=ffzk("./datasets/msl")[:1000]
+        lfw=ffzk("./datasets/mls")[:1000]
         sample=1000
         outputfolder="./datasets/mls_srlearn/test_" 
         
