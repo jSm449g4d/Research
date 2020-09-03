@@ -23,21 +23,23 @@ os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
 def UNET_EZ(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    mod=Conv2D(96,3,padding="same",activation="relu")(mod)
-    mod=Dropout(0.2)(mod)
+    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
     mod_1=mod
-    mod_1=Conv2D(96,2,2,padding="same",activation="relu")(mod_1)
-    mod_1=Dropout(0.2)(mod_1)
+    mod_1=Conv2D(64,2,2,padding="same",activation="relu")(mod_1)
     mod_2=mod_1
-    mod_2=Conv2D(96,2,2,padding="same",activation="relu")(mod_2)
-    mod_2=Dropout(0.2)(mod_2)
-    mod_2=Conv2D(96,3,padding="same",activation="relu")(mod_2)
-    mod_2=UpSampling2D(2)(mod_2)
+    mod_2=Conv2D(64,2,2,padding="same",activation="relu")(mod_2)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    #mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    #mod_2=UpSampling2D(2)(mod_2)
+    mod_2=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_2)
     mod_1=mod_1+mod_2
-    mod_1=Conv2D(96,3,padding="same",activation="relu")(mod_1)
-    mod_1=UpSampling2D(2)(mod_1)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    #mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    #mod_1=UpSampling2D(2)(mod_1)
+    mod_1=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_1)
     mod=mod+mod_1
-    mod=Conv2D(96,3,padding="same",activation="relu")(mod)
+    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
+    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
     mod=Conv2D(3,3,padding="same")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
@@ -50,7 +52,7 @@ def train():
     #[:10]*1000
     
     model=UNET_EZ()
-    model.compile(optimizer=optimizers.Adam(lr=0.0001, beta_1=0.9, beta_2=0.999),
+    model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
     cbks=[]
@@ -70,16 +72,16 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic8")
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_normal")
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_normal')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
-parser.add_argument('-e', '--epoch' ,default=20,type=int)
+parser.add_argument('-e', '--epoch' ,default=10,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-s', '--save' ,default="./saves/unet2.h5")
-parser.add_argument('-o', '--outdir' ,default="./outputs/unet2")
-parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet2")
+parser.add_argument('-s', '--save' ,default="./saves/unet2Normal.h5")
+parser.add_argument('-o', '--outdir' ,default="./outputs/unet2Normal")
+parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet2Normal")
 args = parser.parse_args()
 
 if __name__ == "__main__":

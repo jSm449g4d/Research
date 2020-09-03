@@ -1,7 +1,7 @@
 ちょーかいぞー
 1:SRCNNベースライン
-2:UNETbisベースライン
-3:SRCNNDrop
+2:UNET_EZベースライン
+3:VDSR_EXベースライン
 
-mls
-11725→test/1.png
+7276
+7175

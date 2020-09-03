@@ -24,7 +24,7 @@ os.chdir(os.path.dirname(os.path.join("./", __file__)))
 def SRCNN(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     mod=Conv2D(64,9,padding="same",activation="relu")(mod)
-    mod=Conv2D(32,1,padding="same",activation="relu")(mod)    
+    mod=Conv2D(32,3,padding="same",activation="relu")(mod)    
     mod=Conv2D(3,5,padding="same")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
@@ -37,7 +37,7 @@ def train():
     #[:10]*1000
     
     model=SRCNN()
-    model.compile(optimizer=optimizers.Adam(lr=0.0001, beta_1=0.9, beta_2=0.999),
+    model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
     cbks=[]
@@ -62,7 +62,7 @@ parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/t
 parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
-parser.add_argument('-e', '--epoch' ,default=20,type=int)
+parser.add_argument('-e', '--epoch' ,default=10,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/srcnn1.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/srcnn1")

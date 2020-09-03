@@ -31,10 +31,14 @@ preds=[]
 test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 # test=ffzk(os.path.join("./", 'mls_srlearn/test_y'))
 
-preds.append(ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_cubic8')))
-preds.append(ffzk(os.path.join("./", 'outputs/srcnn1')))
-preds.append(ffzk(os.path.join("./", 'outputs/unet2')))
-preds.append(ffzk(os.path.join("./", 'outputs/vdsr3')))
+preds.append(ffzk('datasets/div2k_srlearn/test_cubic8'))
+preds.append(ffzk('outputs/srcnn1'))
+preds.append(ffzk('outputs/unet2'))
+preds.append(ffzk('outputs/vdsr3'))
+
+preds.append(ffzk('datasets/div2k_srlearn/test_gaussb'))
+preds.append(ffzk('outputs/ksvdNormal'))
+preds.append(ffzk('outputs/unet2Normal'))
 
 # preds.append(ffzk(os.path.join("./", 'mls_srlearn/test_cubic4')))
 # preds.append(ffzk(os.path.join("./", 'out1Mls')))
@@ -49,17 +53,20 @@ preds.append(ffzk(os.path.join("./", 'outputs/vdsr3')))
 max_sample_size=min([1000,len(test)])
 
 for i in range(len(preds)):
-    pnsrS=0.;ssimS=0.;meS=0.;mseS=0.
+    psnrS=0.;ssimS=0.;meS=0.;mseS=0.
     for ii in range(max_sample_size):
         img1 = cv2.imread(test[ii])
         img2 = cv2.imread(preds[i][ii])
-#        pnsrS+=psnr(img1, img2)
+#        psnrS+=psnr(img1, img2)
+#        if(psnrS>100):
+#
+#            continue
         ssimS+=ssim(img1, img2, multichannel=True)
         meS+=mse(img1.flatten(),img2.flatten())**2.
-#    pnsrS/=max_sample_size;
+    psnrS/=max_sample_size;
     ssimS/=max_sample_size;
     mseS=math.sqrt(meS/max_sample_size)
-#    print("PSNR",pnsrS)
+#    print("PSNR_average",psnrS)
     print("SSIM",ssimS)
     print("PSNR",10.*math.log10((255.**2)/mseS))
     print("=====^",i,"^=====")
