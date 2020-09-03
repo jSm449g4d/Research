@@ -29,14 +29,14 @@ def UNET_EZ(input_shape=(None,None,3,)):
     mod_2=mod_1
     mod_2=Conv2D(64,2,2,padding="same",activation="relu")(mod_2)
     mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
-    #mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
-    #mod_2=UpSampling2D(2)(mod_2)
-    mod_2=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_2)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=UpSampling2D(2)(mod_2)
+    #mod_2=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_2)
     mod_1=mod_1+mod_2
     mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
-    #mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
-    #mod_1=UpSampling2D(2)(mod_1)
-    mod_1=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_1)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=UpSampling2D(2)(mod_1)
+    #mod_1=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_1)
     mod=mod+mod_1
     mod=Conv2D(64,3,padding="same",activation="relu")(mod)
     mod=Conv2D(64,3,padding="same",activation="relu")(mod)
@@ -72,16 +72,16 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_normal")
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic8")
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_normal')
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-e', '--epoch' ,default=10,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-s', '--save' ,default="./saves/unet2Normal.h5")
-parser.add_argument('-o', '--outdir' ,default="./outputs/unet2Normal")
-parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet2Normal")
+parser.add_argument('-s', '--save' ,default="./saves/unet2.h5")
+parser.add_argument('-o', '--outdir' ,default="./outputs/unet2")
+parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet2")
 args = parser.parse_args()
 
 if __name__ == "__main__":

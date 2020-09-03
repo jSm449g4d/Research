@@ -26,8 +26,8 @@ def SRCNN(input_shape=(None,None,3,)):
     mod_p=mod
     mod=Conv2D(64,9,padding="same",activation="relu")(mod)
     mod=Conv2D(32,3,padding="same",activation="relu")(mod)    
+    mod=Conv2D(3,5,padding="same" )(mod)
     mod+=mod_p
-    mod=Conv2D(3,5,padding="same" ,use_bias=False)(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def train():
