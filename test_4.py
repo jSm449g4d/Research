@@ -75,9 +75,9 @@ parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/te
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-e', '--epoch' ,default=10,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-s', '--save' ,default="./saves/ressrcnn4.h5")
-parser.add_argument('-o', '--outdir' ,default="./outputs/ressrcnn4")
-parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/ressrcnn4")
+parser.add_argument('-s', '--save' ,default="./saves/test4.h5")
+parser.add_argument('-o', '--outdir' ,default="./outputs/test4")
+parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/test4")
 args = parser.parse_args()
 
 if __name__ == "__main__":
