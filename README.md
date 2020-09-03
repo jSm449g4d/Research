@@ -1,4 +1,4 @@
-# 限られたデータを元に画像の高画質化を行う機械学習モデルの開発
+# 機械学習を利用した、少数データでの画像高画質化手法の開発
 |DIV2K超解像|火星地表超解像|DIV2Kガウスノイズ除去|
 |---|---|---|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t22.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t31.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t182.png)|
