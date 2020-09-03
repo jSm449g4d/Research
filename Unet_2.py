@@ -29,14 +29,10 @@ def UNET_EZ(input_shape=(None,None,3,)):
     mod_2=mod_1
     mod_2=Conv2D(64,2,2,padding="same",activation="relu")(mod_2)
     mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
-    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
-    mod_2=UpSampling2D(2)(mod_2)
-    #mod_2=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_2)
+    mod_2=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_2)
     mod_1=mod_1+mod_2
     mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
-    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
-    mod_1=UpSampling2D(2)(mod_1)
-    #mod_1=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_1)
+    mod_1=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_1)
     mod=mod+mod_1
     mod=Conv2D(64,3,padding="same",activation="relu")(mod)
     mod=Conv2D(64,3,padding="same",activation="relu")(mod)

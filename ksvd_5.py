@@ -49,7 +49,7 @@ def train():
 
 def test():
     start = time.time()
-    ksvd=pickle.loads(open(args.save, 'rb'))
+    ksvd=pickle.load(open(args.save, 'rb'))
     os.makedirs(args.outdir,exist_ok=True)
     dataset=ffzk(args.pred_input)[:1000]
     for i,dataX in enumerate(dataset):

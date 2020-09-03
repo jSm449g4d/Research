@@ -21,13 +21,22 @@ from util import ffzk,img2np,tf2img
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
-def SRCNN(input_shape=(None,None,3,)):
+def UNET_EZ(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    mod_p=mod
-    mod=Conv2D(64,9,padding="same",activation="relu")(mod)
-    mod=Conv2D(32,3,padding="same",activation="relu")(mod)    
-    mod=Conv2D(3,5,padding="same" )(mod)
-    mod+=mod_p
+    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
+    mod_1=mod
+    mod_1=Conv2D(64,2,2,padding="same",activation="relu")(mod)
+    mod_2=mod_1
+    mod_2=Conv2D(64,4,4,padding="same",activation="relu")(mod)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_2)
+    mod_1=mod_1+mod_2
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_1)
+    mod=mod+mod_1
+    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
+    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
+    mod=Conv2D(3,3,padding="same")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def train():
@@ -38,7 +47,7 @@ def train():
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     #[:10]*1000
     
-    model=SRCNN()
+    model=UNET_EZ()
     model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
