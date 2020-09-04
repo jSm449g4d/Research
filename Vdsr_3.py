@@ -37,7 +37,6 @@ def train():
     y_train=img2np(ffzk(args.train_output)[:limitDataSize],img_len=128)
     x_test=img2np(ffzk(args.pred_input),img_len=128)
     y_test=img2np(ffzk(args.pred_output),img_len=128)
-    #[:10]*1000
     
     model=VDSR_EZ()
     model.compile(optimizer=optimizers.Adam(lr=0.0001, beta_1=0.9, beta_2=0.999),

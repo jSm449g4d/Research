@@ -59,20 +59,15 @@ for i in range(len(preds)):
     for ii in range(max_sample_size):
         img1 = cv2.imread(test[ii])
         img2 = cv2.imread(preds[i][ii])
-#        psnrS+=psnr(img1, img2)
-#        if(psnrS>100):
-#
-#            continue
         ssimS+=ssim(img1, img2, multichannel=True)
-        meS+=mse(img1.flatten(),img2.flatten())**2.
-        mseS+=mse(img1.flatten(),img2.flatten())
+        meS+=np.mean(np.square(img1.flatten().astype(np.float32)-img2.flatten().astype(np.float32)))
+        mseS+=np.mean(np.square(img1.flatten().astype(np.float32)-img2.flatten().astype(np.float32)))
     psnrS/=max_sample_size;
     ssimS/=max_sample_size;
     mseS/=max_sample_size;
     meS=math.sqrt(meS/max_sample_size)
-#    print("PSNR_average",psnrS)
-    print("SSIM",ssimS)
     print("PSNR",10.*math.log10((255.**2)/meS))
+    print("SSIM",ssimS)
     print("MSE",mseS)
     print("=====^",i,"^=====")
     
