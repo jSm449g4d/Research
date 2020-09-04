@@ -24,9 +24,14 @@ os.chdir(os.path.dirname(os.path.join("./", __file__)))
 def SRCNN(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     mod=Conv2D(64,9,padding="same",activation="relu")(mod)
-    mod=Conv2D(32,3,padding="same",activation="relu")(mod)    
+    mod=Conv2D(32,3,padding="same",activation="relu")(mod)
     mod=Conv2D(3,5,padding="same")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
+
+def MSE(y_true, y_pred):
+    return tf.math.square(y_true-y_pred)
+def PSNR(y_true, y_pred):
+    10.*2303.*tf.math.log(tf.math.reduce_mean(tf.math.square(y_true-y_pred)))
 
 def train():
     limitDataSize=min([args.limit_data_size,len(ffzk(args.train_input))])
@@ -37,7 +42,7 @@ def train():
     
     model=SRCNN()
     model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
-                  loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
+                  loss=MSE)#keras.losses.mean_squared_error
     model.summary()
     cbks=[]
     if(args.TB_logdir!=""):
