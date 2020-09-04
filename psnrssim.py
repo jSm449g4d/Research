@@ -65,12 +65,15 @@ for i in range(len(preds)):
 #            continue
         ssimS+=ssim(img1, img2, multichannel=True)
         meS+=mse(img1.flatten(),img2.flatten())**2.
+        mseS+=mse(img1.flatten(),img2.flatten())
     psnrS/=max_sample_size;
     ssimS/=max_sample_size;
-    mseS=math.sqrt(meS/max_sample_size)
+    mseS/=max_sample_size;
+    meS=math.sqrt(meS/max_sample_size)
 #    print("PSNR_average",psnrS)
     print("SSIM",ssimS)
-    print("PSNR",10.*math.log10((255.**2)/mseS))
+    print("PSNR",10.*math.log10((255.**2)/meS))
+    print("MSE",mseS)
     print("=====^",i,"^=====")
     
 #for i in range(len(preds)):

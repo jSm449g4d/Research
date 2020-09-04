@@ -29,9 +29,9 @@ def SRCNN(input_shape=(None,None,3,)):
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def MSE(y_true, y_pred):
-    return tf.math.square(y_true-y_pred)
+    return tf.keras.backend.mean(tf.keras.backend.square(y_true-y_pred))
 def PSNR(y_true, y_pred):
-    10.*2303.*tf.math.log(tf.math.reduce_mean(tf.math.square(y_true-y_pred)))
+    return 10.*2303.*tf.keras.backend.log(tf.keras.backend.mean(tf.keras.backend.square(y_true-y_pred)))
 
 def train():
     limitDataSize=min([args.limit_data_size,len(ffzk(args.train_input))])
@@ -42,7 +42,7 @@ def train():
     
     model=SRCNN()
     model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
-                  loss=MSE)#keras.losses.mean_squared_error
+                  loss=PSNR)#keras.losses.mean_squared_error
     model.summary()
     cbks=[]
     if(args.TB_logdir!=""):
