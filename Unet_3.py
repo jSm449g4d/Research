@@ -38,10 +38,11 @@ class Bottleneck():
             mod=Activation("relu")(mod)
         return mod
     
-def U_INCEPTION_SR_SOTNYA(input_shape=(None,None,3,)):
+def U_INCEPTION_BN_SOTNYA(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     
     mod_2=Conv2D(64,4,4,padding="same",use_bias=False)(mod)
+    mod_2=Bottleneck(64)(mod_2)
     mod_2=Bottleneck(64)(mod_2)
     mod_2=Bottleneck(64)(mod_2)
     mod_2=Bottleneck(64)(mod_2)
@@ -51,9 +52,11 @@ def U_INCEPTION_SR_SOTNYA(input_shape=(None,None,3,)):
     mod_1=Bottleneck(64)(mod_1)
     mod_1=Bottleneck(64)(mod_1)
     mod_1=Bottleneck(64)(mod_1)
+    mod_1=Bottleneck(64)(mod_1)
     mod_1=Conv2DTranspose(3,2,2,padding="same",use_bias=False)(mod_1)
     
     mod_0=Conv2D(64,1,padding="same",use_bias=False)(mod)
+    mod_0=Bottleneck(64)(mod_0)
     mod_0=Bottleneck(64)(mod_0)
     mod_0=Bottleneck(64)(mod_0)
     mod_0=Bottleneck(64)(mod_0)
@@ -67,59 +70,22 @@ def U_INCEPTION_SOTNYA(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     
     mod_2=Conv2D(64,4,4,padding="same",use_bias=False)(mod)
-    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
-    mod_2=Dropout(0.2)(mod_2)
-    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=Conv2D(64,5,padding="same",activation="relu")(mod_2)
     mod_2=Dropout(0.2)(mod_2)
     mod_2=Conv2DTranspose(3,4,4,padding="same",use_bias=False)(mod_2)
     
     mod_1=Conv2D(64,2,2,padding="same",use_bias=False)(mod)
-    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
-    mod_1=Dropout(0.2)(mod_1)
-    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=Conv2D(64,5,padding="same",activation="relu")(mod_1)
     mod_1=Dropout(0.2)(mod_1)
     mod_1=Conv2DTranspose(3,2,2,padding="same",use_bias=False)(mod_1)
     
     mod_0=Conv2D(64,1,padding="same",use_bias=False)(mod)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Dropout(0.2)(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,5,padding="same",activation="relu")(mod_0)
     mod_0=Dropout(0.2)(mod_0)
     mod_0=Conv2D(3,1,padding="same",use_bias=False)(mod_0)
     
     mod+=mod_0+mod_1+mod_2
     
-    return keras.models.Model(inputs=mod_inp, outputs=mod)
-
-def UNET_EZ(input_shape=(None,None,3,)):
-    mod=mod_inp = Input(shape=input_shape)
-    mod_0=mod
-    
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=LayerNormalization()(mod_0)
-    mod_0=Dropout(0.2)(mod_0)
-    mod_1=mod_0
-    mod_1=Conv2D(64,2,2,padding="same",activation="relu")(mod_1)
-    mod_1=LayerNormalization()(mod_1)
-    mod_1=Dropout(0.2)(mod_1)
-    mod_2=mod_1
-    mod_2=Conv2D(64,2,2,padding="same",activation="relu")(mod_2)
-    mod_2=LayerNormalization()(mod_2)
-    mod_2=Dropout(0.2)(mod_2)
-    #mod_2=Bottleneck(64)(mod_2)
-    mod_2=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_2)
-    mod_2=LayerNormalization()(mod_2)
-    mod_2=Dropout(0.2)(mod_2)
-    mod_1=mod_1+mod_2
-    #mod_1=Bottleneck(64)(mod_1)
-    mod_1=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_1)
-    mod_1=LayerNormalization()(mod_1)
-    mod_1=Dropout(0.2)(mod_1)
-    mod_0=mod_0+mod_1
-    #mod_0=Bottleneck(64)(mod_0)
-    mod_0=Conv2D(3,3,padding="same",use_bias=False)(mod_0)
-    
-    mod=mod+mod_0
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def train():
@@ -129,7 +95,7 @@ def train():
     x_test=img2np(ffzk(args.pred_input),img_len=128)
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     
-    model=U_INCEPTION_SOTNYA()
+    model=U_INCEPTION_BN_SOTNYA()
     model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
@@ -157,8 +123,8 @@ parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/tes
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=1,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=1000,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=10,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
+parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/unet3.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/unet3")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet3")

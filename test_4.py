@@ -23,45 +23,60 @@ from util import ffzk,img2np,tf2img
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
-def UNET_EZ(input_shape=(None,None,3,)):
+def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
-    mod_1=mod
-    mod_1=Conv2D(64,2,2,padding="same",activation="relu")(mod_1)
-    mod_2=mod_1
-    mod_2=Conv2D(64,2,2,padding="same",activation="relu")(mod_2)
+    
+    mod_2=Conv2D(64,4,4,padding="same",use_bias=False)(mod)
     mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
-    mod_2=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_2)
-    mod_1=mod_1+mod_2
+    mod_2=Dropout(0.2)(mod_2)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=Dropout(0.2)(mod_2)
+    mod_2=Conv2DTranspose(3,4,4,padding="same",use_bias=False)(mod_2)
+    
+    mod_1=Conv2D(64,2,2,padding="same",use_bias=False)(mod)
     mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
-    mod_1=Conv2DTranspose(64,3,2,padding="same",activation="relu")(mod_1)
-    mod=mod+mod_1
-    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
-    mod=Conv2D(64,3,padding="same",activation="relu")(mod)
-    mod=Conv2D(3,3,padding="same")(mod)
+    mod_1=Dropout(0.2)(mod_1)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=Dropout(0.2)(mod_1)
+    mod_1=Conv2DTranspose(3,2,2,padding="same",use_bias=False)(mod_1)
+    
+    mod_0=Conv2D(64,1,padding="same",use_bias=False)(mod)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Dropout(0.2)(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Dropout(0.2)(mod_0)
+    mod_0=Conv2D(3,1,padding="same",use_bias=False)(mod_0)
+    
+    mod+=mod_0+mod_1+mod_2
+    
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def DIS(input_shape=(128,128,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    mod=Conv2D(32, 5, 2, padding='same',activation="relu")(mod)
-    mod=Dropout(0.05)(mod)
-    mod=Conv2D(32, 5, 2, padding='same',activation="relu")(mod)
-    mod=Dropout(0.05)(mod)
-    mod=Conv2D(32, 5, 2, padding='same',activation="relu")(mod)
-    mod=Dropout(0.05)(mod)
+    mod=Conv2D(64, 5, 2, padding='same',activation="relu")(mod)
+    mod=Dropout(0.2)(mod)
+    mod=Conv2D(64, 5, 2, padding='same',activation="relu")(mod)
+    mod=Dropout(0.2)(mod)
+    mod=Conv2D(64, 5, 2, padding='same',activation="relu")(mod)
+    mod=Dropout(0.2)(mod)
+    mod=Conv2D(64, 5, 2, padding='same',activation="relu")(mod)
+    mod=Dropout(0.2)(mod)
     mod=Flatten()(mod)
     mod=Dense(1,activation="sigmoid",use_bias=False)(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
     
 class gan():
     def __init__(self,trials=[],dim=(128,128,3)):
-        self.gen=UNET_EZ()
+        self.gen=U_INCEPTION_TYSYACHA()
         self.dis=DIS()
     def pred(self,batch=4):
         return self.gen(np.random.rand(batch,self.dim).astype(np.float32))
     def train(self,input_x=[],output_y=[],epoch=1000,batch=16,save="./save.h5"):
-        
         optimizer = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
+        optimizerA = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
+        optimizerB = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
+        optimizerC = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
+        optimizerD = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
         self.gen.compile(optimizer = optimizer,
                           loss=keras.losses.binary_crossentropy)
         self.dis.compile(optimizer = optimizer,
@@ -89,7 +104,7 @@ class gan():
                         dis=tf.reduce_mean(dis) 
                         grad=tape.gradient(dis,self.dis.trainable_variables)
                         grad,_ = tf.clip_by_global_norm(grad, 15)
-                        optimizer.apply_gradients(zip(grad,self.dis.trainable_variables))
+                        optimizerA.apply_gradients(zip(grad,self.dis.trainable_variables))
                         del tape
                     
                     with tf.GradientTape() as tape:
@@ -98,7 +113,7 @@ class gan():
                         dis=tf.reduce_mean(dis) 
                         grad=tape.gradient(dis,self.dis.trainable_variables)
                         grad,_ = tf.clip_by_global_norm(grad, 15)
-                        optimizer.apply_gradients(zip(grad,self.dis.trainable_variables))
+                        optimizerB.apply_gradients(zip(grad,self.dis.trainable_variables))
                         del tape
                     
                     with tf.GradientTape() as tape:
@@ -107,7 +122,7 @@ class gan():
                         dis_gen=tf.reduce_mean(dis_gen) 
                         grad=tape.gradient(dis_gen,self.gen.trainable_variables) 
                         grad,_ = tf.clip_by_global_norm(grad, 15)
-                        optimizer.apply_gradients(zip(grad,self.gen.trainable_variables))
+                        optimizerC.apply_gradients(zip(grad,self.gen.trainable_variables))
                         del tape
                         
                     # tuzyo
@@ -116,7 +131,7 @@ class gan():
                         gen=keras.losses.mse(datum,gen)
                         grad=tape.gradient(gen,self.gen.trainable_variables) 
                         grad,_ = tf.clip_by_global_norm(grad, 15)
-                        optimizer.apply_gradients(zip(grad,self.gen.trainable_variables))
+                        optimizerD.apply_gradients(zip(grad,self.gen.trainable_variables))
                         del tape
                     
                     pbar.update(batch)
@@ -152,8 +167,8 @@ parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/tes
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
+parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/test4.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/test4")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/test4")
