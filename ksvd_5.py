@@ -41,7 +41,7 @@ def train():
     y_train=splitHVS(y_train,spl=args.image_split)
     process_time = time.time() - start;print("A",process_time);start = time.time()
 
-    ksvd = KSVD(n_components =8, transform_n_nonzero_coefs = None ,n_jobs=multiprocessing.cpu_count()-1)
+    ksvd = KSVD(n_components =16, transform_n_nonzero_coefs = None ,n_jobs=multiprocessing.cpu_count()-1)
     ksvd.fit(y_train)
     pickle.dump(ksvd, open(args.save, 'wb'))
 
@@ -66,7 +66,7 @@ parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/t
 parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-lds', '--limit_data_size' ,default=10,type=int)
-parser.add_argument('-spl', '--image_split' ,default=32,type=int)
+parser.add_argument('-spl', '--image_split' ,default=16,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/ksvd5.pickle")
 parser.add_argument('-o', '--outdir' ,default='./outputs/ksvd5')
 args = parser.parse_args()
