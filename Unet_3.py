@@ -66,21 +66,27 @@ def U_INCEPTION_BN_SOTNYA(input_shape=(None,None,3,)):
     
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
-def U_INCEPTION_SOTNYA(input_shape=(None,None,3,)):
+def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     
     mod_2=Conv2D(64,4,4,padding="same",use_bias=False)(mod)
-    mod_2=Conv2D(64,5,padding="same",activation="relu")(mod_2)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=Dropout(0.2)(mod_2)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
     mod_2=Dropout(0.2)(mod_2)
     mod_2=Conv2DTranspose(3,4,4,padding="same",use_bias=False)(mod_2)
     
     mod_1=Conv2D(64,2,2,padding="same",use_bias=False)(mod)
-    mod_1=Conv2D(64,5,padding="same",activation="relu")(mod_1)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=Dropout(0.2)(mod_1)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
     mod_1=Dropout(0.2)(mod_1)
     mod_1=Conv2DTranspose(3,2,2,padding="same",use_bias=False)(mod_1)
     
     mod_0=Conv2D(64,1,padding="same",use_bias=False)(mod)
-    mod_0=Conv2D(64,5,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Dropout(0.2)(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
     mod_0=Dropout(0.2)(mod_0)
     mod_0=Conv2D(3,1,padding="same",use_bias=False)(mod_0)
     
@@ -123,8 +129,8 @@ parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/tes
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=1,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
+parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/unet3.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/unet3")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet3")

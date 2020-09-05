@@ -65,7 +65,7 @@ parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/tr
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
 parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
-parser.add_argument('-lds', '--limit_data_size' ,default=10,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
 parser.add_argument('-spl', '--image_split' ,default=16,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/ksvd5.pickle")
 parser.add_argument('-o', '--outdir' ,default='./outputs/ksvd5')
