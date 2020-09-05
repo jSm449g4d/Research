@@ -75,8 +75,6 @@ class gan():
         optimizer = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
         optimizerA = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
         optimizerB = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
-        optimizerC = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
-        optimizerD = keras.optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999)
         self.gen.compile(optimizer = optimizer,
                           loss=keras.losses.binary_crossentropy)
         self.dis.compile(optimizer = optimizer,
@@ -103,7 +101,7 @@ class gan():
                         dis=keras.losses.binary_crossentropy(zeros,dis)
                         dis=tf.reduce_mean(dis) 
                         grad=tape.gradient(dis,self.dis.trainable_variables)
-                        grad,_ = tf.clip_by_global_norm(grad, 15)
+                        #grad,_ = tf.clip_by_global_norm(grad, 15)
                         optimizerA.apply_gradients(zip(grad,self.dis.trainable_variables))
                         del tape
                     
@@ -112,8 +110,8 @@ class gan():
                         dis=keras.losses.binary_crossentropy(ones,dis)
                         dis=tf.reduce_mean(dis) 
                         grad=tape.gradient(dis,self.dis.trainable_variables)
-                        grad,_ = tf.clip_by_global_norm(grad, 15)
-                        optimizerB.apply_gradients(zip(grad,self.dis.trainable_variables))
+                        #grad,_ = tf.clip_by_global_norm(grad, 15)
+                        optimizerA.apply_gradients(zip(grad,self.dis.trainable_variables))
                         del tape
                     
                     with tf.GradientTape() as tape:
@@ -121,8 +119,8 @@ class gan():
                         dis_gen=keras.losses.binary_crossentropy(ones,dis_gen)
                         dis_gen=tf.reduce_mean(dis_gen) 
                         grad=tape.gradient(dis_gen,self.gen.trainable_variables) 
-                        grad,_ = tf.clip_by_global_norm(grad, 15)
-                        optimizerC.apply_gradients(zip(grad,self.gen.trainable_variables))
+                        #grad,_ = tf.clip_by_global_norm(grad, 15)
+                        optimizerB.apply_gradients(zip(grad,self.gen.trainable_variables))
                         del tape
                         
                     # tuzyo
@@ -130,8 +128,8 @@ class gan():
                         gen=self.gen(label)
                         gen=keras.losses.mse(datum,gen)
                         grad=tape.gradient(gen,self.gen.trainable_variables) 
-                        grad,_ = tf.clip_by_global_norm(grad, 15)
-                        optimizerD.apply_gradients(zip(grad,self.gen.trainable_variables))
+                        #grad,_ = tf.clip_by_global_norm(grad, 15)
+                        optimizerB.apply_gradients(zip(grad,self.gen.trainable_variables))
                         del tape
                     
                     pbar.update(batch)
