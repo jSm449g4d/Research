@@ -38,10 +38,10 @@ def train():
     start = time.time()
     limitDataSize=min([args.limit_data_size,len(ffzk(args.train_input))])
     y_train=img2np(ffzk(args.train_output)[:limitDataSize])#.reshape(-1,8*8*3)
-    y_train=splitHVS(y_train)
+    y_train=splitHVS(y_train,spl=args.image_split)
     process_time = time.time() - start;print("A",process_time);start = time.time()
 
-    ksvd = KSVD(n_components = 32, transform_n_nonzero_coefs = None ,n_jobs=multiprocessing.cpu_count()-1)
+    ksvd = KSVD(n_components =8, transform_n_nonzero_coefs = None ,n_jobs=multiprocessing.cpu_count()-1)
     ksvd.fit(y_train)
     pickle.dump(ksvd, open(args.save, 'wb'))
 
@@ -51,10 +51,10 @@ def test():
     start = time.time()
     ksvd=pickle.load(open(args.save, 'rb'))
     os.makedirs(args.outdir,exist_ok=True)
-    dataset=ffzk(args.pred_input)[:1000]
+    dataset=ffzk(args.pred_input)
     for i,dataX in enumerate(dataset):
-        X = ksvd.transform(splitHVS(img2np([dataX],img_len=128)))
-        predY=stackHVS(np.dot(X, ksvd.components_))
+        X = ksvd.transform(splitHVS(img2np([dataX],img_len=128),spl=args.image_split))
+        predY=stackHVS(np.dot(X, ksvd.components_),spl=args.image_split)
         tf2img(predY,args.outdir,name=os.path.basename(dataX))
         
     process_time = time.time() - start;print("C",process_time);start = time.time()
@@ -66,6 +66,7 @@ parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/t
 parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-lds', '--limit_data_size' ,default=10,type=int)
+parser.add_argument('-spl', '--image_split' ,default=32,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/ksvd5.pickle")
 parser.add_argument('-o', '--outdir' ,default='./outputs/ksvd5')
 args = parser.parse_args()

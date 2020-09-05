@@ -34,23 +34,9 @@ test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 preds.append(ffzk('datasets/div2k_srlearn/test_cubic8'))
 preds.append(ffzk('outputs/srcnn1'))
 preds.append(ffzk('outputs/unet2'))
-preds.append(ffzk('outputs/vdsr3'))
+preds.append(ffzk('outputs/unet3'))
 preds.append(ffzk('outputs/test4'))
 preds.append(ffzk('outputs/ksvd5'))
-
-# preds.append(ffzk('datasets/div2k_srlearn/test_gaussb'))
-# preds.append(ffzk('outputs/ksvdNormal'))
-# preds.append(ffzk('outputs/unet2Normal'))
-
-# preds.append(ffzk(os.path.join("./", 'mls_srlearn/test_cubic4')))
-# preds.append(ffzk(os.path.join("./", 'out1Mls')))
-# preds.append(ffzk(os.path.join("./", 'out2Mls')))
-# preds.append(ffzk(os.path.join("./", 'out3Mls')))
-
-# preds.append(ffzk(os.path.join("./", 'div2k_srlearn/test_gaussb')))
-# preds.append(ffzk(os.path.join("./", 'out1Normal')))
-# preds.append(ffzk(os.path.join("./", 'out2Normal')))
-# preds.append(ffzk(os.path.join("./", 'out3Normal')))
 
 max_sample_size=min([1000,len(test)])
 
@@ -66,14 +52,8 @@ for i in range(len(preds)):
     ssimS/=max_sample_size;
     mseS/=max_sample_size;
     meS=math.sqrt(meS/max_sample_size)
+    print("MSE",mseS)
     print("PSNR",10.*math.log10((255.**2)/meS))
     print("SSIM",ssimS)
-    print("MSE",mseS)
     print("=====^",i,"^=====")
     
-#for i in range(len(preds)):
-#    img1 = cv2.imread(test[77])
-#    img2 = cv2.imread(preds[i][77])
-#    print("PSNR",psnr(img1, img2))
-#    print("SSIM",ssim(img1, img2, multichannel=True))
-#    print("=====^",i,"^=====")
