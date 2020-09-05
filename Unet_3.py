@@ -38,28 +38,52 @@ class Bottleneck():
             mod=Activation("relu")(mod)
         return mod
     
-def U_INCEPTION_BN_SOTNYA(input_shape=(None,None,3,)):
+def U_INCEPTION_TYSYACHA_TWEI(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     
     mod_2=Conv2D(64,4,4,padding="same",use_bias=False)(mod)
-    mod_2=Bottleneck(64)(mod_2)
-    mod_2=Bottleneck(64)(mod_2)
-    mod_2=Bottleneck(64)(mod_2)
-    mod_2=Bottleneck(64)(mod_2)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=Dropout(0.2)(mod_2)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=Dropout(0.2)(mod_2)
     mod_2=Conv2DTranspose(3,4,4,padding="same",use_bias=False)(mod_2)
     
     mod_1=Conv2D(64,2,2,padding="same",use_bias=False)(mod)
-    mod_1=Bottleneck(64)(mod_1)
-    mod_1=Bottleneck(64)(mod_1)
-    mod_1=Bottleneck(64)(mod_1)
-    mod_1=Bottleneck(64)(mod_1)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=Dropout(0.2)(mod_1)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=Dropout(0.2)(mod_1)
     mod_1=Conv2DTranspose(3,2,2,padding="same",use_bias=False)(mod_1)
     
     mod_0=Conv2D(64,1,padding="same",use_bias=False)(mod)
-    mod_0=Bottleneck(64)(mod_0)
-    mod_0=Bottleneck(64)(mod_0)
-    mod_0=Bottleneck(64)(mod_0)
-    mod_0=Bottleneck(64)(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Dropout(0.2)(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Dropout(0.2)(mod_0)
+    mod_0=Conv2D(3,1,padding="same",use_bias=False)(mod_0)
+    
+    mod+=mod_0+mod_1+mod_2
+    
+    # repeat
+    mod_2=Conv2D(64,4,4,padding="same",use_bias=False)(mod)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=Dropout(0.2)(mod_2)
+    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
+    mod_2=Dropout(0.2)(mod_2)
+    mod_2=Conv2DTranspose(3,4,4,padding="same",use_bias=False)(mod_2)
+    
+    mod_1=Conv2D(64,2,2,padding="same",use_bias=False)(mod)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=Dropout(0.2)(mod_1)
+    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
+    mod_1=Dropout(0.2)(mod_1)
+    mod_1=Conv2DTranspose(3,2,2,padding="same",use_bias=False)(mod_1)
+    
+    mod_0=Conv2D(64,1,padding="same",use_bias=False)(mod)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Dropout(0.2)(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Dropout(0.2)(mod_0)
     mod_0=Conv2D(3,1,padding="same",use_bias=False)(mod_0)
     
     mod+=mod_0+mod_1+mod_2
@@ -91,8 +115,6 @@ def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
     mod_0=Conv2D(3,1,padding="same",use_bias=False)(mod_0)
     
     mod+=mod_0+mod_1+mod_2
-    
-    return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def train():
     limitDataSize=min([args.limit_data_size,len(ffzk(args.train_input))])
@@ -101,7 +123,7 @@ def train():
     x_test=img2np(ffzk(args.pred_input),img_len=128)
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     
-    model=U_INCEPTION_BN_SOTNYA()
+    model=U_INCEPTION_TYSYACHA_TWEI()
     model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
