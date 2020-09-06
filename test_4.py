@@ -34,26 +34,26 @@ tf_ini();
 def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     
-    mod_2=Conv2D(64,4,4,padding="same",use_bias=False)(mod)
+    mod_2=Conv2D(64,4,4,padding="same")(mod)
     mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
     mod_2=Dropout(0.2)(mod_2)
     mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
     mod_2=Dropout(0.2)(mod_2)
-    mod_2=Conv2DTranspose(3,4,4,padding="same",use_bias=False)(mod_2)
+    mod_2=Conv2DTranspose(3,4,4,padding="same")(mod_2)
     
-    mod_1=Conv2D(64,2,2,padding="same",use_bias=False)(mod)
+    mod_1=Conv2D(64,2,2,padding="same")(mod)
     mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
     mod_1=Dropout(0.2)(mod_1)
     mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
     mod_1=Dropout(0.2)(mod_1)
-    mod_1=Conv2DTranspose(3,2,2,padding="same",use_bias=False)(mod_1)
+    mod_1=Conv2DTranspose(3,2,2,padding="same")(mod_1)
     
-    mod_0=Conv2D(64,1,padding="same",use_bias=False)(mod)
+    mod_0=Conv2D(64,1,padding="same")(mod)
     mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
     mod_0=Dropout(0.2)(mod_0)
     mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
     mod_0=Dropout(0.2)(mod_0)
-    mod_0=Conv2D(3,1,padding="same",use_bias=False)(mod_0)
+    mod_0=Conv2D(3,1,padding="same")(mod_0)
     
     mod+=mod_0+mod_1+mod_2
     
@@ -83,7 +83,7 @@ def DIS(input_shape=(128,128,3,)):
     mod=Conv2D(64,2,2,padding="same")(mod)
     mod=c2c(64)(mod)
     mod=Flatten()(mod)
-    mod=Dense(1,activation="sigmoid",use_bias=False)(mod)
+    mod=Dense(1,activation="sigmoid")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
     
 class gan():
@@ -172,8 +172,8 @@ class gan():
         
 def train():
     limitDataSize=min([args.limit_data_size,len(ffzk(args.train_input))])
-    x_train=img2np(ffzk(args.train_input)[:limitDataSize],img_len=128)
-    y_train=img2np(ffzk(args.train_output)[:limitDataSize],img_len=128)
+    x_train=img2np(ffzk(args.train_input)[:limitDataSize]*args.number_of_trainadd,img_len=128)
+    y_train=img2np(ffzk(args.train_output)[:limitDataSize]*args.number_of_trainadd,img_len=128)
     
     gans=gan()
     gans.train(x_train,y_train,(args.number_of_backprops//args.limit_data_size)//args.number_of_trainadd,
@@ -189,14 +189,14 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic8")
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic4")
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic4')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=4,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
+parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/test4.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/test4")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/test4")
