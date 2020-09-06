@@ -24,6 +24,13 @@ os.chdir(os.path.dirname(os.path.join("./", __file__)))
 def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     
+    # SRCNN-535
+    mod_3=Conv2D(64,5,padding="same",activation="relu")(mod)
+    mod_3=Dropout(0.2)(mod_3)
+    mod_3=Conv2D(32,3,padding="same",activation="relu")(mod_3)
+    mod_3=Dropout(0.2)(mod_3)
+    mod_3=Conv2D(3,5,padding="same")(mod_3)
+    
     mod_2=Conv2D(64,4,4,padding="same")(mod)
     mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
     mod_2=Dropout(0.2)(mod_2)
@@ -38,14 +45,13 @@ def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
     mod_1=Dropout(0.2)(mod_1)
     mod_1=Conv2DTranspose(3,2,2,padding="same")(mod_1)
     
-    mod_0=Conv2D(64,1,padding="same")(mod)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod)
     mod_0=Dropout(0.2)(mod_0)
     mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
     mod_0=Dropout(0.2)(mod_0)
     mod_0=Conv2D(3,1,padding="same")(mod_0)
     
-    mod+=mod_0+mod_1+mod_2
+    mod+=mod_0+mod_1+mod_2+mod_3
     
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
@@ -78,14 +84,14 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic4")
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_normal")
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic4')
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_normal')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
+parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/uinception2.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/uinception2")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/uinception2")
