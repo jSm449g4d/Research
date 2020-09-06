@@ -29,12 +29,38 @@ def VDSR(input_shape=(None,None,3,)):
     #for _ in range(1):
     #    mod_p=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_p)
     mod_0=Conv2D(64,1,padding="same")(mod)
-    # 5Conv
-    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
+    
+    # 4Conv
+    mod_0=LayerNormalization()(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    # 4Conv
+    mod_0=LayerNormalization()(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    # 4Conv
+    mod_0=LayerNormalization()(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    # 4Conv
+    mod_0=LayerNormalization()(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    # 4Conv
+    mod_0=LayerNormalization()(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    
     mod_0=Conv2D(3,1,padding="same")(mod_0)
     mod+=mod_0
     

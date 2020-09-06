@@ -10,7 +10,7 @@ import tensorflow.keras as keras
 from tensorflow.keras.layers import Dense,Dropout,Conv2D,Conv2DTranspose,\
 ReLU,Softmax,Flatten,Reshape,UpSampling2D,Input,Activation,LayerNormalization,\
 Lambda,Multiply,GlobalAveragePooling2D,LeakyReLU,PReLU,BatchNormalization,\
-Conv2DTranspose,MaxPooling2D
+Conv2DTranspose,MaxPooling2D,AveragePooling2D
 from tensorflow.keras import regularizers
 from tensorflow.keras import optimizers
 
@@ -101,8 +101,8 @@ parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/tes
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=1,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
+parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/unet3.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/unet3")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet3")
