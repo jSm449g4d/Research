@@ -21,22 +21,24 @@ from util import ffzk,img2np,tf2img
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
-class Bottleneck():
-    def __init__(self,dim=4):#plz define used layers below...
-        self.dim=dim
-        return
-    def __call__(self,mod):#plz add layers below...
-        with tf.name_scope("Bttn"):
-            mod_1=mod
-            mod_1=Conv2D(self.dim//4,1,padding="same",activation="relu")(mod_1)
-            mod_1=Dropout(0.2)(mod_1)
-            mod_1=Conv2D(self.dim//4,3,padding="same",activation="relu")(mod_1)
-            mod_1=Dropout(0.2)(mod_1)
-            mod_1=Conv2D(self.dim,1,padding="same")(mod_1)
-            mod_1=Dropout(0.2)(mod_1)
-            mod=keras.layers.add([mod,mod_1])
-            mod=Activation("relu")(mod)
-        return mod
+
+def VDSR(input_shape=(None,None,3,)):
+    mod=mod_inp = Input(shape=input_shape)
+    
+    #,activity_regularizer=keras.regularizers.L2(0.0001)
+    #for _ in range(1):
+    #    mod_p=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_p)
+    mod_0=Conv2D(64,1,padding="same")(mod)
+    # 5Conv
+    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
+    mod_0=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_0)
+    mod_0=Conv2D(3,1,padding="same")(mod_0)
+    mod+=mod_0
+    
+    return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
@@ -73,8 +75,8 @@ def train():
     x_test=img2np(ffzk(args.pred_input),img_len=128)
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     
-    model=U_INCEPTION_TYSYACHA()
-    model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
+    model=VDSR()
+    model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999,clipnorm=0.1),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
     cbks=[]
@@ -95,17 +97,17 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic8")
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic4")
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic4')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=1,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
-parser.add_argument('-s', '--save' ,default="./saves/unet3.h5")
-parser.add_argument('-o', '--outdir' ,default="./outputs/unet3")
-parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet3")
+parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
+parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
+parser.add_argument('-s', '--save' ,default="./saves/vdsr4.h5")
+parser.add_argument('-o', '--outdir' ,default="./outputs/vdsr4")
+parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/vdsr4")
 args = parser.parse_args()
 
 if __name__ == "__main__":
