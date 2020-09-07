@@ -30,8 +30,8 @@ def SRCNN(input_shape=(None,None,3,)):
 
 def train():
     limitDataSize=min([args.limit_data_size,len(ffzk(args.train_input))])
-    x_train=img2np(ffzk(args.train_input)[:limitDataSize]*args.number_of_trainadd,img_len=128)
-    y_train=img2np(ffzk(args.train_output)[:limitDataSize]*args.number_of_trainadd,img_len=128)
+    x_train=img2np(ffzk(args.train_input)[:limitDataSize]*(10000//args.limit_data_size),img_len=128)
+    y_train=img2np(ffzk(args.train_output)[:limitDataSize]*(10000//args.limit_data_size),img_len=128)
     x_test=img2np(ffzk(args.pred_input),img_len=128)
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     
@@ -43,7 +43,7 @@ def train():
     if(args.TB_logdir!=""):
         cbks=[keras.callbacks.TensorBoard(log_dir=args.TB_logdir, histogram_freq=1)]
     
-    model.fit(x_train, y_train,epochs=(args.number_of_backprops//args.limit_data_size)//args.number_of_trainadd,
+    model.fit(x_train, y_train,epochs=(args.number_of_backprops//args.limit_data_size)//(10000//args.limit_data_size),
               batch_size=args.batch,validation_data=(x_test, y_test),callbacks=cbks)
     model.save(args.save)
     
@@ -63,8 +63,7 @@ parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/tes
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/srcnn1.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/srcnn1")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/srcnn1")

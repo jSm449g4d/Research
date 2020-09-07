@@ -19,7 +19,6 @@ for iv in [0,1]:
         
     # Reuse
     os.makedirs(outputfolder+"y",exist_ok=True)
-    os.makedirs(outputfolder+"4",exist_ok=True)
     os.makedirs(outputfolder+"cubic4",exist_ok=True)
     os.makedirs(outputfolder+"cubic4normal",exist_ok=True)
     os.makedirs(outputfolder+"normal",exist_ok=True)

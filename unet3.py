@@ -37,7 +37,6 @@ class Bottleneck():
             mod=keras.layers.add([mod,mod_1])
             mod=Activation("relu")(mod)
         return mod
-
 class c2c():
     def __init__(self,dim=4):
         self.dim=dim
@@ -82,28 +81,30 @@ class UNet():
             mod=Dropout(0.2)(mod)
             mod=Conv2D(3,5,padding="same")(mod)
         return mod
+class SRCNN535():
+    def __init__(self,dim=64):
+        self.dim=dim
+        return
+    def __call__(self,mod):
+        with tf.name_scope("SRCNN535"):
+            mod=Conv2D(self.dim,5,padding="same",activation="relu")(mod)
+            mod=Dropout(0.2)(mod)
+            mod=Conv2D(self.dim//2,3,padding="same",activation="relu")(mod)
+            mod=Dropout(0.2)(mod)
+            mod=Conv2D(3,5,padding="same")(mod)
+        return mod
 
 def INCEPTION_UNET_SRCNN(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    
-    # U-Net
-    mod_1=UNet()(mod)
-    
-    # SRCNN-535
-    mod_2=Conv2D(64,5,padding="same",activation="relu")(mod)
-    mod_2=Dropout(0.2)(mod_2)
-    mod_2=Conv2D(32,3,padding="same",activation="relu")(mod_2)
-    mod_2=Dropout(0.2)(mod_2)
-    mod_2=Conv2D(3,5,padding="same")(mod_2)
-    
+    mod_1=UNet()(mod)# U-Net
+    mod_2=SRCNN535()(mod)# SRCNN-535
     mod+=mod_1+mod_2
-    
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def train():
     limitDataSize=min([args.limit_data_size,len(ffzk(args.train_input))])
-    x_train=img2np(ffzk(args.train_input)[:limitDataSize]*args.number_of_trainadd,img_len=128)
-    y_train=img2np(ffzk(args.train_output)[:limitDataSize]*args.number_of_trainadd,img_len=128)
+    x_train=img2np(ffzk(args.train_input)[:limitDataSize]*(10000//args.limit_data_size),img_len=128)
+    y_train=img2np(ffzk(args.train_output)[:limitDataSize]*(10000//args.limit_data_size),img_len=128)
     x_test=img2np(ffzk(args.pred_input),img_len=128)
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     
@@ -115,7 +116,7 @@ def train():
     if(args.TB_logdir!=""):
         cbks=[keras.callbacks.TensorBoard(log_dir=args.TB_logdir, histogram_freq=1)]
     
-    model.fit(x_train, y_train,epochs=(args.number_of_backprops//args.limit_data_size)//args.number_of_trainadd,
+    model.fit(x_train, y_train,epochs=(args.number_of_backprops//args.limit_data_size)//(10000//args.limit_data_size),
               batch_size=args.batch,validation_data=(x_test, y_test),callbacks=cbks)
     model.save(args.save)
     
@@ -136,7 +137,6 @@ parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/te
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/unet3.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/unet3")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet3")

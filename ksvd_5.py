@@ -41,7 +41,7 @@ def train():
     y_train=splitHVS(y_train,spl=args.image_split)
     process_time = time.time() - start;print("A",process_time);start = time.time()
 
-    ksvd = KSVD(n_components =32, transform_n_nonzero_coefs = None ,n_jobs=multiprocessing.cpu_count()-1)
+    ksvd = KSVD(n_components =64, transform_n_nonzero_coefs = None ,n_jobs=multiprocessing.cpu_count()-1)
     ksvd.fit(y_train)
     pickle.dump(ksvd, open(args.save, 'wb'))
 
