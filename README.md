@@ -1,10 +1,11 @@
 # 機械学習を利用した、少数データでの画像高画質化手法の開発
+### 超解像(128×128 10000枚)
 |DIV2K超解像|火星地表超解像|DIV2Kガウスノイズ除去|
 |---|---|---|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t236.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/p570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p236.png)|
 
-DIV2Kでの超解像(4倍)
+### DIV2Kでの超解像(4倍)
 |HR|LR|10000枚|1000枚|100枚|
 |---|---|---|---|---|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/278_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_100.png)|
