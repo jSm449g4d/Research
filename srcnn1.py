@@ -20,46 +20,12 @@ from util import ffzk,img2np,tf2img
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
-    
-def INCEPTION_UNET_SRCNN(input_shape=(None,None,3,)):
+
+def SRCNN(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
-    
-    # U-Net
-    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4_1=mod_4
-    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4_2=mod_4
-    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4_3=mod_4
-    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4_4=mod_4
-    mod_4=Conv2D(64,3,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_3)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_2)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_1)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2D(32,3,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2D(3,5,padding="same")(mod_4)
-    
-    # SRCNN-535
-    mod_3=Conv2D(64,5,padding="same",activation="relu")(mod)
-    mod_3=Dropout(0.2)(mod_3)
-    mod_3=Conv2D(32,3,padding="same",activation="relu")(mod_3)
-    mod_3=Dropout(0.2)(mod_3)
-    mod_3=Conv2D(3,5,padding="same")(mod_3)
-    
-    mod+=mod_3+mod_4
-    
+    mod=Conv2D(64,9,padding="same",activation="relu")(mod)
+    mod=Conv2D(32,3,padding="same",activation="relu")(mod)
+    mod=Conv2D(3,5,padding="same")(mod)
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
 def train():
@@ -69,7 +35,7 @@ def train():
     x_test=img2np(ffzk(args.pred_input),img_len=128)
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     
-    model=INCEPTION_UNET_SRCNN()
+    model=SRCNN()
     model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
@@ -91,17 +57,17 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic8")
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_normal")
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_normal')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
 parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
-parser.add_argument('-s', '--save' ,default="./saves/inception2.h5")
-parser.add_argument('-o', '--outdir' ,default="./outputs/inception2")
-parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/inception2")
+parser.add_argument('-s', '--save' ,default="./saves/srcnn1.h5")
+parser.add_argument('-o', '--outdir' ,default="./outputs/srcnn1")
+parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/srcnn1")
 args = parser.parse_args()
 
 if __name__ == "__main__":

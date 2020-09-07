@@ -10,7 +10,7 @@ import tensorflow.keras as keras
 from tensorflow.keras.layers import Dense,Dropout,Conv2D,Conv2DTranspose,\
 ReLU,Softmax,Flatten,Reshape,UpSampling2D,Input,Activation,LayerNormalization,\
 Lambda,Multiply,GlobalAveragePooling2D,LeakyReLU,PReLU,BatchNormalization,\
-Conv2DTranspose,MaxPooling2D,AveragePooling2D
+Conv2DTranspose,MaxPooling2D
 from tensorflow.keras import regularizers
 from tensorflow.keras import optimizers
 
@@ -20,75 +20,55 @@ from util import ffzk,img2np,tf2img
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
+    
 
-class Bottleneck():
-    def __init__(self,dim=4):#plz define used layers below...
-        self.dim=dim
-        return
-    def __call__(self,mod):#plz add layers below...
-        with tf.name_scope("Bttn"):
-            mod_1=mod
-            mod_1=Conv2D(self.dim//4,1,padding="same",activation="relu")(mod_1)
-            mod_1=Dropout(0.2)(mod_1)
-            mod_1=Conv2D(self.dim//4,3,padding="same",activation="relu")(mod_1)
-            mod_1=Dropout(0.2)(mod_1)
-            mod_1=Conv2D(self.dim,1,padding="same")(mod_1)
-            mod_1=Dropout(0.2)(mod_1)
-            mod=keras.layers.add([mod,mod_1])
-            mod=Activation("relu")(mod)
-        return mod
-
-class c2c():
-    def __init__(self,dim=4):
+class UNet():
+    def __init__(self,dim=64):
         self.dim=dim
         return
     def __call__(self,mod):
-        with tf.name_scope("c2c"):
-            mod_1=Conv2D(self.dim,3,padding="same",activation="relu")(mod)
-            mod_1=Dropout(0.2)(mod_1)
-            mod_1=Conv2D(self.dim,3,padding="same",activation="relu")(mod_1)
-            mod_1=Dropout(0.2)(mod_1)
-            mod=Activation("relu")(mod+mod_1)
+        with tf.name_scope("UNet"):
+            mod=Conv2D(self.dim,5,2,padding="same",activation="relu")(mod)
+            mod=Dropout(0.2)(mod)
+            mod_1=mod
+            mod=Conv2D(self.dim,5,2,padding="same",activation="relu")(mod)
+            mod=Dropout(0.2)(mod)
+            mod_2=mod
+            mod=Conv2D(self.dim,5,2,padding="same",activation="relu")(mod)
+            mod=Dropout(0.2)(mod)
+            mod_3=mod
+            mod=Conv2D(self.dim,5,2,padding="same",activation="relu")(mod)
+            mod=Dropout(0.2)(mod)
+            mod_4=mod
+            mod=Conv2D(self.dim,3,padding="same",activation="relu")(mod)
+            mod=Dropout(0.2)(mod)
+            mod=Conv2DTranspose(self.dim,5,2,padding="same",activation="relu")(mod+mod_4)
+            mod=Dropout(0.2)(mod)
+            mod=Conv2DTranspose(self.dim,5,2,padding="same",activation="relu")(mod+mod_3)
+            mod=Dropout(0.2)(mod)
+            mod=Conv2DTranspose(self.dim,5,2,padding="same",activation="relu")(mod+mod_2)
+            mod=Dropout(0.2)(mod)
+            mod=Conv2DTranspose(self.dim,5,2,padding="same",activation="relu")(mod+mod_1)
+            mod=Dropout(0.2)(mod)
+            mod=Conv2D(self.dim//2,3,padding="same",activation="relu")(mod)
+            mod=Dropout(0.2)(mod)
+            mod=Conv2D(3,5,padding="same")(mod)
         return mod
 
-def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
+def INCEPTION_UNET_SRCNN(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     
     # U-Net
-    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4_1=mod_4
-    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4_2=mod_4
-    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4_3=mod_4
-    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4_4=mod_4
-    mod_4=Conv2D(64,3,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_3)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_2)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_1)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2D(32,3,padding="same",activation="relu")(mod_4)
-    mod_4=Dropout(0.2)(mod_4)
-    mod_4=Conv2D(3,5,padding="same")(mod_4)
+    mod_1=UNet()(mod)
     
     # SRCNN-535
-    mod_3=Conv2D(64,5,padding="same",activation="relu")(mod)
-    mod_3=Dropout(0.2)(mod_3)
-    mod_3=Conv2D(32,3,padding="same",activation="relu")(mod_3)
-    mod_3=Dropout(0.2)(mod_3)
-    mod_3=Conv2D(3,5,padding="same")(mod_3)
+    mod_2=Conv2D(64,5,padding="same",activation="relu")(mod)
+    mod_2=Dropout(0.2)(mod_2)
+    mod_2=Conv2D(32,3,padding="same",activation="relu")(mod_2)
+    mod_2=Dropout(0.2)(mod_2)
+    mod_2=Conv2D(3,5,padding="same")(mod_2)
     
-    mod+=mod_3+mod_4
+    mod+=mod_1+mod_2
     
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
@@ -99,7 +79,7 @@ def train():
     x_test=img2np(ffzk(args.pred_input),img_len=128)
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     
-    model=U_INCEPTION_TYSYACHA()
+    model=INCEPTION_UNET_SRCNN()
     model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
@@ -127,11 +107,11 @@ parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/tes
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
-parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
-parser.add_argument('-s', '--save' ,default="./saves/unet3.h5")
-parser.add_argument('-o', '--outdir' ,default="./outputs/unet3")
-parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/unet3")
+parser.add_argument('-lds', '--limit_data_size' ,default=100,type=int)
+parser.add_argument('-noa', '--number_of_trainadd' ,default=100,type=int)
+parser.add_argument('-s', '--save' ,default="./saves/inception2.h5")
+parser.add_argument('-o', '--outdir' ,default="./outputs/inception2")
+parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/inception2")
 args = parser.parse_args()
 
 if __name__ == "__main__":

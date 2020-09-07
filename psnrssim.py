@@ -31,11 +31,11 @@ preds=[]
 test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 
 preds.append(ffzk('datasets/div2k_srlearn/test_cubic4'))
-preds.append(ffzk('outputs/srcnn1'))
+# preds.append(ffzk('outputs/srcnn1'))
 preds.append(ffzk('outputs/inception2'))
-preds.append(ffzk('outputs/unet3'))
-preds.append(ffzk('outputs/test4'))
-preds.append(ffzk('outputs/ksvd5'))
+# preds.append(ffzk('outputs/unet3'))
+# preds.append(ffzk('outputs/test4'))
+# preds.append(ffzk('outputs/ksvd5'))
 
 max_sample_size=min([1000,len(test)])
 
