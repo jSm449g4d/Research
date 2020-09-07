@@ -8,8 +8,8 @@
 ### DIV2Kでの超解像(4倍) 学習データ枚数
 |HR|LR|10000枚|1000枚|100枚|
 |---|---|---|---|---|
-|PSNR|---|---|---|---|
-|SSIM|---|---|---|---|
+|PSNR平均|36.10|---|---|36.12|
+|SSIM平均|0.759|---|---|0.759|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/278_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_100.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/349_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_100.png)|
 ## 使い方
