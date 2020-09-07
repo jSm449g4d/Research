@@ -10,6 +10,7 @@
 |---|---|---|---|---|
 |PSNR平均|36.10|---|36.29|36.12|
 |SSIM平均|0.759|---|0.771|0.759|
+|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_100.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/278_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_100.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/349_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_100.png)|
 ## 使い方
