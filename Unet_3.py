@@ -38,31 +38,57 @@ class Bottleneck():
             mod=Activation("relu")(mod)
         return mod
 
+class c2c():
+    def __init__(self,dim=4):
+        self.dim=dim
+        return
+    def __call__(self,mod):
+        with tf.name_scope("c2c"):
+            mod_1=Conv2D(self.dim,3,padding="same",activation="relu")(mod)
+            mod_1=Dropout(0.2)(mod_1)
+            mod_1=Conv2D(self.dim,3,padding="same",activation="relu")(mod_1)
+            mod_1=Dropout(0.2)(mod_1)
+            mod=Activation("relu")(mod+mod_1)
+        return mod
+
 def U_INCEPTION_TYSYACHA(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
     
-    mod_2=Conv2D(64,4,4,padding="same")(mod)
-    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
-    mod_2=Dropout(0.2)(mod_2)
-    mod_2=Conv2D(64,3,padding="same",activation="relu")(mod_2)
-    mod_2=Dropout(0.2)(mod_2)
-    mod_2=Conv2DTranspose(3,4,4,padding="same")(mod_2)
+    # U-Net
+    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4_1=mod_4
+    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4_2=mod_4
+    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4_3=mod_4
+    mod_4=Conv2D(64,5,2,padding="same",activation="relu")(mod_4)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4_4=mod_4
+    mod_4=Conv2D(64,3,padding="same",activation="relu")(mod_4)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_4)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_3)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_2)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4=Conv2DTranspose(64,5,2,padding="same",activation="relu")(mod_4+mod_4_1)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4=Conv2D(32,3,padding="same",activation="relu")(mod_4)
+    mod_4=Dropout(0.2)(mod_4)
+    mod_4=Conv2D(3,5,padding="same")(mod_4)
     
-    mod_1=Conv2D(64,2,2,padding="same")(mod)
-    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
-    mod_1=Dropout(0.2)(mod_1)
-    mod_1=Conv2D(64,3,padding="same",activation="relu")(mod_1)
-    mod_1=Dropout(0.2)(mod_1)
-    mod_1=Conv2DTranspose(3,2,2,padding="same")(mod_1)
+    # SRCNN-535
+    mod_3=Conv2D(64,5,padding="same",activation="relu")(mod)
+    mod_3=Dropout(0.2)(mod_3)
+    mod_3=Conv2D(32,3,padding="same",activation="relu")(mod_3)
+    mod_3=Dropout(0.2)(mod_3)
+    mod_3=Conv2D(3,5,padding="same")(mod_3)
     
-    mod_0=Conv2D(64,1,padding="same")(mod)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Dropout(0.2)(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Dropout(0.2)(mod_0)
-    mod_0=Conv2D(3,1,padding="same")(mod_0)
-    
-    mod+=mod_0+mod_1+mod_2
+    mod+=mod_3+mod_4
     
     return keras.models.Model(inputs=mod_inp, outputs=mod)
 
@@ -99,7 +125,7 @@ parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/tr
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
 parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
-parser.add_argument('-b', '--batch' ,default=1,type=int)
+parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
 parser.add_argument('-noa', '--number_of_trainadd' ,default=1,type=int)
