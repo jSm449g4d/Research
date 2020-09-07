@@ -27,7 +27,7 @@ class UNet():
         self.dim=dim
         return
     def __call__(self,mod):
-        with tf.name_scope("UNet"):
+        with tf.name_scope("UNet") as scope:
             mod=Conv2D(self.dim,5,2,padding="same",activation="relu")(mod)
             mod=Dropout(0.2)(mod)
             mod_1=mod
@@ -59,7 +59,7 @@ class SRCNN535():
         self.dim=dim
         return
     def __call__(self,mod):
-        with tf.name_scope("SRCNN535"):
+        with tf.name_scope("SRCNN535") as scope:
             mod=Conv2D(self.dim,5,padding="same",activation="relu")(mod)
             mod=Dropout(0.2)(mod)
             mod=Conv2D(self.dim//2,3,padding="same",activation="relu")(mod)
@@ -103,13 +103,13 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_normal")
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic4")
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_normal')
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic4')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=2,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
-parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
+parser.add_argument('-lds', '--limit_data_size' ,default=1000,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/inception2.h5")
 parser.add_argument('-o', '--outdir' ,default="./outputs/inception2")
 parser.add_argument('-logdir', '--TB_logdir' ,default="./logs/inception2")

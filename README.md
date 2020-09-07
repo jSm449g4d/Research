@@ -3,6 +3,12 @@
 |---|---|---|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t236.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/p570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p236.png)|
+
+DIV2Kでの超解像(4倍)
+|HR|LR|10000枚|1000枚|100枚|
+|---|---|---|---|---|
+|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_100.png)|
+|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_100.png)|
 ## 使い方
 ### 使用前
 `pip3 install -r requirements.txt`  
