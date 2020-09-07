@@ -1,5 +1,5 @@
 # 機械学習を利用した、少数データでの画像高画質化手法の開発
-### 超解像 (128×128 10000枚)
+### 高画質化 (128×128 10000枚)
 |DIV2K超解像(8倍)|火星地表超解像(8倍)|DIV2Kガウスノイズ除去|
 |---|---|---|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t236.png)|
