@@ -6,8 +6,10 @@
 ## 使い方
 ### 使用前
 `pip3 install -r requirements.txt`  
-**DIV2K**と**Mars surface image (Curiosity rover) labeled data set**をDLして加工する  
+#### **DIV2K**と**Mars surface image (Curiosity rover) labeled data set**をDLして加工する  
 `python3 download.py`  
+#### 学習する  
+`python3 inception2.py`  
 ## 背景
 現在ではビッグデータで学習した機械学習モデルを再利用して、問題解決を図ることが一般的である。  
 例えばVGG16による画像分類、ESRGAN(VGG19)等の超解像が挙げられる。  
