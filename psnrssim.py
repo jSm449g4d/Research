@@ -34,6 +34,7 @@ preds.append(ffzk('datasets/div2k_srlearn/test_cubic4'))
 # preds.append(ffzk('outputs/srcnn1'))
 preds.append(ffzk('outputs/inception2_100'))
 preds.append(ffzk('outputs/inception2_1000'))
+preds.append(ffzk('outputs/inception2_10000'))
 # preds.append(ffzk('outputs/unet3'))
 # preds.append(ffzk('outputs/test4'))D
 # preds.append(ffzk('outputs/ksvd5'))
