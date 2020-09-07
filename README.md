@@ -1,8 +1,8 @@
 # 機械学習を利用した、少数データでの画像高画質化手法の開発
 |DIV2K超解像|火星地表超解像|DIV2Kガウスノイズ除去|
 |---|---|---|
-|![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t182.png)|
-|![](https://github.com/jSm449g4d/Research/blob/master/assets/p22.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p31.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p182.png)|
+|![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t31.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t182.png)|
+|![](https://github.com/jSm449g4d/Research/blob/master/assets/p570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p31.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p182.png)|
 ## 使い方
 ### 使用前
 `pip3 install -r requirements.txt`  
