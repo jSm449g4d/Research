@@ -74,7 +74,7 @@ def train():
     y_test=img2np(ffzk(args.pred_output),img_len=128)
     
     model=VDSR()
-    model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999),
+    model.compile(optimizer=optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999,clipnorm=0.1),
                   loss=keras.losses.mean_squared_error)#keras.losses.mean_squared_error
     model.summary()
     cbks=[]

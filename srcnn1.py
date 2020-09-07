@@ -61,7 +61,7 @@ parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/tr
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
 parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_normal')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
-parser.add_argument('-b', '--batch' ,default=2,type=int)
+parser.add_argument('-b', '--batch' ,default=1,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)
 parser.add_argument('-lds', '--limit_data_size' ,default=10000,type=int)
 parser.add_argument('-s', '--save' ,default="./saves/srcnn1.h5")
