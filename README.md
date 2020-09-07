@@ -22,5 +22,5 @@
 「限られた画像データを元に画像の高画質化する機械学習モデル」を開発する。
 ![](https://github.com/jSm449g4d/Research/blob/master/assets/selfteaching.png)
 ## 進捗
-Inception-Unet+SRCNN535(**inception2.py**)のデータを収集中。
-過学習について、凡そ100枚でキュービック法とMSEで同じ精度となります。
+Inception-Unet+SRCNN535(**inception2.py**)のデータを収集中。  
+過学習について、凡そ128×128の画像100枚を教師とした場合、キュービック法とMSEで同じ精度となります。
