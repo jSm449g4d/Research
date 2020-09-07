@@ -22,4 +22,5 @@
 「限られた画像データを元に画像の高画質化する機械学習モデル」を開発する。
 ![](https://github.com/jSm449g4d/Research/blob/master/assets/selfteaching.png)
 ## 進捗
-U-Netとほとんど同じスコアを出して、少ないデータセット(128×128のサブ画像1000枚程度)の学習可能なモデル**U-Inception**(uinception_2.py)を開発、現在詳細データを取っています。
+Inception-Unet+SRCNN535のデータを収集中。
+過学習について、凡そ100枚でキュービック法とMSEで同じ精度となります。
