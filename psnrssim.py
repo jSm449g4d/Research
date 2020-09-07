@@ -30,7 +30,7 @@ def img2np(dir=[],img_len=128):
 preds=[]
 test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 
-preds.append(ffzk('datasets/div2k_srlearn/test_cubic4'))
+preds.append(ffzk('datasets/div2k_srlearn/test_cubic8'))
 # preds.append(ffzk('outputs/srcnn1'))
 preds.append(ffzk('outputs/inception2'))
 # preds.append(ffzk('outputs/unet3'))
