@@ -16,6 +16,7 @@
 ## 使い方
 ### 使用前
 `pip3 install -r requirements.txt`  
+`sudo apt install graphviz`  
 #### **DIV2K**と**Mars surface image (Curiosity rover) labeled data set**をDLして加工する  
 `python3 download.py`  
 #### 学習する  
