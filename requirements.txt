@@ -9,3 +9,5 @@ tqdm
 opencv-python
 matplotlib
 importlib
+pydot
+graphviz
