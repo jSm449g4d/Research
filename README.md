@@ -22,7 +22,7 @@
 #### 学習する  
 `python3 inception2.py`  
 ## モデル
-<details><summary>![](https://github.com/jSm449g4d/Research/blob/master/assets/model.png)</summary></details>
+<details><summary>表示する</summary>![](https://github.com/jSm449g4d/Research/blob/master/assets/model.png)</details>
 ## 背景
 現在ではビッグデータで学習した機械学習モデルを再利用して、問題解決を図ることが一般的である。  
 例えばVGG16による画像分類、ESRGAN(VGG19)等の超解像が挙げられる。  
