@@ -13,6 +13,7 @@ Lambda,Multiply,GlobalAveragePooling2D,LeakyReLU,PReLU,BatchNormalization,\
 Conv2DTranspose,MaxPooling2D
 from tensorflow.keras import regularizers
 from tensorflow.keras import optimizers
+from tensorflow.keras.backend import name_scope
 
 from tqdm import tqdm
 import argparse
@@ -21,6 +22,17 @@ from util import ffzk,img2np,tf2img
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
+class VDSR_BLOCK():
+    def __init__(self,dim=64,l2=0.0001):
+        self.dim=dim;self.l2= l2;
+        return
+    def __call__(self,mod):
+        with name_scope("VDSR_BLOCK") as scope:
+            mod=Conv2D(self.dim,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(self.l2))(mod)
+            mod=Conv2D(self.dim,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(self.l2))(mod)
+            mod=Conv2D(self.dim,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(self.l2))(mod)
+            mod=Conv2D(self.dim,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(self.l2))(mod)
+            return mod
 
 def VDSR(input_shape=(None,None,3,)):
     mod=mod_inp = Input(shape=input_shape)
@@ -30,36 +42,9 @@ def VDSR(input_shape=(None,None,3,)):
     #    mod_p=Conv2D(64,3,padding="same",activation="relu",activity_regularizer=keras.regularizers.L2(0.0001))(mod_p)
     mod_0=Conv2D(64,1,padding="same")(mod)
     
-    # 4Conv
-    mod_0=LayerNormalization()(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    # 4Conv
-    mod_0=LayerNormalization()(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    # 4Conv
-    mod_0=LayerNormalization()(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    # 4Conv
-    mod_0=LayerNormalization()(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    # 4Conv
-    mod_0=LayerNormalization()(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
-    mod_0=Conv2D(64,3,padding="same",activation="relu")(mod_0)
+    #4Conv
+    mod_0=VDSR_BLOCK()(mod_0)
+    mod_0=VDSR_BLOCK()(mod_0)
     
     mod_0=Conv2D(3,1,padding="same")(mod_0)
     mod+=mod_0
@@ -95,9 +80,9 @@ def test():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r', '--role' ,default="train")
-parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic4")
+parser.add_argument('-ti', '--train_input' ,default="./datasets/div2k_srlearn/train_cubic8")
 parser.add_argument('-to', '--train_output' ,default="./datasets/div2k_srlearn/train_y")
-parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic4')
+parser.add_argument('-pi', '--pred_input' ,default='./datasets/div2k_srlearn/test_cubic8')
 parser.add_argument('-po', '--pred_output' ,default='./datasets/div2k_srlearn/test_y')
 parser.add_argument('-b', '--batch' ,default=1,type=int)
 parser.add_argument('-nob', '--number_of_backprops' ,default=100000,type=int)

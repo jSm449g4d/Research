@@ -33,9 +33,10 @@ test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 preds.append(ffzk('datasets/div2k_srlearn/test_cubic4'))
 # preds.append(ffzk('outputs/srcnn1'))
 preds.append(ffzk('outputs/inception2_100'))
-preds.append(ffzk('outputs/unet3'))
 preds.append(ffzk('outputs/inception2_1000'))
 preds.append(ffzk('outputs/inception2_10000'))
+preds.append(ffzk('outputs/unet3'))
+preds.append(ffzk('outputs/vdsr4'))
 # preds.append(ffzk('outputs/unet3'))
 # preds.append(ffzk('outputs/test4'))D
 # preds.append(ffzk('outputs/ksvd5'))
@@ -43,19 +44,17 @@ preds.append(ffzk('outputs/inception2_10000'))
 max_sample_size=min([1000,len(test)])
 
 for i in range(len(preds)):
-    psnrS=0.;ssimS=0.;meS=0.;mseS=0.
+    psnrS=0.;ssimS=0.;mseS=0.
     for ii in range(max_sample_size):
         img1 = cv2.imread(test[ii])
         img2 = cv2.imread(preds[i][ii])
         ssimS+=ssim(img1, img2, multichannel=True)
-        meS+=np.mean(np.square(img1.flatten().astype(np.float32)-img2.flatten().astype(np.float32)))
         mseS+=np.mean(np.square(img1.flatten().astype(np.float32)-img2.flatten().astype(np.float32)))
     psnrS/=max_sample_size;
     ssimS/=max_sample_size;
     mseS/=max_sample_size;
-    meS=math.sqrt(meS/max_sample_size)
     print("MSE",mseS)
-    print("PSNR",10.*math.log10((255.**2)/meS))
+    print("PSNR",10.*math.log10((255.**2)/mseS))
     print("SSIM",ssimS)
     print("=====^",i,"^=====")
     
