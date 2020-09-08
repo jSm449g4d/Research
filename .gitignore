@@ -31,3 +31,7 @@ outputs/
 logs/
 saves/
 sandbox/
+input.png
+output.png
+cubic.png
+gauss.png

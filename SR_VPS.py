@@ -14,9 +14,11 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
 if __name__ == "__main__":
-    model = keras.models.load_model("SR_VPS.model")
+    model = keras.models.load_model("SR_VPS.h5")
     inputImage=img2np(["./input.png"])[0]
     height, width, _ = inputImage.shape[:3]
-    inputImage=cv2.resize(inputImage, dsize=(width*4, height*4), interpolation=cv2.INTER_CUBIC)
-    predY=model.predict([inputImage])
+    inputImage=cv2.resize(inputImage, dsize=(width//4, height//4))
+    inputImage=cv2.resize(inputImage, dsize=((width//16)*16, (height//16)*16), interpolation=cv2.INTER_CUBIC)[np.newaxis,...]
+    tf2img(inputImage,"./",name="cubic.png")
+    predY=model.predict(inputImage)
     tf2img(predY,"./",name="output.png")
