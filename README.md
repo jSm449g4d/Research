@@ -5,6 +5,22 @@
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t236.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/p570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p236.png)|
 
+## 背景 
+ 「データ数が十分に得られないリアルデータや観測データの分析」が求められる。  
+例:火星や月面DEMの超解像,ヒートマップの高品質化など。  
+
+このような限られたデータを**フロンティアデータ**と呼ぶ。  
+そこで、**フロンティアデータ**の高品質化のための機械学習モデルの開発が必要である。  
+## 目的
+「限られたデータを元に画像データを高品質化する」機械学習手法を開発する。  
+![](https://github.com/jSm449g4d/Research/blob/master/assets/selfteaching.png)  
+## 課題
+データ数が少ないと過学習という現象が発生する。  
+過学習を極力抑えつつ、解像度の向上(超解像)や、ノイズ除去を行う仕組みを作る。  
+## 進捗
+新たな課題設定(ピンボケ画像の高画質化など)  
+ヒートマップなどの「非画像の二次元データ」への応用  
+機械学習モデルの改良  
 ### DIV2Kでの超解像(4倍) 学習データ枚数
 |HR|LR|10000枚|1000枚|100枚|
 |---|---|---|---|---|
@@ -24,22 +40,6 @@
 ## 提案するモデル(Inception-Unet+SRCNN535)
 <details><summary>表示する</summary><div><img src="https://github.com/jSm449g4d/Research/blob/master/assets/model.png"/></div></details>
 
-## 背景 
- 「データ数が十分に得られないリアルデータや観測データの分析」が求められる。  
-例:火星や月面DEMの超解像,ヒートマップの高品質化など。  
-
-このような限られたデータを**フロンティアデータ**と呼ぶ。  
-そこで、**フロンティアデータ**の高品質化のための機械学習モデルの開発が必要である。  
-## 目的
-「限られたデータを元に画像データを高品質化する」機械学習手法を開発する。  
-![](https://github.com/jSm449g4d/Research/blob/master/assets/selfteaching.png)  
-## 目的
-データ数が少ないと過学習という現象が発生する。  
-過学習を極力抑えつつ、解像度の向上(超解像)や、ノイズ除去を行う仕組みを作る。  
-## 進捗
-新たな課題設定(ピンボケ画像の高画質化など)  
-ヒートマップなどの「非画像の二次元データ」への応用  
-機械学習モデルの改良  
 ## 進捗
 Inception-Unet+SRCNN535(**inception2.py**)のデータを収集中。  
 過学習について、凡そ128×128の画像100枚を教師とした場合、キュービック法とMSEで同じ精度となります。
