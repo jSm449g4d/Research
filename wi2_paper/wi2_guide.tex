@@ -1,0 +1,249 @@
+%%
+% このファイルはWI2研究会予稿集用スタイルファイル wi2.sty
+% を利用したサンプルファイルです。
+%
+\documentclass[a4paper,twoside]{jarticle}
+   \usepackage{wi2}
+   \usepackage[dvips]{graphicx}
+   %必要なファイルはインポートして下さい
+
+%和文タイトル
+\jtitle{■■}
+
+%著者名
+%例1）全員同じ所属
+\authors{
+%\author{name}{affi_num}{email_num}
+%affi_num, email_numを0にすると†やa,b,cが出ません
+	\author{■■}{0}{0}%
+	\author{■■}{0}{0}%
+}
+{
+%\affi{affi_num}{affiliation}
+	\affi{0}{■■■■}%
+	\affi{0}{■■■■}%
+}
+{
+%\email{email_num}{email_address}
+	\email{0}{■■■■■■}%
+	\email{0}{■■■■■■}%
+	\email{0}{■■■■■■}%
+}
+
+%例2）複数の所属
+%\authors{
+%	%\author{name}{affi_num}{email_num}
+%	%affi_num, email_numを0にすると†やa,b,cが出ません
+%	\author{谷川 恭平}{1}{0}%
+%	\author{土方 嘉徳}{2}{1}%
+%	\author{西田 正吾}{2}{2}
+%}
+%{
+%	%\affi{affi_num}{affiliation}
+%	\affi{1}{大阪大学大学院基礎工学研究科（研究当時）}%
+%	\affi{2}{大阪大学大学院基礎工学研究科}%
+%}
+%{
+%	%\email{email_num}{email_address}
+%	\email{1}{hijikata@sys.es.osaka-u.ac.jp}%
+%	\email{2}{nishida@sys.es.osaka-u.ac.jp}
+%}
+
+%例3）改行が必要
+%\authors{
+%	%\author{name}{affi_num}{email_num}
+%	%affi_num, email_numを0にすると†やa,b,cが出ません
+%	\author{田中 太郎}{1}{1}%
+%	\author{鈴木 花子}{2}{2}%
+%	\author{山田 一郎}{3}{3}%
+%	\author{谷川 恭平}{4}{4}\\%
+%	\author{土方 嘉徳}{4}{5}%
+%	\author{西田 正吾}{4}{5}
+%}
+%{
+%	%\affi{affi_num}{affiliation}
+%	\affi{1}{なんとか大学かんとか学部}%
+%	\affi{2}{なんとか研究所}%
+%	\affi{3}{なんとか社かんとか研究所}\\%
+%	\affi{4}{大阪大学大学院基礎工学研究科}%
+%}
+%{
+%	%\email{email_num}{email_address}
+%	\email{1}{tanaka@nantoka}%
+%	\email{2}{suzuki@nantoka}%
+%	\email{3}{yamada@nantoka}%
+%	\email{4}{tanikawa@nishilab.sys.es.osaka-u.ac.jp}\\%
+%	\email{5}{\{hijikata,\,nishida\}@sys.es.osaka-u.ac.jp}
+%}
+
+%西暦(4桁)
+\YEAR{2012}
+\NO{xx}
+
+%\addtolength{\textheight}{-5cm}
+
+\begin{document}
+
+%maketitleはabstractとkeywordの後に入れてください。
+
+\begin{abstract}
+本稿はWI2研究会への発表論文の原稿作成ガイドラインです．WI2研究会で発表する論文は，当研究会が
+用意したTeXスタイルファイルか，MSワードのサンプルファイルを利用して執筆してください．本稿で，
+執筆の注意点について説明しますので，ご参考の上ご執筆ください．
+\end{abstract}
+
+\begin{keyword}	
+TeX，MSワード，原稿執筆
+\end{keyword}
+
+\maketitle
+
+\section{はじめに}
+
+本稿ではWI2研究会で発表する際の論文のスタイルおよび書式について説明します．本研究会で研究発表する際には，本研究会のホームページ「概要－発表規定」を読み，内容を理解したうえで申し込んでください．またその際，ロング発表にするかショート発表にするかを決めておいてください．本研究会への発表論文は，本研究会のホームページ「概要－執筆案内」内にあるTeXスタイルファイルかMSワードのサンプルファイルを利用して，執筆してください．原稿はPDFファイルにて提出していただきます．提出されたPDFファイルがそのまま紙媒体の予稿集に掲載されますので（ページ番号は印刷所により付与されます），誤字脱字や図の精細さなどにご注意ください．また，提出されたPDFファイルは，発表より1年後に，当研究会ホームページにてオンラインにて公開されますので，ファイルサイズが大きくなりすぎないようにしてください（1MB以下を推奨します）．
+
+以下，2章では原稿の構成と記述の形式およびスタイルについて，3章では図表などの要素の作成の注意について説明します．カメラレディ原稿(印刷用原稿)では印刷結果の再現性や品質の観点から原稿作成の過程で配慮が必要ですので，これらにかかる注意点について4章で説明します．
+
+\section{ページの構成}
+
+\subsection{用紙と余白}
+用紙はA4サイズとし，左右の余白はそれぞれ21mm，上下の余白はそれぞれ25mmとしてください．1ページ目は，右上に，「ARG WI2 No.xx, 年号」(Times-Roman 10ポイント）を書いてください（例：「ARG WI2 No.1, 2012」）．TeXスタイルファイルでは，年号と番号はそれぞれ，\verb+\+YEAR\{xxxx\}と\verb+\+NO\{xx\}で与えます．次ページ以降は偶数ページには上の余白中央に「Webインテリジェンスとインタラクション研究会予稿集」（ゴシック体 7ポイント）と書いてください．奇数ページには，「Proceedings of ARG WI2」（Times-Roman Bold 7ポイント）と書いてください．
+
+\subsection{論文タイトル}
+タイトルページには，テキスト領域には本文に先立ち，\\
+\noindent (1) 和文論文題目(ゴシック体 17ポイント)\\
+\noindent (2) 和文著者氏名(明朝体 14ポイント)\\
+\noindent (3) 和文所属(明朝体 11ポイント)\\
+\noindent (4) E-mail アドレス(Times-Roman Italic 10ポイント)\\
+を記述してください．概要は400字程度（ロング発表），300字程度（ショート発表）とします．キーワードは3～5個程度とします．
+これらはページの左右中央に幅145mmの領域
+に収まるように配置します．また，項目の間には適当なスペースを挿入してください．ページの左下に脚注として，「Copyright is held by the author(s).」と「The article has been published without reviewing.」(Times-Roman 7ポイント)をそれぞれ書いてください．
+
+\subsection{本文}
+本文はテキスト領域に2段組で記述します．段の間隔は8mmです．1つの段の幅は80mmです．本文は必要に応じて章および節に区切って記述します．章の見出しは章番号および章題目(ゴシッ
+ク体11ポイント)を「2 背景と目的」の形式で記述します．節の見出しは章節番号および節題目(ゴシック体10.5ポイント)を「2.1 従来の研究」の形式で記述する．
+タイトルに続いて文章段落(明朝体10ポイント・インデント)を開始します．段落頭のインデントは1文字程度とします．句読点は「，」と「．」をそれぞれ用いてください．
+
+\subsection{謝辞}
+必要に応じて，本文の後に謝辞を記述することができます．謝辞の見出しは章題目と同様のスタイル(ゴシック体11ポイント)で「謝辞」と記述します．ただし，章番号はつけません．文章段落は本文と同じスタイルとします．
+
+\subsection{参考文献リスト}
+本文に続いて参考文献のリストを記述します．参考文献リストの見出しは章題目と同様のスタイル(ゴシック体11ポイント)で「参考文献」と記述します．ただし，章番号はつけません．文献の各項目は先頭に参照番号(Times-Roman 10ポイント)，を角括弧をつけて表示します．それに続く個々の文献情報(明朝体9ポイントまたはTimes-Roman 9ポイント)は参照に必要十分な内容を記述します．
+
+文献情報は，下記のスタイルに従って記述してください．\\
+\noindent ●著者：\\
+\noindent ・3名以内の場合は，全員記載する．英文の場合は\\
+\noindent 　＿＿＿，＿＿＿ and ＿＿＿\\
+\noindent 　と記載する．\\
+\noindent ・4名以上の場合は，下記のように省略して記載してもよい．和文の場合は\\
+\noindent 　＿＿＿，＿＿＿，＿＿＿ほか\\
+\noindent 　と記載する．英文の場合は\\
+\noindent 　＿＿＿, ＿＿＿, ＿＿＿, et al.\\
+\noindent 　	\\
+\\
+\noindent ●姓名：\\
+\noindent ・姓・名の順に記載する．和文の場合は，フルネームで記載する．英文の場合は，次の形式に略する．\\
+\noindent 　Toshiya Kuramochi →　略　Kuramochi, T.\\
+\noindent 　Mark E.J. Newman →　略　Newman, M. E. J.\\
+\\
+\noindent ●雑誌名など：\\
+\noindent ・和文雑誌は，原則として略記せず，完全誌名を記述する．\\
+\noindent ・英文雑誌は，国際的な慣行に従って略記表記してもかまわない．\\
+\noindent ・国際会議名は，国際的な慣行に従って略記表記してもかまわない．\\
+\noindent ・国内シンポジウム名，研究会名は，一般的略記名であれば略記表記してもかまわない．\\
+\\
+\noindent ●標題：\\
+\noindent ・英文の論文は，先頭の単語の最初の文字のみ大文字にし，後は小文字にする．固有名詞は例外とする．\\
+\noindent 　例：Improving HITS algorithm using semantic information and page layout information\\
+\\
+\noindent ●コンマおよびピリオドの使い方：\\
+\noindent ・和文の単語の後ろには，全角コンマ，全角コロン，全角ピリオドを用いる．\\
+\noindent ・英数字の単語の後ろには，半角コンマ，半角コロン，半角ピリオドを用いる．半角コンマの直後には半角スペースを入れる．\\
+\\
+文献情報は，以下の順で記述する．\\
+\noindent ・和文論文の場合\\
+\noindent 著者名：論文タイトル，収録誌名，巻, 号, ページ番号, 年．\\
+\noindent ・英文論文の場合\\
+\noindent Author name(s): Paper title, Journal name, Volume, Number, Page number, Year.\\
+\\
+以下に具体例を示す．\\
+\noindent Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, Proc. of ACM SIGIR Conference, pp. 154-162, 2012.\\
+\noindent Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC WI'11, pp. 1540-1547, 2012.\\
+\noindent Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC International Conference on Web Intelligence, pp. 1540-1547, 2012.\\
+\noindent Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC International Conference on Web Intelligence (WI'12), pp. 1540-1547, 2012.\\
+\noindent Z. Wang: All about ABC theory, MIT Press, 2012.\\
+\noindent Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, Comm. of the ACM, Vol. 45, No. 6, pp. 240-243, 2012.\\
+\noindent Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, IEEE Trans. on Systems Man and Cybernetics, Vol. 45, No. 6, pp. 240-243, 2012.\\
+\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会論文誌，Vol. 45, No. 6, pp. 240-243, 2012.\\
+\noindent 倉持俊也，谷川恭平，土方嘉徳ほか：ABC理論を用いた意味的類似度の計算，〇〇学会□□研究会，No. 6, pp. 24-29, 2012.\\
+\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会研究報告，DBS-127(FI-67)，pp. 240-243, 2012.\\
+\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会全国大会，in CDROM, 2012.\\
+\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，WebPB Forum'12，pp. 240-243, 2012.\\
+\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，Webとペタベースに関するシンポジウム（WebPB Forum'12），pp. 240-243, 2012.\\
+\noindent 土方嘉徳：ABC理論：基礎と応用，〇〇大学出版，2012.\\
+\noindent 土方嘉徳：解説：ABC理論，知能と情報，Vol.45, No. 6, pp. 1-10, 2012.\\
+
+\section{図表と参照}
+
+\subsection{図表}
+図は線画・写真とも十分に鮮明なものを用い，図中の文字は本文の文字サイズ
+と釣り合う大きさとしてください．和文表題(明朝体 9ポイント)を図の下につけます．和文表題の形式は「図1 システム構成」としてください(図\ref{fig:zu}参照)．必要に応じて2つの段を通した図を用いて構いません．
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=.4\textwidth]{zu.eps}
+\end{center}
+\caption{システム構成}
+\label{fig:zu}
+\end{figure}
+
+表についても，文字は本文の文字サイズと釣り合う大きさとすしてください．和文表題(明朝体 9ポイント)を表の上につけます．和文表題の形式は「表1 精度と時間」(表\ref{tab:ta}参照)．
+表についても必要に応じて2つの段を通したものを用いて構いません．
+
+\begin{table}[ht]
+\caption{精度と時間}
+\label{tab:ta}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+subject & accuracy [mm] & time [ms]\\ \hline
+s1      & 32       & 5568  \\ \hline
+s2      & 63       & 382  \\ \hline
+s3      & 12       & 421  \\ \hline
+s4      & 51       & 763  \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{参照}
+参考文献および図表は本文中で必ず参照されなければなりません．参考文献は参
+照番号を用いて「\cite{bib1}」の形式で参照します．同様に図表はそれぞれ
+「図\ref{fig:zu}」「表\ref{tab:ta}」の形式で参照します．
+
+\section{カメラレディ原稿作成の注意}
+
+紙媒体の研究会資料ではモノクロ印刷となるので，その場合でも視認性に問題がないことを確認してください．極端に細い線は印刷されない場合がありますので，避けてください．
+
+\section*{謝辞}
+WI2研究会のTeXスタイルファイルとMSワードのサンプルファイルは，著者の監修の元，倉持俊也氏によって作成されたものです．この場を借りて，深く御礼申し上げます．
+
+\begin{thebibliography}{99}
+\bibitem{bib1}Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, Proc. of ACM SIGIR Conference, pp. 154-162, 2012.
+\bibitem{bib2} Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC WI'11, pp. 1540-1547, 2012.
+\bibitem{bib3} Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC International Conference on Web Intelligence, pp. 1540-1547, 2012.
+\bibitem{bib4} Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC International Conference on Web Intelligence (WI'12), pp. 1540-1547, 2012.
+\bibitem{bib5} Z. Wang: All about ABC theory, MIT Press, 2012.
+\bibitem{bib6} Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, Comm. of the ACM, Vol. 45, No. 6, pp. 240-243, 2012.
+\bibitem{bib7} Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, IEEE Trans. on Systems Man and Cybernetics, Vol. 45, No. 6, pp. 240-243, 2012.
+\bibitem{bib8} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会論文誌，Vol. 45, No. 6, pp. 240-243, 2012.
+\bibitem{bib9} 倉持俊也，谷川恭平，土方嘉徳ほか：ABC理論を用いた意味的類似度の計算，〇〇学会□□研究会，No. 6, pp. 24-29, 2012.
+\bibitem{bib10} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会研究報告，DBS-127(FI-67)，pp. 240-243, 2012.
+\bibitem{bib11} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会全国大会，in CDROM, 2012.
+\bibitem{bib12} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，WebPB Forum'12，pp. 240-243, 2012.
+\bibitem{bib13} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，Webとペタベースに関するシンポジウム（WebPB Forum'12），pp. 240-243, 2012.
+\bibitem{bib14} 土方嘉徳：ABC理論：基礎と応用，〇〇大学出版，2012.
+\bibitem{bib15} 土方嘉徳：解説：ABC理論，知能と情報，Vol.45, No. 6, pp. 1-10, 2012.
+\end{thebibliography}
+
+
+\end{document}

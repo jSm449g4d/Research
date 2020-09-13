@@ -1,0 +1,365 @@
+%%%%
+%% 本スタイルファイル（wi2.sty）は日本VR学会論文誌の
+%% スタイルファイル（tvrsj2e.sty）を元に修正を加えたものです．
+%% 作成：倉持俊也
+%% 監修：土方嘉徳
+%%%
+
+%% 体裁
+\oddsidemargin-7.4mm
+\evensidemargin-7.4mm
+\topmargin-5.4mm
+\textwidth=174mm
+\textheight=248mm
+
+\headsep=4.75mm
+\footskip=2.5mm
+\unitlength=1mm
+\baselineskip=4.75mm
+\parindent=1zw
+\columnsep=8mm
+\fboxrule=.1mm
+\fboxsep=.5zw
+\parskip\z@
+
+\marginparwidth 20mm
+\marginparsep 5mm
+
+%%文字の大きさ
+\def\small{\@setsize\small{11pt}\ixpt\@ixpt}
+\def\Small{\@setsize\Small{4mm}\viiipt\@viiipt}
+\def\scriptsize{\@setsize\scriptsize{8pt}\viipt\@viipt}
+\def\tiny{\@setsize\tiny{6pt}\vpt\@vpt}
+\def\large{\@setsize\large{18pt}\xipt\@xipt}
+\def\Large{\@setsize\Large{18pt}\xivpt\@xivpt}
+\def\SecLarge{\@setsize\SecLarge{18pt}\xiipt\@xiipt}
+\def\LARGE{\@setsize\LARGE{18pt}\xviipt\@xviipt}
+\def\huge{\@setsize\huge{25pt}\xxpt\@xxpt}
+\def\Huge{\@setsize\Huge{30pt}\xxvpt\@xxvpt}
+
+%%タイトル
+\def\jtitle#1{\gdef\@jtitle{#1}}
+\def\@jtitle{}
+
+%%英語タイトル（現スタイルには不要）
+\def\etitle#1{\gdef\@etitle{#1}}
+\def\@etitle{}
+
+\def\YEAR#1{\def\@tempa{#1}
+  \ifx \@tempa\empty \gdef\@YEAR{xxxx}
+  \else 
+  \gdef\@YEAR{#1}
+\fi}
+
+\def\NO#1{\def\@tempa{#1}
+  \ifx \@tempa\empty \gdef\@NO{xx}
+  \else 
+  \gdef\@NO{#1}
+\fi}
+
+%%著者（英語著者なし）
+\def\authors#1{
+ \gdef\@authors{#1}
+}
+
+\def\author#1#2#3{
+ \begin{tabular}[t]{c}
+  {\Large #1}\\#2\\[-1mm]{\tt\small#3}\vspace{3mm}
+ \end{tabular}
+}
+
+\def\authors#1#2#3{
+ \gdef\@authorgroup{#1}
+ \gdef\@affigroup{#2}
+ \gdef\@emailgroup{#3}
+}
+
+\def\author#1#2#3{%
+ {\Large\hspace*{1zw}#1%
+ \ifnum#2=1$^{\!\dag}$\fi%
+ \ifnum#2=2$^{\!\dag\!\dag}$\fi%
+ \ifnum#2=3$^{\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#2=4$^{\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#2=5$^{\!\dag\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#2=6$^{\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#2=7$^{\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#2=8$^{\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#2=0%
+ \ifnum#3=1$^{\!\mbox{\small a}}$\fi%
+ \ifnum#3=2$^{\!\mbox{\small b}}$\fi%
+ \ifnum#3=3$^{\!\mbox{\small c}}$\fi%
+ \ifnum#3=4$^{\!\mbox{\small d}}$\fi%
+ \ifnum#3=5$^{\!\mbox{\small e}}$\fi%
+ \ifnum#3=7$^{\!\mbox{\small g}}$\fi%
+ \ifnum#3=8$^{\!\mbox{\small h}}$\fi%
+ \else%
+ \ifnum#3=1$^{\!\mbox{\small ,\,a}}$\fi%
+ \ifnum#3=2$^{\!\mbox{\small ,\,b}}$\fi%
+ \ifnum#3=3$^{\!\mbox{\small ,\,c}}$\fi%
+ \ifnum#3=4$^{\!\mbox{\small ,\,d}}$\fi%
+ \ifnum#3=5$^{\!\mbox{\small ,\,e}}$\fi%
+ \ifnum#3=6$^{\!\mbox{\small ,\,f}}$\fi%
+ \ifnum#3=7$^{\!\mbox{\small ,\,g}}$\fi%
+ \ifnum#3=8$^{\!\mbox{\small ,\,h}}$\fi%
+ \fi%
+ \hspace*{1zw}}
+}
+
+\def\affi#1#2{%
+ {\large\hspace*{.5zw}%
+ \ifnum#1=1$\!{\!\dag}$\fi%
+ \ifnum#1=2$\!{\!\dag\!\dag}$\fi%
+ \ifnum#1=3$\!{\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#1=4$\!{\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#1=5$\!{\!\dag\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#1=6$\!{\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#1=7$\!{\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag}$\fi%
+ \ifnum#1=8$\!{\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag\!\dag}$\fi%
+ #2\hspace*{.5zw}}
+}
+
+\def\email#1#2{%
+ {\normalsize\hspace*{.1zw}%
+ \ifnum#1=1 a)\,\fi%
+ \ifnum#1=2 b)\,\fi%
+ \ifnum#1=3 c)\,\fi%
+ \ifnum#1=4 d)\,\fi%
+ \ifnum#1=5 e)\,\fi%
+ \ifnum#1=6 f)\,\fi%
+ \ifnum#1=7 g)\,\fi%
+ \ifnum#1=8 h)\,\fi%
+ \textit{#2}\hspace*{.1zw}}
+}
+
+\def\@YEAR{}
+\def\@NO{}
+
+\mark{{}{}}
+\def\@RH{\rlap{\smash{\raisebox{-1\headsep}{\rule{0.01mm}{10mm}\rule{10mm}{0.01mm}}}}}
+\def\@LH{\llap{\smash{\raisebox{-1\headsep}{\rule{10mm}{0.01mm}\rule{0.01mm}{10mm}}}}}
+\def\@RB{\rlap{\smash{\raisebox{1\footskip}{\rule[-10mm]{0.01mm}{10mm}\rule{10mm}{0.01mm}}}}}
+\def\@LB{\llap{\smash{\raisebox{1\footskip}{\rule{10mm}{0.01mm}\rule[-10mm]{0.01mm}{10mm}}}}}
+
+\newif\ifProof % for adjustment of the top and bottom of text
+%\def\Small{\@setsize\Small{4mm}\viiipt\@viiipt}
+
+%タイトルページのヘッダ
+\def\ps@headpage{\let\@mkboth\@gobbletwo
+\def\@oddhead{\ifProof\@LH\else\fi%
+ \hfill\llap{\normalsize  ARG WI2 No.\@NO, \@YEAR}
+ \ifProof\@RH\else\fi}
+\def\@evenhead{\ifProof\@LH\else\fi%
+ \hfill\llap{\normalsize  ARG WI2 No.\@NO, \@YEAR}
+ \ifProof\@RH\else\fi}
+\def\@oddfoot{\ifProof\@LB\else\fi%
+% \begin{tabular}{l}\hline
+% {\Small \hspace{-2mm}Copyright is held by the author(s).}\\[-2mm]
+% {\Small \hspace{-2mm}The article has been published without reviewing.}\\ \hline
+% \end{tabular}\hfill
+ \ifProof\@RB\else\fi}
+\def\@evenhead{\ifProof\@LB\else\fi%
+% {\Small Copyright is held by the author(s). The article has been published without reviewing.}\hfill
+ \ifProof\@RB\else\fi}
+}
+
+%本体ページのヘッダ
+\def\ps@bodypage{\let\@mkboth\@gobbletwo
+\def\@oddhead{\ifProof\@LH\else\fi%
+ \hfill{\Small\bf Proceedings of ARG WI2%~No.\@NO~\@YEAR
+ }\hfill
+ \ifProof\@RH\else\fi }
+\def\@evenhead{\ifProof\@LH\else\fi%
+ \hfill{\Small\bf Web$\!$インテリジェンスとインタラクション研究会予稿集%~No.\@NO~\@YEAR
+ }\hfill
+ \ifProof\@RH\else\fi }
+\def\@oddfoot{\ifProof\@LB\else\fi%
+ \ifProof\@RB\else\fi}
+\def\@evenfoot{\ifProof\@LB\else\fi%
+ \ifProof\@RB\else\fi} 
+}
+
+%タイトルページ
+\newbox\abstractbox
+\newbox\keywordbox
+\setbox\abstractbox\hbox{}
+\setbox\keywordbox\hbox{}
+
+\def\abstract{\global\setbox\abstractbox=\hbox\bgroup%
+\small\begin{minipage}[t]{50zw}
+{\baselineskip=2mm
+{\bf 概要}\hskip1zw}\ignorespaces}
+\def\endabstract{\end{minipage}\egroup}
+
+\def\keyword{\global\setbox\keywordbox=\hbox\bgroup%
+\small\begin{minipage}[t]{50zw}
+{\baselineskip=16mm
+{\bf キーワード}\hskip1zw}\ignorespaces}
+\def\endkeyword{\end{minipage}\egroup}
+
+\def\copyright{
+ \setcounter{footnote}{0}
+ \def\thefootnote{}
+ \footnote{\hspace{-2zw}\hbox{Copyright is held by the author(s).}}
+ \footnote{\hspace{-2zw}\hbox{The article has been published without reviewing.}}
+ \def\thefootnote{\arabic{footnote}}
+ \setcounter{footnote}{0}
+ \vspace*{-20pt}\vspace*{-1.8mm}
+}
+
+\def\maketitle{\par
+ \begingroup
+ \twocolumn[\@maketitle]
+ \copyright
+ \endgroup
+ \thispagestyle{headpage}
+ \setcounter{footnote}{0}
+ \let\maketitle\relax
+ \let\@maketitle\relax
+ \gdef\@jtitle{}
+\let\thanks\relax}
+\def\@maketitle{%\newpage
+ \null
+ \vskip 1em \begin{center}
+ {\LARGE\bf \@jtitle \par}
+ \vskip 1.5em \@authorgroup \par
+ \vskip .3em \@affigroup \par
+ \vskip .1em \@emailgroup \par 
+\vskip 1em {\normalsize
+\usebox{\abstractbox}\hfill
+ \vskip 4.25mm
+\usebox{\keywordbox}
+ }\vskip 4.25mm
+\end{center}
+\vskip 1.0em} 
+
+
+%セクション
+\def\section{\@startsection{section}{1}{\z@}
+ {.7\baselineskip plus .5mm minus .5mm}
+ {.02\baselineskip plus .5mm minus .5mm}
+ {\SecLarge\bf\relax}}
+\def\subsection{\@startsection{subsection}{2}{\z@}
+ {0.02\baselineskip plus .1mm minus .1mm}
+ {0.01\baselineskip plus .1mm minus .1mm}
+ {\large\bf\relax}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}
+ {0.01\baselineskip plus .1mm minus .1mm}
+ {0.01\baselineskip plus .1mm minus .1mm}
+ {\normalsize\bf\relax}}
+\def\paragraph{\@startsection
+ {paragraph}{4}{\z@}{0.001\baselineskip plus .1mm}
+ {0.001\baselineskip plus .1mm}{\normalsize}}
+\def\subparagraph{\@startsection
+ {subparagraph}{4}{\parindent}{0.001\baselineskip plus .1mm}
+ {0.001\baselineskip plus .1mm}{\normalsize}}
+
+%付録
+\def\appendix{\par
+ \def\section{\@startsection {section}{1}{\z@}
+  {0.5\baselineskip plus.5mm minus.5mm}
+  {0.5\baselineskip plus.5mm minus.5mm}{\centering\large\bf}}
+ \section*{付録}
+  \def\section{\@startsection{section}{1}{\z@}
+   {0.0001\baselineskip plus.1mm minus.1mm}
+   {0.0001\baselineskip plus.1mm minus.1mm}{\normalsize\bf\relax}}
+ \setcounter{section}{0}
+ \setcounter{subsection}{0}
+ \setcounter{equation}{0}
+ \setcounter{figure}{0}
+ \setcounter{table}{0}
+ \def\theequation{\mbox{\rm A$\cdot$\arabic{equation}}}
+ \def\thefigure{A$\cdot$\,\@arabic\c@figure}
+ \def\thetable{A$\cdot$\,\@arabic\c@table}
+}
+
+
+%キャプション
+\newbox\@capnumbox
+\newbox\@tempboxb
+\newdimen\@abovecaptionskip
+\newdimen\@belowcaptionskip
+\newdimen\capwidth
+
+\renewenvironment{figure}
+{\capwidth=78.85mm\@abovecaptionskip=4pt\@belowcaptionskip\z@\@float{figure}}
+{\end@float}
+
+\renewenvironment{figure*}
+{\capwidth=.95\textwidth\@abovecaptionskip=4pt\@belowcaptionskip\z@\@dblfloat{figure}}
+{\end@dblfloat}
+
+\renewenvironment{table}
+{\capwidth=78.85mm\@abovecaptionskip\z@\@belowcaptionskip=4pt\@float{table}}
+{\end@float}
+
+\renewenvironment{table*}
+{\capwidth=.95\textwidth\@abovecaptionskip\z@\@belowcaptionskip=4pt\@dblfloat{table}}
+{\end@dblfloat}
+
+
+\def\HANG#1#2{\hangindent=#1\hangafter=#2\relax}
+\def\kintou#1#2{\@ifundefined{jintercharskip}%
+ {\makebox[#1]{\kanjiskip\z@ plus 1fill minus 1fill\xkanjiskip=\kanjiskip #2}}%
+ {\makebox[#1]{\jintercharskip=0pt plus 1fill minus 1fill 
+ \jasciikanjiskip=\jintercharskip #2}}}
+
+\long\def\@caption#1[#2]#3{\par
+\begingroup
+ \@parboxrestore
+ \small
+ \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+\endgroup}
+
+\long\def\@makecaption#1#2{\vskip\@abovecaptionskip
+\small\relax
+\setbox\@capnumbox\hbox{#1\mbox{}}
+\setbox\@tempboxa\hbox{#1 #2}
+ \ifdim \wd\@tempboxa > \capwidth% hsize
+  \hfil\begin{minipage}[t]{\capwidth}%
+  \HANG{\wd\@capnumbox}{1}#1\hskip1zw #2%
+  \end{minipage}
+ \else
+  \setbox\@tempboxb\hbox{#2}
+   \ifdim \wd\@tempboxb < 5zw
+    \hbox to\hsize{\hfil#1\hskip1zw\kintou{5zw}{#2}\hfil}
+   \else
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}
+   \fi
+ \fi
+}
+
+\def\fnum@figure{図\thefigure}
+\def\fnum@table{表\thetable}
+
+%\def\fnum@efigure{Fig.\,\thefigure}
+%\def\fnum@etable{Table \thetable}
+
+\def\tableenv{\def\@setstrut{\setbox\strutbox=%
+ \hbox{\vrule \@height .72\baselineskip \@depth .28\baselineskip \@width\z@}}
+ \small\relax
+ \let\center=\Center}%% \ifphototype\let\tt=\sevtt\else\fi
+
+
+%参考文献
+\def\thebibliography#1{%
+ \def\subsection{\@startsection{subsection}{2}{\z@}
+  {1.5\baselineskip plus 1mm minus 0.5mm}{0.7125mm plus 1mm}{\centering\bf}}
+\subsection*{参考文献}
+\small\relax\baselineskip=3.75mm
+ \list{[\arabic{enumi}]}{\settowidth\labelwidth{亜亜}%
+  \leftmargin=3zw% \leftmargin\labelwidth \advance\leftmargin\labelsep
+  \labelsep=1zw
+  \usecounter{enumi}}
+ \itemsep=\z@\parskip=\z@
+ \def\newblock{\hskip .11em plus .33em minus .07em}
+ \sloppy\clubpenalty-100\widowpenalty-100%% \clubpenalty4000\widowpenalty4000
+ \sfcode`\.=1000\relax}
+
+\def\endthebibliography{\endlist
+\par
+\vskip-\topsep
+\vskip-\partopsep
+\vskip-\parskip
+}
+
+\pagestyle{bodypage}

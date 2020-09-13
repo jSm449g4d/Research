@@ -26,6 +26,17 @@
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/134_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/134_100.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/278_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/278_100.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/349_HR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_LR.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_10000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_1000.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/349_100.png)|
+## ディレクトリ構成
+Research/  
+┣assets/ (README.mdで使う画像置き場)  
+┣wi2_paper/ (2020年のWI2研究会用の論文)**執筆中**  
+┣dwonload_module/ (download.pyで使うデータセット加工用処理置き場)  置き場)  
+┣util.py (機械学習で良く使う自作の関数置き場)  
+┣requirememnts.txt (必要なパッケージ置き場)  
+┣.gitignore (git pushでpushしたくないファイル一覧)  
+┣cloudbuild.yaml (CaaSへのデプロイ指示書)  
+┣LICENSE (MIT: ご自由にお使いください)  
+┗README.md この文書  
 ## 使い方
 ### 使用前
 `pip3 install -r requirements.txt`  
