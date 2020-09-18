@@ -5,18 +5,17 @@
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t236.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/p570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p236.png)|
 
-## 背景 
- 「データ数が十分に得られないリアルデータや観測データの分析」が求められる。  
-例:火星や月面DEMの超解像,ヒートマップの高品質化など。  
-
-このような限られたデータを**フロンティアデータ**と呼ぶ。  
-そこで、**フロンティアデータ**の高品質化のための機械学習モデルの開発が必要である。  
-## 目的
-「限られたデータを元に画像データを高品質化する」機械学習手法を開発する。  
-![](https://github.com/jSm449g4d/Research/blob/master/assets/selfteaching.png)  
-## 課題
-データ数が少ないと過学習という現象が発生する。  
-過学習を極力抑えつつ、解像度の向上(超解像)や、ノイズ除去を行う仕組みを作る。  
+## 【研究背景】
+データ数が十分に得られないリアルデータや観測データの分析が求められる。 
+例:火星や月面DEMの超解像,ヒートマップの高品質化など。 
+## 【研究目的/課題】
+少数学習でも過学習が起こりにくい2次元データ高品質化手法を開発する。
+高品質化は解像度の向上(超解像)とガウスノイズ除去という二つの軸で評価する。
+## 【研究内容】
+元画像から128×128のカラー部分画像(sub-image)を学習用10000枚,評価用1000枚生成する。
+生成したsub-imageに劣化処理を加える。
+劣化したsub-imageから元のsub-imageを推測する機械学習モデルを設計する。
+学習に使用するsub-imageの数を10000枚,1000枚,100枚のケースに分けて評価する。 
 
 ### DIV2Kでの超解像(4倍) 学習データ枚数
 |HR|LR|10000枚|1000枚|100枚|
