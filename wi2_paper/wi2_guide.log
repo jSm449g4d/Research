@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  19 SEP 2020 16:52
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  19 SEP 2020 17:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -176,10 +176,10 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
 Here is how much of TeX's memory you used:
  971 strings out of 481387
  13658 string characters out of 5924151
- 272372 words of memory out of 5000000
+ 271372 words of memory out of 5000000
  16796 multiletter control sequences out of 15000+600000
  550498 words of font info for 89 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  36i,8n,33p,617b,319s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on wi2_guide.dvi (3 pages, 20332 bytes).
+Output written on wi2_guide.dvi (3 pages, 20312 bytes).
