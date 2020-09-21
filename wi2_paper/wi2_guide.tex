@@ -4,7 +4,7 @@
 %
 \documentclass[a4paper,twoside]{jarticle}
    \usepackage{wi2}
-   \usepackage[dvips]{graphicx}
+   \usepackage[dvipdfmx]{graphicx}
    %必要なファイルはインポートして下さい
 
 %和文タイトル
@@ -123,81 +123,19 @@
 ク体11ポイント)を「2 背景と目的」の形式で記述します．節の見出しは章節番号および節題目(ゴシック体10.5ポイント)を「2.1 従来の研究」の形式で記述する．
 タイトルに続いて文章段落(明朝体10ポイント・インデント)を開始します．段落頭のインデントは1文字程度とします．句読点は「，」と「．」をそれぞれ用いてください．
 
-\subsection{謝辞}
+\section{わいばーん}
 必要に応じて，本文の後に謝辞を記述することができます．謝辞の見出しは章題目と同様のスタイル(ゴシック体11ポイント)で「謝辞」と記述します．ただし，章番号はつけません．文章段落は本文と同じスタイルとします．
 
-\subsection{参考文献リスト}
-本文に続いて参考文献のリストを記述します．参考文献リストの見出しは章題目と同様のスタイル(ゴシック体11ポイント)で「参考文献」と記述します．ただし，章番号はつけません．文献の各項目は先頭に参照番号(Times-Roman 10ポイント)，を角括弧をつけて表示します．それに続く個々の文献情報(明朝体9ポイントまたはTimes-Roman 9ポイント)は参照に必要十分な内容を記述します．
-
-文献情報は，下記のスタイルに従って記述してください．\\
-\noindent ●著者：\\
-\noindent ・3名以内の場合は，全員記載する．英文の場合は\\
-\noindent 　＿＿＿，＿＿＿ and ＿＿＿\\
-\noindent 　と記載する．\\
-\noindent ・4名以上の場合は，下記のように省略して記載してもよい．和文の場合は\\
-\noindent 　＿＿＿，＿＿＿，＿＿＿ほか\\
-\noindent 　と記載する．英文の場合は\\
-\noindent 　＿＿＿, ＿＿＿, ＿＿＿, et al.\\
-\noindent 　	\\
-\\
-\noindent ●姓名：\\
-\noindent ・姓・名の順に記載する．和文の場合は，フルネームで記載する．英文の場合は，次の形式に略する．\\
-\noindent 　Toshiya Kuramochi →　略　Kuramochi, T.\\
-\noindent 　Mark E.J. Newman →　略　Newman, M. E. J.\\
-\\
-\noindent ●雑誌名など：\\
-\noindent ・和文雑誌は，原則として略記せず，完全誌名を記述する．\\
-\noindent ・英文雑誌は，国際的な慣行に従って略記表記してもかまわない．\\
-\noindent ・国際会議名は，国際的な慣行に従って略記表記してもかまわない．\\
-\noindent ・国内シンポジウム名，研究会名は，一般的略記名であれば略記表記してもかまわない．\\
-\\
-\noindent ●標題：\\
-\noindent ・英文の論文は，先頭の単語の最初の文字のみ大文字にし，後は小文字にする．固有名詞は例外とする．\\
-\noindent 　例：Improving HITS algorithm using semantic information and page layout information\\
-\\
-\noindent ●コンマおよびピリオドの使い方：\\
-\noindent ・和文の単語の後ろには，全角コンマ，全角コロン，全角ピリオドを用いる．\\
-\noindent ・英数字の単語の後ろには，半角コンマ，半角コロン，半角ピリオドを用いる．半角コンマの直後には半角スペースを入れる．\\
-\\
-文献情報は，以下の順で記述する．\\
-\noindent ・和文論文の場合\\
-\noindent 著者名：論文タイトル，収録誌名，巻, 号, ページ番号, 年．\\
-\noindent ・英文論文の場合\\
-\noindent Author name(s): Paper title, Journal name, Volume, Number, Page number, Year.\\
-\\
-以下に具体例を示す．\\
-\noindent Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, Proc. of ACM SIGIR Conference, pp. 154-162, 2012.\\
-\noindent Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC WI'11, pp. 1540-1547, 2012.\\
-\noindent Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC International Conference on Web Intelligence, pp. 1540-1547, 2012.\\
-\noindent Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC International Conference on Web Intelligence (WI'12), pp. 1540-1547, 2012.\\
-\noindent Z. Wang: All about ABC theory, MIT Press, 2012.\\
-\noindent Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, Comm. of the ACM, Vol. 45, No. 6, pp. 240-243, 2012.\\
-\noindent Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, IEEE Trans. on Systems Man and Cybernetics, Vol. 45, No. 6, pp. 240-243, 2012.\\
-\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会論文誌，Vol. 45, No. 6, pp. 240-243, 2012.\\
-\noindent 倉持俊也，谷川恭平，土方嘉徳ほか：ABC理論を用いた意味的類似度の計算，〇〇学会□□研究会，No. 6, pp. 24-29, 2012.\\
-\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会研究報告，DBS-127(FI-67)，pp. 240-243, 2012.\\
-\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会全国大会，in CDROM, 2012.\\
-\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，WebPB Forum'12，pp. 240-243, 2012.\\
-\noindent 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，Webとペタベースに関するシンポジウム（WebPB Forum'12），pp. 240-243, 2012.\\
-\noindent 土方嘉徳：ABC理論：基礎と応用，〇〇大学出版，2012.\\
-\noindent 土方嘉徳：解説：ABC理論，知能と情報，Vol.45, No. 6, pp. 1-10, 2012.\\
-
-\section{図表と参照}
-
-\subsection{図表}
-図は線画・写真とも十分に鮮明なものを用い，図中の文字は本文の文字サイズ
-と釣り合う大きさとしてください．和文表題(明朝体 9ポイント)を図の下につけます．和文表題の形式は「図1 システム構成」としてください(図\ref{fig:zu}参照)．必要に応じて2つの段を通した図を用いて構いません．
 
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[width=.4\textwidth]{zu.eps}
+\includegraphics[width=.4\textwidth]{onigiri.png}
 \end{center}
 \caption{システム構成}
 \label{fig:zu}
 \end{figure}
 
-表についても，文字は本文の文字サイズと釣り合う大きさとすしてください．和文表題(明朝体 9ポイント)を表の上につけます．和文表題の形式は「表1 精度と時間」(表\ref{tab:ta}参照)．
-表についても必要に応じて2つの段を通したものを用いて構いません．
+
 
 \begin{table}[ht]
 \caption{精度と時間}
@@ -219,13 +157,6 @@ s4      & 51       & 763  \\ \hline
 照番号を用いて「\cite{bib1}」の形式で参照します．同様に図表はそれぞれ
 「図\ref{fig:zu}」「表\ref{tab:ta}」の形式で参照します．
 
-\section{カメラレディ原稿作成の注意}
-
-紙媒体の研究会資料ではモノクロ印刷となるので，その場合でも視認性に問題がないことを確認してください．極端に細い線は印刷されない場合がありますので，避けてください．
-
-\section*{謝辞}
-WI2研究会のTeXスタイルファイルとMSワードのサンプルファイルは，著者の監修の元，倉持俊也氏によって作成されたものです．この場を借りて，深く御礼申し上げます．
-
 \begin{thebibliography}{99}
 \bibitem{bib1}Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, Proc. of ACM SIGIR Conference, pp. 154-162, 2012.
 \bibitem{bib2} Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC WI'11, pp. 1540-1547, 2012.
@@ -242,6 +173,8 @@ WI2研究会のTeXスタイルファイルとMSワードのサンプルファイルは，著者の監修の元，倉
 \bibitem{bib13} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，Webとペタベースに関するシンポジウム（WebPB Forum'12），pp. 240-243, 2012.
 \bibitem{bib14} 土方嘉徳：ABC理論：基礎と応用，〇〇大学出版，2012.
 \bibitem{bib15} 土方嘉徳：解説：ABC理論，知能と情報，Vol.45, No. 6, pp. 1-10, 2012.
+
+\bibitem{bib16} 小野寺,康祐,井上,博夏,山本,光生,山本,幸生,大嶽,久志,荒木,徹也,廣田,雅春,石川,博：機械学習による月面DEMの高解像化，	平成30年度 宇宙科学情報解析シンポジウム，pp. 240-243, 2019.
 \end{thebibliography}
 
 
