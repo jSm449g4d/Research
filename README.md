@@ -51,7 +51,7 @@ Research/
 ## 提案するモデル(Inception-Unet+SRCNN535)
 <details><summary>表示する</summary><div><img src="https://github.com/jSm449g4d/Research/blob/master/assets/model.png"/></div></details>
 
-## 今後
+## 今後 
 新たな課題設定(ピンボケ画像の高画質化など)  
 ヒートマップなどの「非画像の二次元データ」への応用  
 機械学習モデルの改良  
