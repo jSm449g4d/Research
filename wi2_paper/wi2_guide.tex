@@ -104,8 +104,13 @@ Dropoutと呼ばれるランダムで神経細胞(units)を不活化する手法は，過学習抑制に高い効
 ReLUと呼ばれる活性化関数を使用は，深層学習(Deep Learning)の実現を容易にした\cite{bib4}.深層学習を容易に構築可能になった事で、従来よりも複雑な問題を解決可能となった.
 
 今日における深層学習の応用の一つにデータの高品質化がある.
-高品質化のアプローチ一つに，超解像(Super resolution)と呼ばれる解像度の低いデータを高解像化するものがある.
-深層学習による超解像の例として，月面DEMの高解像度化\cite{bib5}や深海海底地形図の作成\cite{bib6}，CTやMRI画像の超解像\cite{bib7}がある.
+高品質化のアプローチ一つに，単一画像超解像(Single image super resolution)と呼ばれる解像度の低いデータを高解像化するものがある.
+月面DEMの高解像度化\cite{bib5}や深海海底地形図の作成\cite{bib6}，CTやMRI画像の超解像\cite{bib7}が例として挙げられる.
+他のアプローチとしては，ノイズ除去がある.
+ラマン散乱顕微鏡画像のノイズ除去\cite{bib8}や手書き文字画像のノイズ除去\cite{bib9}が例として挙げられる.
+
+一方で，常に十分な学習用のデータ数が得られるとは限らない.
+早期胃がんの判別\cite{bib8}や
 
 
 データ数が十分に得られないリアルデータや観測データに対応した深層学習モデルが求められている。
@@ -182,21 +187,11 @@ s4      & 51       & 763  \\ \hline
 \bibitem{bib5} 小野寺康祐, ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
 \bibitem{bib6} 伊藤喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
 \bibitem{bib7} WEI, Shuaifang, et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
-
+%ノイズ除去
+\bibitem{bib8} MANIFOLD, Bryce, et al.: Denoising of stimulated Raman scattering microscopy images via deep learning,, Biomedical optics express, vol.10, No.8, 3860-3874, 2019
+\bibitem{bib9} 小松里奈:  U-Net による手書き文字画像内のノイズ除去, 人工知能学会全国大会論文集, Vol.32, No.1, p.4M101-4M101, 2018
 %少数データでの学習の必要性
-\bibitem{bib99} 竹本智子, ほか： CNN による少数教師データからの早期胃がん領域の検出, 精密工学会誌, Vol.85, No.9,pp. 761-764, 2019.
-%超解像
-\bibitem{bib99} 小野寺康祐, ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
-\bibitem{bib99} WEI, Shuaifang, et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
-\bibitem{bib99} 伊藤喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
-\bibitem{bib99} 小松里奈:  U-Net による手書き文字画像内のノイズ除去, 人工知能学会全国大会論文集, Vol.32, No.1, p.4M101-4M101, 2018
-\bibitem{bib99} KUMAR, Manoj; DIWAKAR, Manoj:  A new exponentially directional weighted function based CT image denoising using total variation, Vol.31, No.1, p.113-124, 2019
-\bibitem{bib99} MANIFOLD, Bryce, et al.: Denoising of stimulated Raman scattering microscopy images via deep learning,, Biomedical optics express, vol.10, No.8, 3860-3874, 2019
-%ろまん
-\bibitem{bib99} Fukushima Kunihiko, Miyake Sei.: Neocognitron: A self-organizing neural network model for a mechanism of visual pattern recognition,Competition and cooperation in neural nets, pp. 267-285, 1982.
-
-
-%機械学習モデル
+\bibitem{bib10} 竹本智子, ほか： CNN による少数教師データからの早期胃がん領域の検出, 精密工学会誌, Vol.85, No.9,pp. 761-764, 2019.
 
 
 \end{thebibliography}
