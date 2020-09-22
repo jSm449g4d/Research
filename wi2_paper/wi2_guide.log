@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  23 SEP 2020 05:44
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  23 SEP 2020 06:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -91,9 +91,6 @@ LaTeX Warning: Label `bib99' multiply defined.
 
 LaTeX Warning: Label `bib99' multiply defined.
 
-
-LaTeX Warning: Label `bib99' multiply defined.
-
 )
 \openout1 = `wi2_guide.aux'.
 
@@ -156,42 +153,42 @@ LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <12> not available
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 98.
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <10.95> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 116.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 121.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10.95> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 116.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 121.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <10.95> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 116.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 121.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10.95> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 116.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 121.
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-17.
+22.
  (c:/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 117.
-File: onigiri.png Graphic file (type bmp)
-<onigiri.png>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 122.
  [1
 
 
 ]
+File: onigiri.png Graphic file (type bmp)
+<onigiri.png>
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <10> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 169.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 174.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 169.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 174.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <10> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 169.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 174.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 169.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 174.
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <8> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 194.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 206.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <8> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 194.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 206.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <8> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 194.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 206.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <8> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 194.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 206.
  [2]
 (./wi2_guide.aux)
 
@@ -199,12 +196,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 983 strings out of 481387
- 13931 string characters out of 5924151
+ 987 strings out of 481387
+ 13955 string characters out of 5924151
  267978 words of memory out of 5000000
- 16806 multiletter control sequences out of 15000+600000
+ 16810 multiletter control sequences out of 15000+600000
  550498 words of font info for 89 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  36i,8n,33p,617b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on wi2_guide.dvi (2 pages, 11928 bytes).
+Output written on wi2_guide.dvi (2 pages, 14356 bytes).

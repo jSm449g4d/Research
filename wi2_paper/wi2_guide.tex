@@ -96,11 +96,16 @@
 \maketitle
 
 \section{はじめに}
-機械学習のアプローチの一つに、罰則と報酬によって神経接続(Neural Net)を効率化させていくものがある\cite{bib1}.
-特に、畳み込みニューラルネットワーク(Convolutional Neural Network；CNN)(以降CNN)と呼ばれる構造は、画像分類に大きな影響を及ぼした\cite{bib2}.
-ReLUと呼ばれる活性化関数を使用することにより深層学習(Deep Learning)の実現が容易になった.それにより、従来よりも複雑な問題を解決可能となった\cite{bib3}.
+機械学習のアプローチの一つに，罰則と報酬によって神経接続(Neural Net)を効率化させていくものがある.この方法は，汎用的な機械学習を実現する手段として注目されてきた\cite{bib1}.
+畳み込みニューラルネットワーク(Convolutional Neural Network；CNN)(以降CNN)と呼ばれる構造の登場は，画像処理に大きな影響を及ぼした\cite{bib2}.
+画像全体をスライドするように神経接続を構築するので，被写体が画像内のどこであっても特徴を抽出できるからである.
+機械学習の課題の一つに過学習(Overfitting)と呼ばれる，訓練データに対して過剰に適合することで未知のデータに対応不能になる現象がある.
+Dropoutと呼ばれるランダムで神経細胞(units)を不活化する手法は，過学習抑制に高い効果を示した\cite{bib3}.
+ReLUと呼ばれる活性化関数を使用は，深層学習(Deep Learning)の実現を容易にした\cite{bib4}.深層学習を容易に構築可能になった事で、従来よりも複雑な問題を解決可能となった.
 
-近年、深層学習(Deep Learning)と呼ばれる手法の普及により、機械学習の精度が向上し、適応範囲も拡大されつつある.
+今日における深層学習の応用の一つにデータの高品質化がある.
+高品質化のアプローチ一つに，超解像(Super resolution)と呼ばれる解像度の低いデータを高解像化するものがある.
+深層学習による超解像の例として，月面DEMの高解像度化\cite{bib5}や深海海底地形図の作成\cite{bib6}，CTやMRI画像の超解像\cite{bib7}がある.
 
 
 データ数が十分に得られないリアルデータや観測データに対応した深層学習モデルが求められている。
@@ -170,18 +175,25 @@ s4      & 51       & 763  \\ \hline
 %人知マニアのロマン汁
 \bibitem{bib1} Samuel Arthur L.: Some studies in machine learning using the game of checkers,  IBM Journal of research and development, Vol.3, No.3, pp. 210-229, 1959.
 \bibitem{bib2} LeCun Yann, et al.: Gradient-based learning applied to document recognition,  Proceedings of the IEEE, Vol.86, No.11, pp. 2278-2324, 1998.
-\bibitem{bib3} LeCun Yann, et al.: Deep learning,  nature, Vol.521, No.7553, pp. 436-444, 2015.
-\bibitem{bib99} Fukushima Kunihiko, Miyake Sei.: Neocognitron: A self-organizing neural network model for a mechanism of visual pattern recognition,Competition and cooperation in neural nets, pp. 267-285, 1982.
+\bibitem{bib3} Srivastava Nitish, et al.: Dropout: a simple way to prevent neural networks from overfitting,  The journal of machine learning research, Vol.15, No.1, pp. 1929-1958, 2014.
+\bibitem{bib4} LeCun Yann, et al.: Deep learning,  nature, Vol.521, No.7553, pp. 436-444, 2015.
+
+%超解像
+\bibitem{bib5} 小野寺康祐, ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
+\bibitem{bib6} 伊藤喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
+\bibitem{bib7} WEI, Shuaifang, et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
 
 %少数データでの学習の必要性
 \bibitem{bib99} 竹本智子, ほか： CNN による少数教師データからの早期胃がん領域の検出, 精密工学会誌, Vol.85, No.9,pp. 761-764, 2019.
 %超解像
 \bibitem{bib99} 小野寺康祐, ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
 \bibitem{bib99} WEI, Shuaifang, et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
-\bibitem{bib99} 伊藤 喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
+\bibitem{bib99} 伊藤喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
 \bibitem{bib99} 小松里奈:  U-Net による手書き文字画像内のノイズ除去, 人工知能学会全国大会論文集, Vol.32, No.1, p.4M101-4M101, 2018
 \bibitem{bib99} KUMAR, Manoj; DIWAKAR, Manoj:  A new exponentially directional weighted function based CT image denoising using total variation, Vol.31, No.1, p.113-124, 2019
 \bibitem{bib99} MANIFOLD, Bryce, et al.: Denoising of stimulated Raman scattering microscopy images via deep learning,, Biomedical optics express, vol.10, No.8, 3860-3874, 2019
+%ろまん
+\bibitem{bib99} Fukushima Kunihiko, Miyake Sei.: Neocognitron: A self-organizing neural network model for a mechanism of visual pattern recognition,Competition and cooperation in neural nets, pp. 267-285, 1982.
 
 
 %機械学習モデル
