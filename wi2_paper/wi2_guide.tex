@@ -85,7 +85,7 @@
 %maketitleはabstractとkeywordの後に入れてください。
 
 \begin{abstract}
-近年，データ数が十分に得られないリアルデータや観測データに対応した深層学習モデルが求められている。
+近年，データ数が十分に得られないリアルデータや観測データに対応した機械学習モデルが求められている。
 本稿では、少数学習でも過学習が起こりにくい2次元データ高品質化手法を提案する。
 \end{abstract}
 
@@ -96,7 +96,11 @@
 \maketitle
 
 \section{はじめに}
-近年、深層学習(Deep Learning)と呼ばれる手法の普及により、機械学習の精度が著しく改善し、適応範囲も拡大されつつある.
+機械学習のアプローチの一つに、罰則と報酬によって神経接続(Neural Net)を効率化させていくものがある\cite{bib1}.
+特に、畳み込みニューラルネットワーク(Convolutional Neural Network；CNN)(以降CNN)と呼ばれる構造は、画像分類に大きな影響を及ぼした\cite{bib2}.
+ReLUと呼ばれる活性化関数を使用することにより深層学習(Deep Learning)の実現が容易になった.それにより、従来よりも複雑な問題を解決可能となった\cite{bib3}.
+
+近年、深層学習(Deep Learning)と呼ばれる手法の普及により、機械学習の精度が向上し、適応範囲も拡大されつつある.
 
 
 データ数が十分に得られないリアルデータや観測データに対応した深層学習モデルが求められている。
@@ -163,35 +167,26 @@ s4      & 51       & 763  \\ \hline
 
 
 \begin{thebibliography}{99}
+%人知マニアのロマン汁
+\bibitem{bib1} Samuel Arthur L.: Some studies in machine learning using the game of checkers,  IBM Journal of research and development, Vol.3, No.3, pp. 210-229, 1959.
+\bibitem{bib2} LeCun Yann, et al.: Gradient-based learning applied to document recognition,  Proceedings of the IEEE, Vol.86, No.11, pp. 2278-2324, 1998.
+\bibitem{bib3} LeCun Yann, et al.: Deep learning,  nature, Vol.521, No.7553, pp. 436-444, 2015.
+\bibitem{bib99} Fukushima Kunihiko, Miyake Sei.: Neocognitron: A self-organizing neural network model for a mechanism of visual pattern recognition,Competition and cooperation in neural nets, pp. 267-285, 1982.
+
 %少数データでの学習の必要性
-\bibitem{bib1} 竹本智子, ほか： CNN による少数教師データからの早期胃がん領域の検出, 精密工学会誌, Vol.85, No.9,pp. 761-764, 2019.
+\bibitem{bib99} 竹本智子, ほか： CNN による少数教師データからの早期胃がん領域の検出, 精密工学会誌, Vol.85, No.9,pp. 761-764, 2019.
 %超解像
-\bibitem{bib1} 小野寺康祐, ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
-\bibitem{bib2} WEI, Shuaifang, et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
-\bibitem{bib3} 伊藤 喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
-\bibitem{bib4} 小松里奈:  U-Net による手書き文字画像内のノイズ除去, 人工知能学会全国大会論文集, Vol.32, No.1, p.4M101-4M101, 2018
-\bibitem{bib5} KUMAR, Manoj; DIWAKAR, Manoj:  A new exponentially directional weighted function based CT image denoising using total variation, Vol.31, No.1, p.113-124, 2019
-\bibitem{bib6} MANIFOLD, Bryce, et al.: Denoising of stimulated Raman scattering microscopy images via deep learning,, Biomedical optics express, vol.10, No.8, 3860-3874, 2019
+\bibitem{bib99} 小野寺康祐, ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
+\bibitem{bib99} WEI, Shuaifang, et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
+\bibitem{bib99} 伊藤 喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
+\bibitem{bib99} 小松里奈:  U-Net による手書き文字画像内のノイズ除去, 人工知能学会全国大会論文集, Vol.32, No.1, p.4M101-4M101, 2018
+\bibitem{bib99} KUMAR, Manoj; DIWAKAR, Manoj:  A new exponentially directional weighted function based CT image denoising using total variation, Vol.31, No.1, p.113-124, 2019
+\bibitem{bib99} MANIFOLD, Bryce, et al.: Denoising of stimulated Raman scattering microscopy images via deep learning,, Biomedical optics express, vol.10, No.8, 3860-3874, 2019
 
 
 %機械学習モデル
 
 
-\bibitem{bib3}
-\bibitem{bib2} Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC WI'11, pp. 1540-1547, 2012.
-\bibitem{bib3} Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC International Conference on Web Intelligence, pp. 1540-1547, 2012.
-\bibitem{bib4} Smola, A. B., Tanaka, K., Lyan, J., et al.: Computing semantic similarity using ABC theory, Proc. of IEEE/ACM/WIC International Conference on Web Intelligence (WI'12), pp. 1540-1547, 2012.
-\bibitem{bib5} Z. Wang: All about ABC theory, MIT Press, 2012.
-\bibitem{bib6} Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, Comm. of the ACM, Vol. 45, No. 6, pp. 240-243, 2012.
-\bibitem{bib7} Chen, N. and Vapnik, J. P.: Computing semantic similarity using ABC theory, IEEE Trans. on Systems Man and Cybernetics, Vol. 45, No. 6, pp. 240-243, 2012.
-\bibitem{bib8} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会論文誌，Vol. 45, No. 6, pp. 240-243, 2012.
-\bibitem{bib9} 倉持俊也，谷川恭平，土方嘉徳ほか：ABC理論を用いた意味的類似度の計算，〇〇学会□□研究会，No. 6, pp. 24-29, 2012.
-\bibitem{bib10} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会研究報告，DBS-127(FI-67)，pp. 240-243, 2012.
-\bibitem{bib11} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，〇〇学会全国大会，in CDROM, 2012.
-\bibitem{bib12} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，WebPB Forum'12，pp. 240-243, 2012.
-\bibitem{bib13} 倉持俊也，土方嘉徳：ABC理論を用いた意味的類似度の計算，Webとペタベースに関するシンポジウム（WebPB Forum'12），pp. 240-243, 2012.
-\bibitem{bib14} 土方嘉徳：ABC理論：基礎と応用，〇〇大学出版，2012.
-\bibitem{bib15} 土方嘉徳：解説：ABC理論，知能と情報，Vol.45, No. 6, pp. 1-10, 2012.
 \end{thebibliography}
 
 
