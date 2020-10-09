@@ -1,5 +1,5 @@
-# 深層学習による少数学習データでの2次元データの高品質化手法の提案 
-### 高画質化 (128×128 10000枚)  
+# 深層学習による少数学習データでの2次元データの高品質化手法の提案
+### 高画質化 (128×128 10000枚) 
 |DIV2K超解像(8倍)|火星地表超解像(8倍)|DIV2Kガウスノイズ除去|
 |---|---|---|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t236.png)|
