@@ -5,7 +5,7 @@
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/t570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/t236.png)|
 |![](https://github.com/jSm449g4d/Research/blob/master/assets/p570.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p529.png)|![](https://github.com/jSm449g4d/Research/blob/master/assets/p236.png)|
 
-## 【キーワード】 
+## 【キーワード】
 深層学習, 超解像処理, ノイズ除去  
 ## 【研究背景】
 データ数が十分に得られないリアルデータや観測データの分析が求められる。  
