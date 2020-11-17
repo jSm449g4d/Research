@@ -23,7 +23,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(os.path.dirname(os.path.join("./", __file__)))
 
 plot_model(
-    keras.models.load_model("SR_VPS.h5"),
+    keras.models.load_model("inception2.h5"),
     to_file="./model.png",
     show_shapes=True,
 )
