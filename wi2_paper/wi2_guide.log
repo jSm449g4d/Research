@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  17 NOV 2020 13:22
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  17 NOV 2020 14:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -142,45 +142,45 @@ File: selftrain.png Graphic file (type bmp)
 
 ]
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <10.95> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 156.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 155.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10.95> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 156.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 155.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <10.95> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 156.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 155.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10.95> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 156.
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-57.
- (c:/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 157.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 155.
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <10> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 190.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 160.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 190.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 160.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <10> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 190.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 160.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 190.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 160.
+
+
+LaTeX Warning: Reference `fig:zu' on page 2 undefined on input line 160.
+
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <8> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 212.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 198.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <8> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 212.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 198.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <8> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 212.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 198.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <8> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 212.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 198.
+[2] (./wi2_guide.aux)
 
-[2] (./wi2_guide.aux) ) 
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 989 strings out of 481387
- 13978 string characters out of 5924151
- 268024 words of memory out of 5000000
- 16812 multiletter control sequences out of 15000+600000
- 550498 words of font info for 89 fonts, out of 8000000 for 9000
+ 969 strings out of 481387
+ 13649 string characters out of 5924151
+ 267024 words of memory out of 5000000
+ 16796 multiletter control sequences out of 15000+600000
+ 550330 words of font info for 88 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 36i,8n,33p,617b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,8n,33p,261b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on wi2_guide.dvi (2 pages, 16064 bytes).
+Output written on wi2_guide.dvi (2 pages, 14900 bytes).

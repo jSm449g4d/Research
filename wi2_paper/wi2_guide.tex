@@ -78,7 +78,7 @@
 
 %西暦(4桁)
 \YEAR{2020}
-\NO{xx}
+\NO{14}
 
 %\addtolength{\textheight}{-5cm}
 
@@ -148,23 +148,20 @@ U-NetのU字型の構造は,全体的特徴と局所的特徴の両方を処理するという特性があり,単一
 \label{fig:zu1}
 \end{figure}
 
-
 \section{評価方法}
 \section{結果}
 \section{おわりに}
 
-\subsection{用紙と余白}
-用紙はA4サイズとし，左右の余白はそれぞれ21mm，上下の余白はそれぞれ25mmとしてください．1ページ目は，右上に，「ARG WI2 No.xx, 年号」(Times-Roman 10ポイント）を書いてください（例：「ARG WI2 No.1, 2012」）．TeXスタイルファイルでは，年号と番号はそれぞれ，\verb+\+YEAR\{xxxx\}と\verb+\+NO\{xx\}で与えます．次ページ以降は偶数ページには上の余白中央に「Webインテリジェンスとインタラクション研究会予稿集」（ゴシック体 7ポイント）と書いてください．奇数ページには，「Proceedings of ARG WI2」（Times-Roman Bold 7ポイント）と書いてください．
+\subsection{謝辞}
+必要に応じて，本文の後に謝辞を記述することができます．謝辞の見出しは章題目と同様のスタイル(ゴシック体11ポイント)で「謝辞」と記述します．ただし，章番号はつけません．文章段落は本文と同じスタイルとします．
 
-\subsection{論文タイトル}
-タイトルページには，テキスト領域には本文に先立ち，\\
-\noindent (1) 和文論文題目(ゴシック体 17ポイント)\\
-\noindent (2) 和文著者氏名(明朝体 14ポイント)\\
-\noindent (3) 和文所属(明朝体 11ポイント)\\
-\noindent (4) E-mail アドレス(Times-Roman Italic 10ポイント)\\
-を記述してください．概要は400字程度（ロング発表），300字程度（ショート発表）とします．キーワードは3～5個程度とします．
-これらはページの左右中央に幅145mmの領域
-に収まるように配置します．また，項目の間には適当なスペースを挿入してください．ページの左下に脚注として，「Copyright is held by the author(s).」と「The article has been published without reviewing.」(Times-Roman 7ポイント)をそれぞれ書いてください．
+\subsection{図表}
+図は線画・写真とも十分に鮮明なものを用い，図中の文字は本文の文字サイズ
+と釣り合う大きさとしてください．和文表題(明朝体 9ポイント)を図の下につけます．和文表題の形式は「図1 システム構成」としてください(図\ref{fig:zu}参照)．必要に応じて2つの段を通した図を用いて構いません．
+
+表についても，文字は本文の文字サイズと釣り合う大きさとすしてください．和文表題(明朝体 9ポイント)を表の上につけます．和文表題の形式は「表1 精度と時間」(表\ref{tab:ta}参照)．
+表についても必要に応じて2つの段を通したものを用いて構いません．
+「表\ref{tab:ta}」の形式で参照します．
 
 \begin{table}[ht]
 \caption{精度と時間}
@@ -181,17 +178,9 @@ s4      & 51       & 763  \\ \hline
 \end{center}
 \end{table}
 
-\subsection{参照}
-参考文献および図表は本文中で必ず参照されなければなりません．参考文献は参
-照番号を用いての形式で参照します．同様に図表はそれぞれ
-「表\ref{tab:ta}」の形式で参照します．
-
-
 \begin{thebibliography}{99}
-
-
 %超解像
-\bibitem{bib1} 小野寺康祐,井上 博夏, 山本 光生ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
+\bibitem{bib1} 小野寺康祐,井上 博夏, 山本 光生ほか: 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
 \bibitem{bib2} 伊藤喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
 \bibitem{bib3} Wei, S., Wu, W., Jeon, G., et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
 %ノイズ除去
@@ -203,10 +192,7 @@ s4      & 51       & 763  \\ \hline
 \bibitem{bib8} Srivastava, N., Hinton, G., Krizhevsky, A., et al.: Dropout: a simple way to prevent neural networks from overfitting,  The journal of machine learning research, Vol.15, No.1, pp. 1929-1958, 2014.
 \bibitem{bib9} Dong ,C., Loy, C. C., He, K., Tang, X., et al.: Learning a Deep Convolutional Network for Image Super-Resolution, in Proceedings of European Conference on Computer Vision (ECCV),pp. 184-199, 2014.
 \bibitem{bib10} Ronneberger, O., Fischer, P., Brox, T.: U-net: Convolutional networks for biomedical image segmentation, International Conference on Medical image computing and computer-assisted intervention (MICCAI), pp. 234-241, 2015.
-
-
 \end{thebibliography}
-
 
 
 \end{document}
