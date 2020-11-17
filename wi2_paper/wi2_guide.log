@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  17 NOV 2020 23:20
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  18 NOV 2020 00:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -182,15 +182,15 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
 File: Unet.png Graphic file (type bmp)
 <Unet.png>
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <8> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 213.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 214.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <8> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 213.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 214.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <8> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 213.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 214.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <8> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 213.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 214.
  [2]
-Underfull \hbox (badness 2042) in paragraph at lines 221--222
+Underfull \hbox (badness 2042) in paragraph at lines 222--223
 \OT1/cmr/m/n/9 NTIRE 2017 chal-lenge on sin-gle im-age super-
  []
 
@@ -206,4 +206,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  36i,8n,33p,261b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on wi2_guide.dvi (3 pages, 16912 bytes).
+Output written on wi2_guide.dvi (3 pages, 17204 bytes).

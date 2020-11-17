@@ -149,12 +149,13 @@ U-Net‚ÌUŽšŒ^‚Ì\‘¢‚Í,‘S‘Ì“I“Á’¥‚Æ‹ÇŠ“I“Á’¥‚Ì—¼•û‚ðˆ—‚·‚é‚Æ‚¢‚¤“Á«‚ª‚ ‚è,’Pˆê
 Œ³‰æ‘œ‚Ìƒf[ƒ^ƒZƒbƒg‚©‚çƒ‰ƒ“ƒ_ƒ€‚É‰æ‘œ‚ð‘Io‚µ‚Ä128~128~3‚ÌƒJƒ‰[•”•ª‰æ‘œ‚ðƒ‰ƒ“ƒ_ƒ€‚ÉØ‚èo‚µ,0“x,90“x,180“x,270“x‚Ìƒ‰ƒ“ƒ_ƒ€‚Å‰ñ“]‚ð‰Á‚¦‚½‚à‚Ì‚ð•”•ª‰æ‘œ{\it y}‚Æ‚µ‚½.
 •”•ª‰æ‘œ{\it y}‚ÉƒmƒCƒY‚Ì’Ç‰Á,‰ð‘œ“x‚Ì•ÏX‚È‚Ç‚Ì”CˆÓ‚Ì—ò‰»ˆ—‚ðs‚Á‚½‚à‚Ì‚ð—ò‰»•”•ª‰æ‘œ{\it x}‚Æ‚µ‚½.
 —ò‰»•”•ª‰æ‘œ{\it x}‚©‚ç‹@ŠBŠwK‚Å•”•ª‰æ‘œ{\it y}‚ð„‘ª‚µ‚Ä¶¬‚µ‚½‰æ‘œ‚ð•œŒ³•”•ª‰æ‘œ{\it \^{y}}‚Æ‚µ‚½.
-—ò‰»•”•ª‰æ‘œ{\it x}‚Æ•”•ª‰æ‘œ{\it y}‚Ì”äŠr•]‰¿‚ÍPSNR‚ÆSSIM‚É‚Äs‚Á‚½.
+—ò‰»•”•ª‰æ‘œ{\it x}‚Æ•”•ª‰æ‘œ{\it y}‚Ì”äŠr•]‰¿‚ÍPSNR‚ÆSSIM‚ðŽg—p‚µ‚½.
 
 \subsection{’ñˆÄ‚·‚é‹@ŠBŠwKƒ‚ƒfƒ‹}
 –{e‚Å‚Í­”ŠwK‚Å‚Ì‰ßŠwK‚ð–h‚¬‚Â‚Â,•¡”‚Ì‚•iŽ¿‰»‚ÌƒAƒvƒ[ƒ`‚ðŽÀŒ»‚·‚é‹@ŠBŠwKƒ‚ƒfƒ‹‚ð’ñˆÄ‚·‚é.
 –{e‚Ì‹@ŠBŠwKƒ‚ƒfƒ‹‚Í,U-Net‚Ì\‘¢,ƒKƒEƒXƒmƒCƒYœ‹Ž—p‚ÌSRCNN‚Ì\‘¢,‰I‰ñ˜H‚É‚æ‚Á‚Ä\¬‚³‚ê‚é(}\ref{fig:zu2}).
 LossŠÖ”‚ÍÅ¬“ñæ–@(MSE) $ \frac{1}{2}||y- \hat{y}^2|| $ ‚ðŽg—p‚µ‚½.
+ÅI‘wˆÈŠO‚ÌŠe‘w‚ÌŠˆ«‰»ŠÖ”‚ÍReLU‚ðŽg—p‚µ,ÅI‘w‚Å‚ÍŠˆ«‰»ŠÖ”‚ðŽg—p‚µ‚È‚©‚Á‚½.
 
 \begin{figure}[ht]
 \begin{center}
@@ -163,7 +164,6 @@ LossŠÖ”‚ÍÅ¬“ñæ–@(MSE) $ \frac{1}{2}||y- \hat{y}^2|| $ ‚ðŽg—p‚µ‚½.
 \caption{’ñˆÄƒ‚ƒfƒ‹‚Ìƒlƒbƒgƒ[ƒN\‘¢}
 \label{fig:zu2}
 \end{figure}
-
 
 \subsubsection{U-Net}
 U-Net‚Í‘S‘Ì“I“Á’¥‚Æ‹ÇŠ“I“Á’¥‚Ì—¼•û‚ðŒ‹‡‚·‚é\‘¢‚ðŽ‚Â(}\ref{fig:zu3}).
@@ -181,7 +181,8 @@ U-Net‚Ì\‘¢‚ð’´‰ð‘œ‚É—˜—p‚·‚é‚ÉÛ‚µ,«”\‚É·ˆÙ‚ª”F‚ß‚ç‚ê‚È‚©‚Á‚½‚½‚ß,ŒvŽZƒRƒXƒg
 \subsection{Žg—pƒf[ƒ^}
 ŠwK‚Æ•]‰¿‚É‚Í‚•iŽ¿‰æ‘œƒf[ƒ^ƒZƒbƒg‚Å‚ ‚éDIV2K‚ðŽg—p‚µ‚½\cite{bib11}.DIV2K‚ÍŠwK—p800–‡,•]‰¿—p100–‡‚Ì—lX‚ÈƒWƒƒƒ“ƒ‹‚Ì‰æ‘œ‚É‚æ‚Á‚Ä\¬‚³‚ê‚Ä‚¨‚è,Žå‚É’Pˆê‰æ‘œ’´‰ð‘œ‚Ì•]‰¿‚É—˜—p‚³‚ê‚Ä‚¢‚é.
 \subsection{ŠwKƒpƒ‰ƒ[ƒ^}
-Å“K‰»‚É‚ÍAdam‚ðƒpƒ‰ƒ[ƒ^‚Í $ ƒÀ_1=0.1 ,ƒÀ_2=0.999 $ ‚ÅŽg—p‚µ‚½\cite{bib12}.
+Å“K‰»‚É‚ÍAdam‚ðƒpƒ‰ƒ[ƒ^‚ð $ ƒÀ_1=0.1 ,ƒÀ_2=0.999, ŠwK—¦ 0.0005 $ ‚ÅŽg—p‚µ‚½\cite{bib12}.
+‰ßŠwK‚ð—}Ž~‚·‚é‚½‚ß‚ÌDropout—¦‚Í0.2‚Æ‚µ‚½.
 
 \section{Œ‹‰Ê}
 \section{‚¨‚í‚è‚É}
