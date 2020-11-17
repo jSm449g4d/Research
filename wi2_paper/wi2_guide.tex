@@ -16,7 +16,8 @@
 %\author{name}{affi_num}{email_num}
 %affi_num, email_numを0にすると†やa,b,cが出ません
 	\author{石原 正敏}{1}{1}%
-	\author{石川 博}{2}{2}%
+	\author{荒木 徹也}{2}{2}%
+	\author{石川 博}{3}{3}%
 }
 {
 %\affi{affi_num}{affiliation}
@@ -25,7 +26,8 @@
 {
 %\email{email_num}{email_address}
 	\email{1}{ishihara-masatoshi@ed.tmu.ac.jp}%
-	\email{2}{ishikawa-hiroshi@tmu.ac.jp}%
+	\email{2}{tetsuya.arakigunma-u.ac.jp}%
+	\email{3}{ishikawa-hiroshi@tmu.ac.jp}%
 }
 
 %例2）複数の所属
@@ -85,8 +87,15 @@
 %maketitleはabstractとkeywordの後に入れてください。
 
 \begin{abstract}
-近年，データ数が十分に得られないリアルデータや観測データに対応した機械学習モデルが求められている。
-本稿では、少数学習でも過学習が起こりにくい2次元データ高品質化手法を提案する。
+本研究では超解像とガウスノイズ除去の二つの観点からデータ高品質化を行う.
+近年,火星地表画像の超解像やヒートマップの高品質化など,リアルデータや観測データを処理することが求められる.
+これらのデータは常に十分な数が得られるとは限らず,従来手法では度々過学習が発生する.
+そこで,データセットが少ない場合でも過剰適合が起こりにくい,2次元データ高品質化手法が必要である.
+提案手法の汎用性の評価の為,DIV2K画像データセットを利用する.
+画像データセットから,128×128のカラーの部分画像をランダムに切り出したものを学習に使用する.
+過剰適合を防ぎつつ精度を向上させる為,入出力に直通の迂回路を設置することで過剰適応と精度の両立を行う.
+解像度の向上とノイズ除去では適切な手法が異なる為,其々の手法を組み合わせることで両立する.
+この様な工夫により,過剰適合が起こりにくい2次元データ高品質化が可能となる.
 \end{abstract}
 
 \begin{keyword}	
@@ -97,42 +106,49 @@
 
 \section{はじめに}
 
+近年において観測したデータを有効活用するための課題として、二次元データの高品質化がある.
+取り扱うデータや観測方法によって,特定のノイズが乗りやすさやデータの解像度が不十分であるなど,適切な高品質化の方法は異なる.
+このように様々なケースに柔軟に対応するために,機械学習によって高品質化を行う事が望ましい.
 
+例えば,高品質化のアプローチ一つに，単一画像超解像(Single image super resolution)と呼ばれる解像度の低いデータを高解像化する手法がある.
+月面DEMの高解像度化\cite{bib1}や深海海底地形図の作成\cite{bib2}，CTやMRI画像の超解像\cite{bib3}が例として挙げられる.
+高品質化のための他のアプローチとして，ノイズ除去がある.
+ラマン散乱顕微鏡画像のノイズ除去\cite{bib4}や手書き文字画像のノイズ除去\cite{bib5}が例として挙げられる.
+複数の高品質化の為のアプローチに対応した機械学習手法を適応することで,様々なケースに対応できる.
 
-高品質化のアプローチ一つに，単一画像超解像(Single image super resolution)と呼ばれる解像度の低いデータを高解像化するものがある.
-月面DEMの高解像度化\cite{bib5}や深海海底地形図の作成\cite{bib6}，CTやMRI画像の超解像\cite{bib7}が例として挙げられる.
-他のアプローチとしては，ノイズ除去がある.
-ラマン散乱顕微鏡画像のノイズ除去\cite{bib8}や手書き文字画像のノイズ除去\cite{bib9}が例として挙げられる.
+一方で常に十分な学習データが得られるとは限らない.
+例えば,月面や海底の高度座標など,限られた情報から高品質化の為の学習を行わなければならない場合がある.
+他にも画像の高品質化の場合は火星の地表や人体の患部など,どの学習データを利用したかが重要視される場合はビッグデータの転移学習などが好ましくない場合も存在する.
+学習データが不十分な場合,過学習(Overfitting)と呼ばれる訓練データに対して過剰に適合することで未知のデータに対応不能になる現象が発生する.
+一般に過学習対策手法は出力データの品質を劣化させるために,品質劣化を抑える必要がある.
 
-高品質化のアプローチ一つに，単一画像超解像(Single image super resolution)と呼ばれる解像度の低いデータを高解像化するものがある.
-月面DEMの高解像度化\cite{bib5}や深海海底地形図の作成\cite{bib6}，CTやMRI画像の超解像\cite{bib7}が例として挙げられる.
-他のアプローチとしては，ノイズ除去がある.
-ラマン散乱顕微鏡画像のノイズ除去\cite{bib8}や手書き文字画像のノイズ除去\cite{bib9}が例として挙げられる.
-
-
-機械学習のアプローチの一つに，罰則と報酬によって神経接続(Neural Net)を効率化させていくものがある.この方法は，汎用的な機械学習を実現する手段として注目されてきた\cite{bib1}.
-畳み込みニューラルネットワーク(Convolutional Neural Network；CNN)(以降CNN)と呼ばれる構造の登場は，画像処理に大きな影響を及ぼした\cite{bib2}.
-画像全体をスライドするように神経接続を構築するので，被写体が画像内のどこであっても特徴を抽出できるからである.
-機械学習の課題の一つに過学習(Overfitting)と呼ばれる，訓練データに対して過剰に適合することで未知のデータに対応不能になる現象がある.
-Dropoutと呼ばれるランダムで神経細胞(units)を不活化する手法は，過学習抑制に高い効果を示した\cite{bib3}.
-ReLUと呼ばれる活性化関数を使用は，深層学習(Deep Learning)の実現を容易にした\cite{bib4}.深層学習を容易に構築可能になった事で、従来よりも複雑な問題を解決可能となった.
-
-今日における深層学習の応用の一つにデータの高品質化がある.
-高品質化のアプローチ一つに，単一画像超解像(Single image super resolution)と呼ばれる解像度の低いデータを高解像化するものがある.
-月面DEMの高解像度化\cite{bib5}や深海海底地形図の作成\cite{bib6}，CTやMRI画像の超解像\cite{bib7}が例として挙げられる.
-他のアプローチとしては，ノイズ除去がある.
-ラマン散乱顕微鏡画像のノイズ除去\cite{bib8}や手書き文字画像のノイズ除去\cite{bib9}が例として挙げられる.
-
-一方で，常に十分な学習用のデータ数が得られるとは限らない.
-早期胃がんの判別\cite{bib8}や
-
-
-データ数が十分に得られないリアルデータや観測データに対応した深層学習モデルが求められている。
-
-
+本稿では,画像の超解像とガウスノイズ除去を行うことで,二次元データの高品質化を行う少数データでも過学習を起しにくい機械学習手法を提案する.
 
 \section{関連研究}
+
+機械学習のアプローチの一つに，罰則と報酬によって神経接続(Neural Net)を効率化させていくものがある.この方法は，汎用的な機械学習を実現する手段として注目されてきた\cite{bib6}.
+畳み込みニューラルネットワーク(Convolutional Neural Network；CNN)(以降CNN)と呼ばれる構造の登場は，画像処理に大きな影響を及ぼした\cite{bib7}.
+
+Nitish S., et al.\cite{bib8}はランダムで神経細胞(units)を不活化することで過学習抑制に高い効果を示すDropoutと呼称される手法を提案した.
+Dong ,C., et al.\cite{bib9}はSuper-Resolution Convolutional Neural Network(SRCNN)と呼ばれる三層のCNNから構成される機械学習モデルを提案して,高度な単一画像超解像を行った.
+SRCNNは低解像度画像をBicubic法で拡大したあとにSRCNNを通すことで,超解像を行った.別の研究では,SRCNNはノイズ除去にも利用可能である事が示唆された.
+Ronneberger, O., et al.\cite{bib10}はU-Netと呼ばれるU字型の構造を持つ機械学習モデルにより,画像のセグメンテーションを行った.
+U-NetのU字型の構造は,全体的特徴と局所的特徴の両方を処理するという特性があり,単一画像超解像にも応用された.
+
 \section{提案手法}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=.4\textwidth]{selftrain.png}
+\end{center}
+\caption{手順概説}
+\label{fig:zu1}
+\end{figure}
+
+本稿では,劣化処理を施した部分画像を復元する手法を提案する(図\ref{fig:zu1}).
+
+
+
 \section{評価方法}
 \section{結果}
 \section{おわりに}
@@ -149,25 +165,6 @@ ReLUと呼ばれる活性化関数を使用は，深層学習(Deep Learning)の実現を容易にした\cite
 を記述してください．概要は400字程度（ロング発表），300字程度（ショート発表）とします．キーワードは3～5個程度とします．
 これらはページの左右中央に幅145mmの領域
 に収まるように配置します．また，項目の間には適当なスペースを挿入してください．ページの左下に脚注として，「Copyright is held by the author(s).」と「The article has been published without reviewing.」(Times-Roman 7ポイント)をそれぞれ書いてください．
-
-\subsection{本文}
-本文はテキスト領域に2段組で記述します．段の間隔は8mmです．1つの段の幅は80mmです．本文は必要に応じて章および節に区切って記述します．章の見出しは章番号および章題目(ゴシッ
-ク体11ポイント)を「2 背景と目的」の形式で記述します．節の見出しは章節番号および節題目(ゴシック体10.5ポイント)を「2.1 従来の研究」の形式で記述する．
-タイトルに続いて文章段落(明朝体10ポイント・インデント)を開始します．段落頭のインデントは1文字程度とします．句読点は「，」と「．」をそれぞれ用いてください．
-
-\section{わいばーん}
-必要に応じて，本文の後に謝辞を記述することができます．謝辞の見出しは章題目と同様のスタイル(ゴシック体11ポイント)で「謝辞」と記述します．ただし，章番号はつけません．文章段落は本文と同じスタイルとします．
-
-
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=.4\textwidth]{onigiri.png}
-\end{center}
-\caption{システム構成}
-\label{fig:zu}
-\end{figure}
-
-
 
 \begin{table}[ht]
 \caption{精度と時間}
@@ -187,25 +184,25 @@ s4      & 51       & 763  \\ \hline
 \subsection{参照}
 参考文献および図表は本文中で必ず参照されなければなりません．参考文献は参
 照番号を用いての形式で参照します．同様に図表はそれぞれ
-「図\ref{fig:zu}」「表\ref{tab:ta}」の形式で参照します．
+「表\ref{tab:ta}」の形式で参照します．
 
 
 \begin{thebibliography}{99}
-%人知マニアのロマン汁
-\bibitem{bib1} Samuel Arthur L.: Some studies in machine learning using the game of checkers,  IBM Journal of research and development, Vol.3, No.3, pp. 210-229, 1959.
-\bibitem{bib2} LeCun Yann, et al.: Gradient-based learning applied to document recognition,  Proceedings of the IEEE, Vol.86, No.11, pp. 2278-2324, 1998.
-\bibitem{bib3} Srivastava Nitish, et al.: Dropout: a simple way to prevent neural networks from overfitting,  The journal of machine learning research, Vol.15, No.1, pp. 1929-1958, 2014.
-\bibitem{bib4} LeCun Yann, et al.: Deep learning,  nature, Vol.521, No.7553, pp. 436-444, 2015.
+
 
 %超解像
-\bibitem{bib5} 小野寺康祐, ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
-\bibitem{bib6} 伊藤喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
-\bibitem{bib7} WEI, Shuaifang, et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
+\bibitem{bib1} 小野寺康祐,井上 博夏, 山本 光生ほか： 機械学習による月面DEMの高解像化, 宇宙航空研究開発機構研究開発報告, Vol.9, No.1,pp. 22-32, 2020.
+\bibitem{bib2} 伊藤喜代志: 機械学習による超解像技術を活用した詳細な深海海底地形図の作成, 日本水産工学会誌 , Vol.56, No.1, p47-50, 2019
+\bibitem{bib3} WEI, S., Wu, W., Jeon, G., et al.: Improving resolution of medical images with deep dense convolutional neural network, Concurrency and Computation: Practice and Experience, Vol.32, No.1, e5084., 2020.
 %ノイズ除去
-\bibitem{bib8} MANIFOLD, Bryce, et al.: Denoising of stimulated Raman scattering microscopy images via deep learning,, Biomedical optics express, vol.10, No.8, 3860-3874, 2019
-\bibitem{bib9} 小松里奈:  U-Net による手書き文字画像内のノイズ除去, 人工知能学会全国大会論文集, Vol.32, No.1, p.4M101-4M101, 2018
-%少数データでの学習の必要性
-\bibitem{bib10} 竹本智子, ほか： CNN による少数教師データからの早期胃がん領域の検出, 精密工学会誌, Vol.85, No.9,pp. 761-764, 2019.
+\bibitem{bib4} MANIFOLD, Bryce, et al.: Denoising of stimulated Raman scattering microscopy images via deep learning,, Biomedical optics express, vol.10, No.8, 3860-3874, 2019.
+\bibitem{bib5} 小松里奈:  U-Net による手書き文字画像内のノイズ除去, 人工知能学会全国大会論文集, Vol.32, No.1, p.4M101-4M101, 2018.
+%機械学習手法
+\bibitem{bib6} Samuel Arthur L.: Some studies in machine learning using the game of checkers,  IBM Journal of research and development, Vol.3, No.3, pp. 210-229, 1959.
+\bibitem{bib7} LeCun Yann, et al.: Gradient-based learning applied to document recognition,  Proceedings of the IEEE, Vol.86, No.11, pp. 2278-2324, 1998.
+\bibitem{bib8} Srivastava Nitish, et al.: Dropout: a simple way to prevent neural networks from overfitting,  The journal of machine learning research, Vol.15, No.1, pp. 1929-1958, 2014.
+\bibitem{bib9} Chao Dong, et al.: Learning a Deep Convolutional Network for Image Super-Resolution, in Proceedings of European Conference on Computer Vision (ECCV),pp. 184-199, 2014.
+\bibitem{bib10} Olaf Ronneberger, et al.: U-net: Convolutional networks for biomedical image segmentation, International Conference on Medical image computing and computer-assisted intervention (MICCAI), pp. 234-241, 2015.
 
 
 \end{thebibliography}
