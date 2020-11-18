@@ -31,12 +31,12 @@ preds=[]
 test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 
 preds.append(ffzk('datasets/div2k_srlearn/test_cubic8'))
-preds.append(ffzk('outputs/inception2_normal100'))
-preds.append(ffzk('outputs/inception2_normalnocnn100'))
-preds.append(ffzk('outputs/inception2_normal1000'))
-preds.append(ffzk('outputs/inception2_normalnocnn1000'))
-preds.append(ffzk('outputs/inception2_normal10000'))
-preds.append(ffzk('outputs/inception2_normalnocnn10000'))
+preds.append(ffzk('outputs/inception2_100'))
+preds.append(ffzk('outputs/inception2_nopath100'))
+preds.append(ffzk('outputs/inception2_1000'))
+preds.append(ffzk('outputs/inception2_nopath1000'))
+preds.append(ffzk('outputs/inception2_10000'))
+preds.append(ffzk('outputs/inception2_nopath10000'))
 # preds.append(ffzk('outputs/unet3'))
 # preds.append(ffzk('outputs/test4'))D
 # preds.append(ffzk('outputs/ksvd5'))
@@ -46,13 +46,12 @@ max_sample_size=min([1000,len(test)])
 if True:
     for i in range(len(preds)):
         psnrS=0.;ssimS=0.;mseS=0.
-        ii=15
-        img1 = cv2.imread(test[ii])
-        img2 = cv2.imread(preds[i][ii])
+        targets="15.png"
+        img1 = cv2.imread("/".join(test[0].split("/")[:-1])+"/"+targets)
+        img2 = cv2.imread("/".join(preds[i][0].split("/")[:-1])+"/"+targets)
         mseS+=np.mean(np.square(img1.flatten().astype(np.float32)-img2.flatten().astype(np.float32)))
         print("MSE",mseS)
         print("PSNR",10.*math.log10((255.**2)/mseS))
-        print("PSNR2",psnr(img1, img2))
         print("SSIM",ssim(img1, img2, multichannel=True))
         print("=S====^",i,"^=S====")
     exit()
