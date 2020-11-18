@@ -30,7 +30,7 @@ def img2np(dir=[],img_len=128):
 preds=[]
 test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 
-preds.append(ffzk('datasets/div2k_srlearn/test_cubic8'))
+preds.append(ffzk('datasets/div2k_srlearn/test_normal'))
 preds.append(ffzk('outputs/inception2_100'))
 preds.append(ffzk('outputs/inception2_nopath100'))
 preds.append(ffzk('outputs/inception2_1000'))
@@ -46,7 +46,7 @@ max_sample_size=min([1000,len(test)])
 if True:
     for i in range(len(preds)):
         psnrS=0.;ssimS=0.;mseS=0.
-        targets="15.png"
+        targets="111.png"
         img1 = cv2.imread("/".join(test[0].split("/")[:-1])+"/"+targets)
         img2 = cv2.imread("/".join(preds[i][0].split("/")[:-1])+"/"+targets)
         mseS+=np.mean(np.square(img1.flatten().astype(np.float32)-img2.flatten().astype(np.float32)))
