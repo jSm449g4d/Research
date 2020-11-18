@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  18 NOV 2020 11:29
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  18 NOV 2020 12:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -188,19 +188,19 @@ LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
 File: model.png Graphic file (type bmp)
 <model.png>
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 184.
+(Font)              No change on input line 182.
 LaTeX Font Info:    Kanji font shape `JY1/mc/m/it' undefined
-(Font)              No change on input line 184.
+(Font)              No change on input line 182.
 File: Unet.png Graphic file (type bmp)
 <Unet.png>
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <8> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 199.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 197.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <8> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 199.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 197.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <8> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 199.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 197.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <8> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 199.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 197.
  [2]
 File: test1_1.png Graphic file (type bmp)
 <test1_1.png>
@@ -211,7 +211,7 @@ File: test2_1.png Graphic file (type bmp)
 File: test2_2.png Graphic file (type bmp)
 <test2_2.png>
  [3]
-Underfull \hbox (badness 2042) in paragraph at lines 254--255
+Underfull \hbox (badness 2042) in paragraph at lines 252--253
 \OT1/cmr/m/n/9 NTIRE 2017 chal-lenge on sin-gle im-age super-
  []
 
@@ -227,4 +227,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  36i,8n,33p,261b,415s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on wi2_guide.dvi (4 pages, 21440 bytes).
+Output written on wi2_guide.dvi (4 pages, 21488 bytes).
