@@ -31,12 +31,12 @@ preds=[]
 test=ffzk(os.path.join("./", 'datasets/div2k_srlearn/test_y'))
 
 preds.append(ffzk('datasets/div2k_srlearn/test_normal'))
-preds.append(ffzk('outputs/inception2_100'))
-preds.append(ffzk('outputs/inception2_nopath100'))
-preds.append(ffzk('outputs/inception2_1000'))
-preds.append(ffzk('outputs/inception2_nopath1000'))
-preds.append(ffzk('outputs/inception2_10000'))
-preds.append(ffzk('outputs/inception2_nopath10000'))
+preds.append(ffzk('outputs/inception2_normal100'))
+preds.append(ffzk('outputs/inception2_normalnocnn100'))
+preds.append(ffzk('outputs/inception2_normal1000'))
+preds.append(ffzk('outputs/inception2_normalnocnn1000'))
+preds.append(ffzk('outputs/inception2_normal10000'))
+preds.append(ffzk('outputs/inception2_normalnocnn10000'))
 # preds.append(ffzk('outputs/unet3'))
 # preds.append(ffzk('outputs/test4'))D
 # preds.append(ffzk('outputs/ksvd5'))

@@ -26,7 +26,7 @@
 {
 %\email{email_num}{email_address}
 	\email{1}{ishihara-masatoshi@ed.tmu.ac.jp}%
-	\email{2}{tetsuya.arakigunma-u.ac.jp}%
+	\email{2}{tetsuya.araki@gunma-u.ac.jp}%
 	\email{3}{ishikawa-hiroshi@tmu.ac.jp}%
 }
 
@@ -130,7 +130,7 @@
 Nitish S., et al.\cite{bib8}‚Íƒ‰ƒ“ƒ_ƒ€‚Å_Œo×–E(units)‚ğ•sŠˆ‰»‚·‚é‚±‚Æ‚Å‰ßŠwK—}§‚É‚‚¢Œø‰Ê‚ğ¦‚·Dropout‚ÆŒÄÌ‚³‚ê‚éè–@‚ğ’ñˆÄ‚µ‚½.
 Dong ,C., et al.\cite{bib9}‚ÍSuper-Resolution Convolutional Neural Network(SRCNN)‚ÆŒÄ‚Î‚ê‚é3‘w‚©4‘w‚ÌCNN‚©‚ç\¬‚³‚ê‚é‹@ŠBŠwKƒ‚ƒfƒ‹‚ğ’ñˆÄ‚µ‚Ä,‚“x‚È’Pˆê‰æ‘œ’´‰ğ‘œ‚ğs‚Á‚½.
 “–è–@‚Í’á‰ğ‘œ“x‰æ‘œ‚ğBicubic–@‚ÅŠg‘å‚µ‚½‚ ‚Æ‚É“–ƒ‚ƒfƒ‹‚ğ’Ê‚·‚±‚Æ‚Å,’´‰ğ‘œ‚ğs‚Á‚½.
-Ronneberger, O., et al.\cite{bib11}‚ÍU-Net‚ÆŒÄ‚Î‚ê‚éUšŒ^‚Ì\‘¢‚ğ‚Â‹@ŠBŠwKƒ‚ƒfƒ‹‚É‚æ‚è,‰æ‘œ‚ÌƒZƒOƒƒ“ƒe[ƒVƒ‡ƒ“‚ğs‚Á‚½.
+Ronneberger, O., et al.\cite{bib10}‚ÍU-Net‚ÆŒÄ‚Î‚ê‚éUšŒ^‚Ì\‘¢‚ğ‚Â‹@ŠBŠwKƒ‚ƒfƒ‹‚É‚æ‚è,‰æ‘œ‚ÌƒZƒOƒƒ“ƒe[ƒVƒ‡ƒ“‚ğs‚Á‚½.
 U-Net‚ÌUšŒ^‚Ì\‘¢‚Í,‘S‘Ì“I“Á’¥‚Æ‹ÇŠ“I“Á’¥‚Ì—¼•û‚ğˆ—‚·‚é‚Æ‚¢‚¤“Á«‚ª‚ ‚è,’Pˆê‰æ‘œ’´‰ğ‘œ‚É‚à‰—p‚³‚ê‚½.
 
 \section{’ñˆÄè–@}
@@ -149,13 +149,14 @@ U-Net‚ÌUšŒ^‚Ì\‘¢‚Í,‘S‘Ì“I“Á’¥‚Æ‹ÇŠ“I“Á’¥‚Ì—¼•û‚ğˆ—‚·‚é‚Æ‚¢‚¤“Á«‚ª‚ ‚è,’Pˆê
 Œ³‰æ‘œ‚Ìƒf[ƒ^ƒZƒbƒg‚©‚çƒ‰ƒ“ƒ_ƒ€‚É‰æ‘œ‚ğ‘Io‚µ‚Ä128~128~3,‰æ‘f’l255‚ÌƒJƒ‰[•”•ª‰æ‘œ‚ğƒ‰ƒ“ƒ_ƒ€‚ÉØ‚èo‚µ,0“x,90“x,180“x,270“x‚Ìƒ‰ƒ“ƒ_ƒ€‚Å‰ñ“]‚ğ‰Á‚¦‚½‚à‚Ì‚ğ•”•ª‰æ‘œ{\it y}‚Æ‚µ‚½.
 •”•ª‰æ‘œ{\it y}‚ÉƒmƒCƒY‚Ì’Ç‰Á,‰ğ‘œ“x‚Ì•ÏX‚È‚Ç‚Ì”CˆÓ‚Ì—ò‰»ˆ—‚ğs‚Á‚½‚à‚Ì‚ğ—ò‰»•”•ª‰æ‘œ{\it x}‚Æ‚µ‚½.
 —ò‰»•”•ª‰æ‘œ{\it x}‚©‚ç‹@ŠBŠwK‚Å•”•ª‰æ‘œ{\it y}‚ğ„‘ª‚µ‚Ä¶¬‚µ‚½‰æ‘œ‚ğ•œŒ³•”•ª‰æ‘œ{\it \^{y}}‚Æ‚µ‚½.
-—ò‰»•”•ª‰æ‘œ{\it x}‚Æ•”•ª‰æ‘œ{\it y}‚Ì”äŠr•]‰¿‚É‚ÍPSNR‚ÆSSIM‚ğg—p‚µ‚½.
+—ò‰»•”•ª‰æ‘œ{\it x}‚Æ•”•ª‰æ‘œ{\it y}‚Ì”äŠr•]‰¿‚É‚ÍPSNR(Peak Signal-to-Noise Ratio)‚ÆSSIM\cite{bib11}‚ğg—p‚µ‚½.
 ŠwK‚Ég—p‚·‚é•”•ª‰æ‘œ‚Ì–‡”(ƒTƒ“ƒvƒ‹”$ n $)‚ğ•ÏX‚·‚é‚±‚Æ‚Å,­”ŠwK‚ª’ñˆÄ‚·‚é‹@ŠBŠwKƒ‚ƒfƒ‹‚É‹y‚Ú‚·‰e‹¿‚ğ’²¸‚µ‚½.
+–{Œ¤‹†‚Å‚Í,ˆÈ‰º2‚Â‚Ì—ò‰»ˆ—‘´X‚É‘Î‚µ‚Ä,—ò‰»•”•ª‰æ‘œ‚ğì¬‚µ‚½.
 \subsubsection{’´‰ğ‘œ}
-”ª”{‚Ì’Pˆê‰æ‘œ’´‰ğ‘œ‚ğs‚Á‚½.
+”{‚Ì’Pˆê‰æ‘œ’´‰ğ‘œ‚ğs‚Á‚½.
 •”•ª‰æ‘œ{\it y}‚Ì‰ğ‘œ“x‚ğ16~16~3‚Ü‚Åk¬‚µ‚½‚Ì‚¿Bicubic–@‚Å128~128~3‚ÉŠg‘å‚µ‚½‚à‚Ì‚ğ—ò‰»•”•ª‰æ‘œ{\it x}‚Æ‚µ‚½.
-\subsubsection{ƒKƒEƒVƒAƒ“ƒmƒCƒYœ‹}
-•”•ª‰æ‘œ{\it y}‚ÌŠe‰æ‘f,ŠeF‚É‘Î‚µ‚Ä$ •½‹ÏƒÊ=0, •W€•Î·ƒĞ=64 (‰æ‘f’l‚Ì1/4)$ ‚ÌƒKƒEƒVƒAƒ“ƒmƒCƒY‚ğ‰Á‚¦‚½‚à‚Ì‚ğ—ò‰»•”•ª‰æ‘œ{\it x}‚Æ‚µ‚½.
+\subsubsection{ƒKƒEƒVƒAƒ“ƒmƒCƒY}
+•”•ª‰æ‘œ{\it y}‚ÌŠe‰æ‘f,ŠeF‚É8‘Î‚µ‚Ä$ •½‹ÏƒÊ=0, •W€•Î·ƒĞ=64 (‰æ‘f’l‚Ì1/4)$ ‚ÌƒKƒEƒVƒAƒ“ƒmƒCƒY‚ğ‰Á‚¦‚½‚à‚Ì‚ğ—ò‰»•”•ª‰æ‘œ{\it x}‚Æ‚µ‚½.
 
 \subsection{’ñˆÄ‚·‚é‹@ŠBŠwKƒ‚ƒfƒ‹}
 –{e‚Å‚Í­”ŠwK‚Å‚Ì‰ßŠwK‚ğ–h‚¬‚Â‚Â,•¡”‚Ì‚•i¿‰»‚ÌƒAƒvƒ[ƒ`‚ğÀŒ»‚·‚é‹@ŠBŠwKƒ‚ƒfƒ‹‚ğ’ñˆÄ‚·‚é(}\ref{fig:zu2}).
@@ -179,8 +180,8 @@ U-Net‚Ì\‘¢‚ğ’´‰ğ‘œ‚É—˜—p‚·‚é‚ÉÛ‚µ,«”\‚É·ˆÙ‚ª”F‚ß‚ç‚ê‚È‚©‚Á‚½‚½‚ß,ŒvZƒRƒXƒg
 U-Net‚Æ”äŠr‚µ‚½Û,’´‰ğ‘œ‚Å—ò‚èƒKƒEƒVƒAƒ“ƒmƒCƒYœ‹‚É—D‚ê‚Ä‚¢‚½‚½‚ß–{ƒ‚ƒfƒ‹‚Ég—p‚µ‚½.
 \subsubsection{‰I‰ñ˜H}
 Dropout‚É‚æ‚é‰ßŠwK‘Îô‚Í,¸“x‚ÆƒgƒŒ[ƒhƒIƒt‚ÌŠÖŒW‚É‚ ‚é.
-‚»‚±‚ÅKaiming,H. et al.\cite{bib10} ‚Ì’ñˆÄ‚µ‚½ResNet‚ğQl‚É‚µ‚Ä—ò‰»•”•ª‰æ‘œ{\it x}‚Æ•œŒ³•”•ª‰æ‘œ{\it \^{y}}‚É’¼’Ê‚Ì‰I‰ñ˜H‚ğİ‚¯‚½.
-‰I‰ñ˜H‚ğİ‚¯‚é‚±‚Æ‚Å,‹@ŠBŠwKƒ‚ƒfƒ‹‚ÌÏ‘w‚âDropout‚É‚æ‚éŒ³‰æ‘œ‚Ìî•ñ‚Ì—ò‰»‚ğ–h‚®‚±‚Æ‚ªo—ˆ‚½.
+‚»‚±‚ÅKaiming,H. et al.\cite{bib12} ‚Ì’ñˆÄ‚µ‚½ResNet‚ğQl‚É‚µ‚Ä—ò‰»•”•ª‰æ‘œ{\it x}‚Æ•œŒ³•”•ª‰æ‘œ{\it \^{y}}‚É’¼’Ê‚Ì‰I‰ñ˜H‚ğİ‚¯‚½.
+‰I‰ñ˜H‚ğİ‚¯‚é‚±‚Æ‚Å,‹@ŠBŠwKƒ‚ƒfƒ‹‚ÌÏ‘w‚âDropout‚É‚æ‚éŒ³‰æ‘œ‚Ìî•ñ‚Ì—ò‰»‚ğ–h‚®‚±‚Æ‚ªŠú‘Ò‚Å‚«‚é.
 
 \begin{figure}[ht]
 \begin{center}
@@ -192,10 +193,10 @@ Dropout‚É‚æ‚é‰ßŠwK‘Îô‚Í,¸“x‚ÆƒgƒŒ[ƒhƒIƒt‚ÌŠÖŒW‚É‚ ‚é.
 
 \section{ÀŒ±•û–@}
 \subsection{g—pƒf[ƒ^}
-ŠwK‚Æ•]‰¿‚É‚Í‚•i¿‰æ‘œƒf[ƒ^ƒZƒbƒg‚Å‚ ‚éDIV2K‚ğg—p‚µ‚½\cite{bib12}.DIV2K‚ÍŠwK—p800–‡,•]‰¿—p100–‡‚Ì—lX‚ÈƒWƒƒƒ“ƒ‹‚Ì‰æ‘œ‚É‚æ‚Á‚Ä\¬‚³‚ê‚Ä‚¨‚è,å‚É’Pˆê‰æ‘œ’´‰ğ‘œ‚Ì•]‰¿‚É—˜—p‚³‚ê‚Ä‚¢‚é.
+ŠwK‚Æ•]‰¿‚É‚Í‚•i¿‰æ‘œƒf[ƒ^ƒZƒbƒg‚Å‚ ‚éDIV2K‚ğg—p‚µ‚½\cite{bib13}.DIV2K‚ÍŠwK—p800–‡,•]‰¿—p100–‡‚Ì—lX‚ÈƒWƒƒƒ“ƒ‹‚Ì‰æ‘œ‚É‚æ‚Á‚Ä\¬‚³‚ê‚Ä‚¨‚è,å‚É’Pˆê‰æ‘œ’´‰ğ‘œ‚Ì•]‰¿‚É—˜—p‚³‚ê‚Ä‚¢‚é.
 ‹@ŠBŠwK‚Ég—p‚·‚é‚½‚ß‚Ì•”•ª‰æ‘œ‚ÌƒTƒ“ƒvƒ‹‚ğŠwK—p10000–‡,•]‰¿—p1000–‡¶¬‚µ‚½.
 \subsection{ŠwKƒpƒ‰ƒ[ƒ^}
-Å“K‰»‚É‚ÍAdam‚ğƒpƒ‰ƒ[ƒ^‚ğ $ ƒÀ_1=0.1 ,ƒÀ_2=0.999, ŠwK—¦ 0.0005 $ ‚Åg—p‚µ‚½\cite{bib13}.
+Å“K‰»‚É‚ÍAdam‚ğƒpƒ‰ƒ[ƒ^‚ğ $ ƒÀ_1=0.1 ,ƒÀ_2=0.999, ŠwK—¦ 0.0005 $ ‚Åg—p‚µ‚½\cite{bib14}.
 ‰ßŠwK‚ğ—}~‚·‚é‚½‚ß‚ÌDropout—¦‚Í0.2‚Æ‚µ‚½.
 ƒgƒŒ[ƒjƒ“ƒO‚ÌŠwK•û®‚Í,ƒIƒ“ƒ‰ƒCƒ“ŠwK(batch size=1)‚Ås‚Á‚½.
 ŠwK‚Ég—p‚·‚é•”•ª‰æ‘œ‚ÌƒTƒ“ƒvƒ‹”$ n $‚Í[10000,1000,100]‚Ì3ƒpƒ^[ƒ“‚Ås‚Á‚½.
@@ -256,11 +257,11 @@ PSNR,SSIM—¼ŠÏ“_‚©‚ç‰I‰ñ˜H‚ª‘¶İ‚µ‚È‚¢‚Æ,Œ³‚Ì‰æ‘œ‚æ‚è—ò‰»‚·‚é‚±‚Æ‚ª”»–¾‚µ‚½.
 \bibitem{bib7} Lecun, Y., Bottou ,L., Bengio, Y., et al.: Gradient-based learning applied to document recognition,  Proceedings of the IEEE, Vol.86, No.11, pp. 2278-2324, 1998.
 \bibitem{bib8} Srivastava, N., Hinton, G., Krizhevsky, A., et al.: Dropout: a simple way to prevent neural networks from overfitting,  The journal of machine learning research, Vol.15, No.1, pp. 1929-1958, 2014.
 \bibitem{bib9} Dong ,C., Loy, C. C., He, K., Tang, X., et al.: Learning a Deep Convolutional Network for Image Super-Resolution, in Proceedings of European Conference on Computer Vision (ECCV),pp. 184-199, 2014.
-\bibitem{bib10} He, K., Zhang, X., Ren, S., et al. : Deep Residual Learning for Image Recognition, 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016
-\bibitem{bib11} Ronneberger, O., Fischer, P., Brox, T.: U-net: Convolutional networks for biomedical image segmentation, International Conference on Medical image computing and computer-assisted intervention (MICCAI), pp. 234-241, 2015.
-\bibitem{bib12} Timofte, R., Agustsson, E.,Gool, L. V., et al.: NTIRE 2017 challenge on single image super-resolution: Methods and results, IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), 2017.
-\bibitem{bib13} Kingma, D. P., Ba, J. L. , et al.: Adam: A Method for Stochastic Optimization, International Conference on Learning Representations (ICLR), 2015.
+\bibitem{bib10} Ronneberger, O., Fischer, P., Brox, T.: U-net: Convolutional networks for biomedical image segmentation, International Conference on Medical image computing and computer-assisted intervention (MICCAI), pp. 234-241, 2015.
+\bibitem{bib11} Z. Wang, A. C. Bovik, H. R. Sheikh, Simoncelli, E. P.:Image quality assessment: from error visibility to structural similarity. IEEE Transactions on Image Processing, 13(4):600-612. 2004
+\bibitem{bib12} He, K., Zhang, X., Ren, S., et al. : Deep Residual Learning for Image Recognition, 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016
+\bibitem{bib13} Timofte, R., Agustsson, E.,Gool, L. V., et al.: NTIRE 2017 challenge on single image super-resolution: Methods and results, IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), 2017.
+\bibitem{bib14} Kingma, D. P., Ba, J. L. , et al.: Adam: A Method for Stochastic Optimization, International Conference on Learning Representations (ICLR), 2015.
 \end{thebibliography}
-
 
 \end{document}
