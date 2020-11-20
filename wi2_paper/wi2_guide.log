@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  19 NOV 2020 15:01
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.9.12)  20 NOV 2020 14:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -211,13 +211,11 @@ File: test2_1.png Graphic file (type bmp)
 File: test2_2.png Graphic file (type bmp)
 <test2_2.png>
  [3]
-Underfull \hbox (badness 2042) in paragraph at lines 264--265
+Underfull \hbox (badness 2042) in paragraph at lines 267--268
 \OT1/cmr/m/n/9 NTIRE 2017 chal-lenge on sin-gle im-age super-
  []
 
-[4
-
-] (./wi2_guide.aux) ) 
+[4] (./wi2_guide.aux) ) 
 Here is how much of TeX's memory you used:
  1006 strings out of 481387
  14226 string characters out of 5924151
@@ -227,4 +225,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  36i,8n,33p,261b,415s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on wi2_guide.dvi (4 pages, 23232 bytes).
+Output written on wi2_guide.dvi (4 pages, 23528 bytes).
